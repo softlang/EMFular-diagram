@@ -1,6 +1,6 @@
 {
   "name": "ngx-arrows",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Small svg-arrow library to link components or svg elements with arrows.",
   "keywords": ["Arrows", "SVG", "Angular", "EMF"],
   "author": {
@@ -12,8 +12,8 @@
     "url": "https://github.com/softlang/EMFular/tree/main/projects/arrows"
   },
   "peerDependencies": {
-    "@angular/common": "^19.1.0",
-    "@angular/core": "^19.1.0",
+    "@angular/common": "^19.2.4",
+    "@angular/core": "^19.2.4",
     "@types/uuid": "^10.0.0"
   },
   "dependencies": {
