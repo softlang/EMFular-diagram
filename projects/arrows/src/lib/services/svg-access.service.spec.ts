@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ArrowsService } from './arrows.service';
+import { SVGAccessService } from './svg-access.service';
 
-describe('ArrowsService', () => {
-  let service: ArrowsService;
+describe('SVGAccessService', () => {
+  let service: SVGAccessService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ArrowsService);
+    service = TestBed.inject(SVGAccessService);
   });
 
   it('should be created', () => {
