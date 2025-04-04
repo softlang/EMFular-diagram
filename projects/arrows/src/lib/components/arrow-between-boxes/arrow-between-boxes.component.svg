@@ -1,0 +1,12 @@
+<svg:g>
+  <g arrow-between-points
+     [startX]="x1"
+     [startY]="y1"
+     [endX]="x2"
+     [endY]="y2"
+     [text]="text"
+     [arrowType]="arrowType"
+     [style]="style"
+  >
+  </g>
+</svg:g>

@@ -1,6 +1,6 @@
 {
   "name": "ngx-arrows",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Small svg-arrow library to link components or svg elements with arrows.",
   "keywords": ["Arrows", "SVG", "Angular", "EMF"],
   "author": {

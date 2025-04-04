@@ -1,16 +1,16 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ArrowSvgComponent} from './arrow-svg.component';
+import {ArrowBetweenBoxesComponent} from './arrow-between-boxes.component';
 import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {BoundingBox} from "../../models/bounding-box";
 
-describe('ArrowSvgComponent', () => {
-  let component: ArrowSvgComponent;
-  let fixture: ComponentFixture<ArrowSvgComponent>;
+describe('ArrowBetweenBoxesComponent', () => {
+  let component: ArrowBetweenBoxesComponent;
+  let fixture: ComponentFixture<ArrowBetweenBoxesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [ArrowSvgComponent],
+    imports: [ArrowBetweenBoxesComponent],
     schemas: [NO_ERRORS_SCHEMA],
 })
     .compileComponents();
@@ -18,7 +18,7 @@ describe('ArrowSvgComponent', () => {
     let start: BoundingBox = {x: 50, y: -20, w: 200, h: 80}
     let end: BoundingBox = {x: 80, y: 20, w: 100, h: 200}
 
-    fixture = TestBed.createComponent(ArrowSvgComponent);
+    fixture = TestBed.createComponent(ArrowBetweenBoxesComponent);
     component = fixture.componentInstance;
     component.start = start
     component.end = end

@@ -5,5 +5,4 @@ export interface ArrowStyleConfiguration {
 
   startPointer?: string;
   endPointer?: string;
-  //no intermediate points and hence no intermediate markers now
 }

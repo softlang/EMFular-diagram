@@ -1,28 +1,24 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges,} from '@angular/core';
 import { Point } from "@angular/cdk/drag-drop";
-import { NgIf } from '@angular/common';
 import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../models/bounding-box";
-import { ArrowStyleConfiguration } from '../../models/arrow-style-configuration';
-import {ArrowStyleConfigurationService} from "../../services/arrow-style-configuration.service";
 import {PathLayouter} from "../../utils/path-layouter";
+import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
 
 @Component({
-    selector: '[arrow-svg]',
-    templateUrl: './arrow-svg.component.svg',
-    styleUrl: './arrow-svg.component.css',
+    selector: '[arrow-between-boxes]',
+    templateUrl: './arrow-between-boxes.component.svg',
+    styleUrl: './arrow-between-boxes.component.css',
     standalone: true,
-  imports: [NgIf]
+  imports: [ArrowBetweenPointsComponent]
 })
-export class ArrowSvgComponent implements OnChanges, AfterViewInit {
+export class ArrowBetweenBoxesComponent implements OnChanges, AfterViewInit {
   @Input() start!: BoundingBox;
   @Input() end!: BoundingBox;
   @Input() arrowType?: string;
-//  @Input() breaks: BoundingBox[] = [];
   @Input() text?: string;
   @Input() style?: string;
 
-  arrowStyleConfiguration: ArrowStyleConfiguration;
 
   x1: number = 0;
   y1: number = 0;
@@ -35,14 +31,10 @@ export class ArrowSvgComponent implements OnChanges, AfterViewInit {
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private arrowStyleConfigService: ArrowStyleConfigurationService,) {
-
-    this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow()
-  }
+    ) {}
 
   ngAfterViewInit() {
     this.computePositions()
-    this.pickConfiguration()
     this.positioned = true;
     this.cdr.detectChanges();
   }
@@ -50,12 +42,7 @@ export class ArrowSvgComponent implements OnChanges, AfterViewInit {
   ngOnChanges() {
     if(this.positioned) {
       this.computePositions()
-      this.pickConfiguration()
     }
-  }
-
-  private pickConfiguration() {
-    this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow(this.arrowType)
   }
 
 

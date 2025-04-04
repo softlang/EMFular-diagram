@@ -9,7 +9,7 @@ import {
 import {Observable, Subscription} from "rxjs";
 import { NgIf } from '@angular/common';
 import {BoundingBox} from "../../models/bounding-box";
-import {ArrowSvgComponent} from "../arrow-svg/arrow-svg.component";
+import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
 import {SVGAccessService} from "../../services/svg-access.service";
 
 @Component({
@@ -17,7 +17,7 @@ import {SVGAccessService} from "../../services/svg-access.service";
     templateUrl: './arrow-between-elems.component.svg',
     styleUrl: './arrow-between-elems.component.css',
     standalone: true,
-    imports: [NgIf, ArrowSvgComponent]
+    imports: [NgIf, ArrowBetweenBoxesComponent]
 })
 export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
