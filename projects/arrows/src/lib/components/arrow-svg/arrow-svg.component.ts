@@ -6,19 +6,19 @@ import {BoundingBox} from "../../models/bounding-box";
 import { ArrowStyleConfiguration } from '../../models/arrow-style-configuration';
 import {ArrowStyleConfigurationService} from "../../services/arrow-style-configuration.service";
 import {PathLayouter} from "../../utils/path-layouter";
+import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
 
 @Component({
     selector: '[arrow-svg]',
     templateUrl: './arrow-svg.component.svg',
     styleUrl: './arrow-svg.component.css',
     standalone: true,
-  imports: [NgIf]
+  imports: [NgIf, ArrowBetweenPointsComponent]
 })
 export class ArrowSvgComponent implements OnChanges, AfterViewInit {
   @Input() start!: BoundingBox;
   @Input() end!: BoundingBox;
   @Input() arrowType?: string;
-//  @Input() breaks: BoundingBox[] = [];
   @Input() text?: string;
   @Input() style?: string;
 
