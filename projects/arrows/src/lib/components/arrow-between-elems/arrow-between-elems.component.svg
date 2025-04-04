@@ -1,5 +1,5 @@
 <svg:g #arrow>
-  <g arrow-svg *ngIf="start && end"
+  <g arrow-between-boxes *ngIf="start && end"
        [start]="start"
        [end]="end"
        [arrowType]="arrowType"
