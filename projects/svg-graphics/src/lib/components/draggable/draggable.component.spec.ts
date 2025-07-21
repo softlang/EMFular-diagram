@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DraggableComponent } from './draggable.component';
-import {Draggable} from "@app/core/features/positionable/positionable";
-import {SVGAccessService} from "ngx-arrows";
+import {Draggable} from "../../models/positionable";
+import {SVGAccessService} from "../../services/svg-access.service";
 
 describe('DraggableComponent', () => {
   let example = {gId: "id", position: { x: 1, y: 2, w: 2, h: 1 }};
