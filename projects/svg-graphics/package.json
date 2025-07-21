@@ -1,8 +1,8 @@
 {
-  "name": "ngx-arrows",
+  "name": "ngx-svg-graphics",
   "version": "1.0.0",
-  "description": "Small svg-arrow library to link components or svg elements with arrows.",
-  "keywords": ["Arrows", "SVG", "Angular", "EMF"],
+  "description": "Small svg library to link components or svg elements with arrows and allow to drag components.",
+  "keywords": ["Drag","Arrows", "SVG", "Angular", "EMF"],
   "author": {
     "name": "Susanne Göbel",
     "email": "goebel@uni-koblenz.de"
