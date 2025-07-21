@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ArrowBetweenBoxesComponent} from './arrow-between-boxes.component';
 import {NO_ERRORS_SCHEMA} from "@angular/core";
-import {BoundingBox} from "../../models/bounding-box";
+import {BoundingBox} from "../../../models/bounding-box";
 
 describe('ArrowBetweenBoxesComponent', () => {
   let component: ArrowBetweenBoxesComponent;

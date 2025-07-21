@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {NgIf} from "@angular/common";
-import {ArrowStyleConfigurationService} from "../../services/arrow-style-configuration.service";
-import {ArrowStyleConfiguration} from "../../models/arrow-style-configuration";
+import {ArrowStyleConfigurationService} from "../../../services/arrow-style-configuration.service";
+import {ArrowStyleConfiguration} from "../../../models/arrow-style-configuration";
 import {v4 as uuidv4} from "uuid";
 
 @Component({

@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import { NgIf } from '@angular/common';
-import {BoundingBox} from "../../models/bounding-box";
+import {BoundingBox} from "../../../models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
-import {SVGAccessService} from "../../services/svg-access.service";
+import {SVGAccessService} from "../../../services/svg-access.service";
 
 @Component({
     selector: '[arrowElems]',

@@ -1,8 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges,} from '@angular/core';
 import { Point } from "@angular/cdk/drag-drop";
 import {v4 as uuidv4} from "uuid";
-import {BoundingBox} from "../../models/bounding-box";
-import {PathLayouter} from "../../utils/path-layouter";
+import {BoundingBox} from "../../../models/bounding-box";
+import {PathLayouter} from "../../../utils/path-layouter";
 import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
 
 @Component({
