@@ -1,0 +1,6 @@
+<svg:text [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h" dy="0" [attr.style]="" (click)="handleClick()">
+  <tspan dy="1.2em" [attr.x]="x" *ngFor="let line of distributedText">{{line}}</tspan>
+</svg:text>
+<svg:foreignObject  *ngIf="isActive" [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h">
+  <input id="text-area" type="text" [(ngModel)]="this.text" (focusout)="leaveTextInput()"/>
+</svg:foreignObject>
