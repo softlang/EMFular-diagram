@@ -8,15 +8,14 @@ export class Dragger<T extends Positionable> {
   dragStartX: number = 0;
   dragStartY: number = 0;
 
-  constructor(private element: T) {
+  constructor(element: T) {
     this.elem = element;
   }
 
   startDrag(event: MouseEvent) {
-    console.log('startDrag');
-    this.dragActive = true;
     this.dragStartX = event.clientX;
     this.dragStartY = event.clientY;
+    this.dragActive = true;
   }
 
   // returns true in the case of a real drag event, false otherwise
@@ -36,7 +35,6 @@ export class Dragger<T extends Positionable> {
   }
 
   endDrag(event: MouseEvent) {
-    console.log('endDrag');
     this.dragActive = false;
     // todo was working for click vs drag, not now setTimeout(() => {this.dragActive = false;}, 50);
     event.preventDefault();
@@ -52,6 +50,5 @@ export class Dragger<T extends Positionable> {
       return true;
     }
   }
-
 
 }
