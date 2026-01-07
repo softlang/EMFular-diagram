@@ -5,7 +5,10 @@ export class PositionHelper {
 
   static absolutePosition(elem: SVGGraphicsElement): BoundingBox {
     let relativePosition: DOMRect = elem.getBBox();
-    let translationMatrix: DOMMatrix = elem.getCTM()!;
+    const svg = elem.ownerSVGElement!;
+    const toSvg = svg.getScreenCTM()!.inverse();
+    const toScreen = elem.getCTM()!
+    let translationMatrix: DOMMatrix = toSvg.multiply(toScreen);
     let x = relativePosition.x;
     let y = relativePosition.y;
     let x_abs = translationMatrix.a*x+translationMatrix.c*y+translationMatrix.e;
