@@ -17,7 +17,11 @@ export class PositionHelper {
   }
 
   static makeRelativeToElem(p: Point, elem: SVGGraphicsElement): void {
-    this.matrixTransform(p, elem.getCTM()!.inverse())
+    const svg = elem.ownerSVGElement!;
+    const fromSvg = svg.getScreenCTM()!;
+    const fromScreen = elem.getCTM()!.inverse();
+    const transformer = fromScreen.multiply(fromSvg);
+    this.matrixTransform(p, transformer);
   }
 
   static matrixTransform(p: Point, translationMatrix: DOMMatrix): void {
