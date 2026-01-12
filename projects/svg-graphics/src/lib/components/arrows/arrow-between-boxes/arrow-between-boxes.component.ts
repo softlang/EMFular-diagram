@@ -9,8 +9,7 @@ import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between
     selector: '[arrow-between-boxes]',
     templateUrl: './arrow-between-boxes.component.svg',
     styleUrl: './arrow-between-boxes.component.css',
-    standalone: true,
-  imports: [ArrowBetweenPointsComponent]
+    imports: [ArrowBetweenPointsComponent]
 })
 export class ArrowBetweenBoxesComponent implements OnChanges, AfterViewInit {
   @Input() start!: BoundingBox;

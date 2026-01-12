@@ -28,9 +28,7 @@ export class SVGAccessService {
   getRelativePosition(id: string, node: SVGGraphicsElement): BoundingBox | undefined {
     let elem = this.getElemById(id)
     if (elem) {
-      let abs = PositionHelper.absolutePosition(elem)
-      PositionHelper.makeRelativeToElem(abs, node)
-      return abs;
+      return PositionHelper.getSvgBBPosition(elem, node)
     }
     return undefined
   }

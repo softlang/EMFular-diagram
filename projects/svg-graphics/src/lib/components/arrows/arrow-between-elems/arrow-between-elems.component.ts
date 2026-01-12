@@ -16,7 +16,6 @@ import {SVGAccessService} from "../../../services/svg-access.service";
     selector: '[arrowElems]',
     templateUrl: './arrow-between-elems.component.svg',
     styleUrl: './arrow-between-elems.component.css',
-    standalone: true,
     imports: [NgIf, ArrowBetweenBoxesComponent]
 })
 export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {

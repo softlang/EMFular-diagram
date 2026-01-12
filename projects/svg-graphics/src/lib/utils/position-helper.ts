@@ -3,6 +3,12 @@ import {BoundingBox} from "../models/bounding-box";
 
 export class PositionHelper {
 
+  static getSvgBBPosition(elem: SVGGraphicsElement, node: SVGGraphicsElement): BoundingBox {
+    let abs = PositionHelper.absolutePosition(elem)
+    PositionHelper.makeRelativeToElem(abs, node)
+    return abs;
+  }
+
   static absolutePosition(elem: SVGGraphicsElement): BoundingBox {
     let relativePosition: DOMRect = elem.getBBox();
     const svg = elem.ownerSVGElement!;
