@@ -19,7 +19,7 @@ export class PositionHelper {
     let y = relativePosition.y;
     let x_abs = translationMatrix.a*x+translationMatrix.c*y+translationMatrix.e;
     let y_abs = translationMatrix.b*x+translationMatrix.d*y+translationMatrix.f;
-    return {x: x_abs, y: y_abs, w: relativePosition.width, h: relativePosition.height}
+    return {x: x_abs, y: y_abs, w: relativePosition.width*translationMatrix.a, h: relativePosition.height*translationMatrix.d};
   }
 
   static makeRelativeToElem(p: Point, elem: SVGGraphicsElement): void {

@@ -60,8 +60,8 @@ describe('PositionHelper', () => {
 
     expect(bb.x).toBe(20);
     expect(bb.y).toBe(40);
-    expect(bb.w).toBe(100);
-    expect(bb.h).toBe(50);
+    expect(bb.w).toBe(200);
+    expect(bb.h).toBe(100);
   });
 
   it('makes a point relative to another element', () => {
@@ -95,7 +95,7 @@ describe('PositionHelper', () => {
     expect(bb.x).toBe(40); // 50 - 20 + 10
     expect(bb.y).toBe(40);
     expect(bb.w).toBe(20);
-    expect(bb.h).toBe(50);
+    expect(bb.h).toBe(20);
   });
 
   it('scales width correctly with scaleX only', () => {
@@ -136,5 +136,5 @@ describe('PositionHelper', () => {
     expect(bb.w).toBe(20); // 10 * 2
     expect(bb.h).toBe(40); // 20 * 2
   });
-  
+
 });
