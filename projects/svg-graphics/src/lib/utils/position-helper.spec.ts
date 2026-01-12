@@ -60,6 +60,8 @@ describe('PositionHelper', () => {
 
     expect(bb.x).toBe(20);
     expect(bb.y).toBe(40);
+    expect(bb.w).toBe(100);
+    expect(bb.h).toBe(50);
   });
 
   it('makes a point relative to another element', () => {
@@ -92,8 +94,47 @@ describe('PositionHelper', () => {
 
     expect(bb.x).toBe(40); // 50 - 20 + 10
     expect(bb.y).toBe(40);
+    expect(bb.w).toBe(20);
+    expect(bb.h).toBe(50);
   });
 
+  it('scales width correctly with scaleX only', () => {
+    const elem = mockSvgElement({
+      bbox: { x: 0, y: 0, width: 10, height: 20 },
+      ctm: new DOMMatrix([2, 0, 0, 1, 0, 0]), // scaleX = 2
+      screenCtm: new DOMMatrix()
+    });
+    const bb = PositionHelper.absolutePosition(elem);
+    expect(bb.x).toBe(0);
+    expect(bb.y).toBe(0);
+    expect(bb.w).toBe(20); // 10 * 2
+    expect(bb.h).toBe(20); // unchanged
+  });
 
+  it('scales height correctly with scaleY only', () => {
+    const elem = mockSvgElement({
+      bbox: { x: 0, y: 0, width: 10, height: 20 },
+      ctm: new DOMMatrix([1, 0, 0, 3, 0, 0]), // scaleY = 3
+      screenCtm: new DOMMatrix()
+    });
+    const bb = PositionHelper.absolutePosition(elem);
+    expect(bb.x).toBe(0);
+    expect(bb.y).toBe(0);
+    expect(bb.w).toBe(10); // unchanged
+    expect(bb.h).toBe(60); // 20 * 3
+  });
 
+  it('scales width and height correctly with uniform scale', () => {
+    const elem = mockSvgElement({
+      bbox: { x: 0, y: 0, width: 10, height: 20},
+      ctm: new DOMMatrix([2, 0, 0, 2, 0, 0]), // scale(2)
+      screenCtm: new DOMMatrix()
+    });
+    const bb = PositionHelper.absolutePosition(elem);
+    expect(bb.x).toBe(0);
+    expect(bb.y).toBe(0);
+    expect(bb.w).toBe(20); // 10 * 2
+    expect(bb.h).toBe(40); // 20 * 2
+  });
+  
 });
