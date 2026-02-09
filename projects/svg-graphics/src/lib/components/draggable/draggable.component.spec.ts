@@ -5,7 +5,7 @@ import {Draggable} from "../../models/positionable";
 import {SVGAccessService} from "../../services/svg-access.service";
 
 describe('DraggableComponent', () => {
-  let example = {gId: "id", position: { x: 1, y: 2, w: 2, h: 1 }};
+  let example = {$gId: "id", position: { x: 1, y: 2, w: 2, h: 1 }};
   let component: DraggableComponent<Draggable>;
   let fixture: ComponentFixture<DraggableComponent<Draggable>>;
 
