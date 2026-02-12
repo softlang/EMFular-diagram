@@ -23,7 +23,7 @@ export abstract class DraggableComponent<T extends Draggable> implements AfterVi
 
 
   ngAfterViewInit() {
-    this.svgAccessService.notifyPositionChange(this.elem.gId)
+    this.svgAccessService.notifyPositionChange(this.elem.$gId)
   }
 
   startDrag(event: MouseEvent) {
@@ -32,7 +32,7 @@ export abstract class DraggableComponent<T extends Draggable> implements AfterVi
 
   drag(event: MouseEvent) {
     if (this.elemDragger.drag(event)) {
-      this.svgAccessService.notifyPositionChange(this.elem.gId)
+      this.svgAccessService.notifyPositionChange(this.elem.$gId)
     }
   }
 
