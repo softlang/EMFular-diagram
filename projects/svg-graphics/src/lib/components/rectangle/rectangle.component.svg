@@ -1,0 +1,3 @@
+<svg:g>
+    <rect [attr.x]="position.x" [attr.y]="position.y" [attr.width]="position.w" [attr.height]="position.h" [attr.fill]="color"></rect>
+</svg:g>
