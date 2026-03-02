@@ -8,6 +8,7 @@ export * from './lib/components/arrows/arrow-between-elems/arrow-between-elems.c
 export * from './lib/components/arrows/arrow-between-boxes/arrow-between-boxes.component';
 export * from './lib/components/arrows/arrow-between-points/arrow-between-points.component';
 export * from './lib/components/text-area-svg/text-area-svg.component';
+export * from './lib/components/rectangle/rectangle.component';
 export * from './lib/services/arrow-style-configuration.service';
 export * from './lib/services/svg-access.service';
 export * from './lib/utils/position-helper';
