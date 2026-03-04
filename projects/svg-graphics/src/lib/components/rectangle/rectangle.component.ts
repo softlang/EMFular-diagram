@@ -9,6 +9,6 @@ import {BoundingBox} from "../../models/bounding-box";
 })
 export class RectangleComponent {
   @Input() position!: BoundingBox
-  @Input() color: string = '#ccffff';
+  @Input() color?: string = '#ccffff';
 
 }
