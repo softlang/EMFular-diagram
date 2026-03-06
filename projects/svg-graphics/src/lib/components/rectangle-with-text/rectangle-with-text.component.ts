@@ -18,5 +18,5 @@ export class RectangleWithTextComponent {
   @Output() textChange = new EventEmitter<string>();
 
   @Input() position!: BoundingBox
-  @Input() color!: string;
+  @Input() color?: string;
 }
