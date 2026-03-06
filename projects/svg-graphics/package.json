@@ -1,6 +1,6 @@
 {
   "name": "ngx-svg-graphics",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Small svg library to link components or svg elements with arrows and allow to drag components.",
   "keywords": ["Drag","Arrows", "SVG", "Angular", "EMF"],
   "author": {
