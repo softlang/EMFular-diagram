@@ -42,4 +42,18 @@ export class PositionHelper {
   static newBoundingBox(x: number = 0, y: number = 0, width: number = 5, height: number = 5): BoundingBox {
     return {x: x, y: y, w: width, h: height};
   }
+
+  static computeOffset(index: number, length: number): number {
+    const middle = (length-1)/2;
+    return index - middle;
+  }
+
+  static computeChildBBox(index: number, length: number, parentBox: BoundingBox): BoundingBox {
+    return {
+      x: parentBox.x + this.computeOffset(index, length)*(parentBox.w+5),
+      y: parentBox.y+parentBox.h*2,
+      w: parentBox.w,
+      h: parentBox.h
+    }
+  }
 }
