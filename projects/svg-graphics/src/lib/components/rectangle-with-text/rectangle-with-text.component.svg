@@ -1,0 +1,14 @@
+<svg:g [attr.id]="id">
+    <g rectangleG
+       [position]="position"
+       [color]="color">
+    </g>
+    <!-- class name -->
+    <g text-area-svg
+       [(text)]="text"
+       [x]="position.x"
+       [y]="position.y"
+       [w]="position.w"
+       [h]="position.h">
+    </g>
+</svg:g>
