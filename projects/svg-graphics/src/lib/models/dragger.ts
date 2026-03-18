@@ -23,23 +23,12 @@ export class Dragger<T extends Positionable> {
     if (this.dragActive) {
       this.wasReallyDragged = true;
       event.preventDefault();
-
       const dragX = event.clientX;
-      const dragY = event.clientY;
-
-      const deltaX = dragX - this.dragStartX;
-      const deltaY = dragY - this.dragStartY;
-
-      // IMMUTABLE UPDATE
-      this.elem.position = {
-        ...this.elem.position,
-        x: this.elem.position.x + deltaX,
-        y: this.elem.position.y + deltaY
-      };
-
+      this.elem.position.x+= (dragX - this.dragStartX);
       this.dragStartX = dragX;
+      const dragY = event.clientY;
+      this.elem.position.y+= (dragY - this.dragStartY);
       this.dragStartY = dragY;
-
       return true;
     }
     return false;
