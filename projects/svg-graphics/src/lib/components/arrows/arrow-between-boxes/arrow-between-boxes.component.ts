@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges,} from '@angular/core';
 import { Point } from "@angular/cdk/drag-drop";
+import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../../models/bounding-box";
 import {PathLayouter} from "../../../utils/path-layouter";
 import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
@@ -10,42 +11,43 @@ import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between
     styleUrl: './arrow-between-boxes.component.css',
     imports: [ArrowBetweenPointsComponent]
 })
-export class ArrowBetweenBoxesComponent implements AfterViewInit {
-
-  private _start!: BoundingBox;
-  @Input() set start(bb: BoundingBox) {
-    this._start = bb;
-    if (this.positioned) this.computePositions();
-  }
-
-  private _end!: BoundingBox;
-  @Input() set end(bb: BoundingBox) {
-    this._end = bb;
-    if (this.positioned) this.computePositions();
-  }
-
+export class ArrowBetweenBoxesComponent implements OnChanges, AfterViewInit {
+  @Input() start!: BoundingBox;
+  @Input() end!: BoundingBox;
   @Input() arrowType?: string;
   @Input() text?: string;
   @Input() style?: string;
 
-  x1 = 0;
-  y1 = 0;
-  x2 = 5;
-  y2 = 5;
 
-  positioned = false;
+  x1: number = 0;
+  y1: number = 0;
+  x2: number = 5;
+  y2: number = 5;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  id = uuidv4();
+
+  positioned= false;
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    ) {}
 
   ngAfterViewInit() {
-    this.computePositions();
+    this.computePositions()
     this.positioned = true;
     this.cdr.detectChanges();
   }
 
+  ngOnChanges() {
+    if(this.positioned) {
+      this.computePositions()
+    }
+  }
+
+
   private computePositions() {
-    const res = PathLayouter.bestPoints(this._start, this._end);
-    this.applyBestPoints(res);
+    let res = PathLayouter.bestPoints(this.start, this.end);
+    this.applyBestPoints(res)
   }
 
   private applyBestPoints(res: Point[]) {
@@ -54,4 +56,5 @@ export class ArrowBetweenBoxesComponent implements AfterViewInit {
     this.x2 = res[1].x;
     this.y2 = res[1].y;
   }
+
 }
