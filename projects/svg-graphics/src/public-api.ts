@@ -7,6 +7,8 @@ export * from './lib/components/draggable/draggable.component';
 export * from './lib/components/arrows/arrow-between-elems/arrow-between-elems.component';
 export * from './lib/components/arrows/arrow-between-boxes/arrow-between-boxes.component';
 export * from './lib/components/arrows/arrow-between-points/arrow-between-points.component';
+export * from './lib/components/arrows/orthogonal-arrow-between-boxes/orthogonal-arrow-between-boxes.component';
+export * from './lib/components/arrows/orthogonal-arrow-between-elems/orthogonal-arrow-between-elems.component';
 export * from './lib/components/text-area-svg/text-area-svg.component';
 export * from './lib/components/rectangle-with-text/rectangle-with-text.component';
 export * from './lib/components/rectangle/rectangle.component';
@@ -21,3 +23,4 @@ export type {ArrowStyleConfiguration} from './lib/models/arrow-style-configurati
 export type {Identifiable} from './lib/models/identifiable'; //gId: string - soft connection to Referencable
 export type {Positionable, Draggable} from './lib/models/positionable';
 
+export * from './lib/components/arrows/shared/arrow-geometry';

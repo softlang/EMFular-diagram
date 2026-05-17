@@ -1,0 +1,24 @@
+.orthogonal-arrow-hitbox {
+  cursor: move;
+  pointer-events: stroke;
+}
+
+.orthogonal-arrow-path {
+  pointer-events: none;
+}
+
+.orthogonal-arrow-control-point,
+.orthogonal-arrow-anchor-handle {
+  cursor: grab;
+}
+
+.orthogonal-arrow-control-point:hover,
+.orthogonal-arrow-anchor-handle:hover {
+  stroke-width: 2;
+}
+
+.orthogonal-arrow-control-point:active,
+.orthogonal-arrow-anchor-handle:active,
+.orthogonal-arrow-hitbox:active {
+  cursor: grabbing;
+}

@@ -1,0 +1,72 @@
+<svg:g class="orthogonal-arrow">
+
+  <!-- Invisible hitbox -->
+  <path
+    class="orthogonal-arrow-hitbox"
+    [attr.d]="pathData"
+    fill="none"
+    stroke="transparent"
+    stroke-width="12"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    pointer-events="stroke"
+    (mousedown)="startDragSegment($event)"
+    (dblclick)="addControlPoint($event)">
+  </path>
+
+  <!-- Visible line -->
+  <path
+    class="orthogonal-arrow-path"
+    [attr.id]="id + '-path'"
+    [attr.d]="pathData"
+    fill="none"
+    [attr.stroke]="arrowStyleConfiguration.color"
+    stroke-width="2"
+    [attr.stroke-dasharray]="arrowStyleConfiguration.dashed"
+    [attr.marker-start]='"url(#" + arrowStyleConfiguration.startPointer + ")"'
+    [attr.marker-end]='"url(#" + arrowStyleConfiguration.endPointer + ")"'
+    style="{{style}}">
+  </path>
+
+  <text *ngIf="text">
+    <textPath [attr.href]="'#' + id + '-path'">
+      {{text}}
+    </textPath>
+  </text>
+
+  <!-- start/end handler-points -->
+  <circle
+    *ngIf="editable"
+    class="orthogonal-arrow-anchor-handle"
+    [attr.cx]="startPoint.x"
+    [attr.cy]="startPoint.y"
+    r="6"
+    fill="transparent"
+    (mousedown)="startDragStartAnchor($event)">
+  </circle>
+
+  <circle
+    *ngIf="editable"
+    class="orthogonal-arrow-anchor-handle"
+    [attr.cx]="endPoint.x"
+    [attr.cy]="endPoint.y"
+    r="6"
+    fill="transparent"
+    (mousedown)="startDragEndAnchor($event)">
+  </circle>
+
+  <!-- control-points -->
+  <ng-container *ngFor="let handle of routedHandles">
+    <circle
+      *ngIf="editable"
+      class="orthogonal-arrow-control-point"
+      [attr.cx]="handle.point.x"
+      [attr.cy]="handle.point.y"
+      r="6"
+      fill="transparent"
+      (mousedown)="startDragRoutedHandle(handle, $event)"
+      (dblclick)="handle.controlPointIndex !== undefined && removeControlPoint(handle.controlPointIndex, $event)">
+    </circle>
+  </ng-container>
+
+</svg:g>

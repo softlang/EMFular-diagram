@@ -1,12 +1,70 @@
 <svg:g>
-  <g arrow-between-points
+  <g *ngIf="!bent"
+     arrow-between-points
      [startX]="x1"
      [startY]="y1"
      [endX]="x2"
      [endY]="y2"
      [text]="text"
      [arrowType]="arrowType"
-     [style]="style"
-  >
+     [style]="style">
+  </g>
+
+  <g *ngIf="bent" class="bent-arrow">
+    <!-- Invisible hitbox -->
+    <path [attr.d]="pathData"
+          fill="none"
+          stroke="transparent"
+          stroke-width="18"
+          pointer-events="stroke"
+          (mousedown)="addAndDragControlPoint($event)"
+          (dblclick)="addControlPoint($event)">
+    </path>
+
+    <!-- visible line -->
+    <path [attr.id]="id+'-path'"
+          [attr.d]="pathData"
+          fill="none"
+          [attr.stroke]="arrowStyleConfiguration.color"
+          stroke-width="1"
+          [attr.stroke-dasharray]="arrowStyleConfiguration.dashed"
+          [attr.marker-start]='"url(#"+arrowStyleConfiguration.startPointer+")"'
+          [attr.marker-end]='"url(#"+arrowStyleConfiguration.endPointer+")"'
+          style="{{style}}">
+    </path>
+
+    <text *ngIf="text">
+      <textPath [attr.href]="'#'+id+'-path'">
+        {{text}}
+      </textPath>
+    </text>
+
+    <ng-container *ngIf="editable">
+      <ng-container *ngFor="let p of controlPoints; let i = index">
+        <circle [attr.cx]="p.x"
+                [attr.cy]="p.y"
+                r="5"
+                fill="transparent"
+                (mousedown)="startDragControlPoint(i, $event)"
+                (dblclick)="removeControlPoint(i, $event)">
+        </circle>
+      </ng-container>
+
+      <circle *ngIf="startAnchor"
+              [attr.cx]="startPoint.x"
+              [attr.cy]="startPoint.y"
+              r="6"
+              fill="transparent"
+              (mousedown)="startDragStartAnchor($event)">
+      </circle>
+
+      <circle *ngIf="endAnchor"
+              [attr.cx]="endPoint.x"
+              [attr.cy]="endPoint.y"
+              r="6"
+              fill="transparent"
+              (mousedown)="startDragEndAnchor($event)">
+      </circle>
+    </ng-container>
   </g>
 </svg:g>

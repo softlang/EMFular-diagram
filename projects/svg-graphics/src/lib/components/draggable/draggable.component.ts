@@ -12,10 +12,18 @@ import {Dragger} from "../../models/dragger";
 export abstract class DraggableComponent<T extends Draggable> implements AfterViewInit {
 
   @Output() chooseElem = new EventEmitter<T>();
+  @Output('doubleClickElem') doubleClickElemEvent = new EventEmitter<T>();
+
   //the caller must initialize both required elements (elem and elementDragger) either in the constructor
   // (or if they are inputs) in the ngOnInit life cycle hook
   elem!: T;
   elemDragger!: Dragger<T>;
+
+  private readonly clickDelayMs = 250;
+  private clickTimer?: ReturnType<typeof setTimeout>;
+
+  private boundDrag = (event: MouseEvent) => this.drag(event);
+  private boundEndDrag = (event: MouseEvent) => this.endDrag(event);
 
   protected constructor(
     protected svgAccessService: SVGAccessService
@@ -23,26 +31,54 @@ export abstract class DraggableComponent<T extends Draggable> implements AfterVi
 
 
   ngAfterViewInit() {
-    this.svgAccessService.notifyPositionChange(this.elem.$gId)
+    this.svgAccessService.notifyPositionChange(this.elem.$gId);
   }
 
   startDrag(event: MouseEvent) {
+    this.clearPendingClick();
     this.elemDragger.startDrag(event);
+
+    window.addEventListener('mousemove', this.boundDrag);
+    window.addEventListener('mouseup', this.boundEndDrag);
   }
 
   drag(event: MouseEvent) {
     if (this.elemDragger.drag(event)) {
-      this.svgAccessService.notifyPositionChange(this.elem.$gId)
+      this.clearPendingClick();
+      this.svgAccessService.notifyPositionChange(this.elem.$gId);
     }
   }
 
   endDrag(event: MouseEvent) {
     this.elemDragger.endDrag(event);
+
+    window.removeEventListener('mousemove', this.boundDrag);
+    window.removeEventListener('mouseup', this.boundEndDrag);
   }
 
   clickElem(event: MouseEvent) {
     if (this.elemDragger.clickElem(event)) {
-      this.chooseElem.emit(this.elem);
+      this.clearPendingClick();
+
+      this.clickTimer = setTimeout(() => {
+        this.chooseElem.emit(this.elem);
+        this.clickTimer = undefined;
+      }, this.clickDelayMs);
+    }
+  }
+
+  handleDoubleClickElem(event: MouseEvent) {
+    this.clearPendingClick();
+
+    if (this.elemDragger.doubleClickElem(event)) {
+      this.doubleClickElemEvent.emit(this.elem);
+    }
+  }
+
+  private clearPendingClick() {
+    if (this.clickTimer) {
+      clearTimeout(this.clickTimer);
+      this.clickTimer = undefined;
     }
   }
 

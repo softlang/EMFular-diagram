@@ -4,6 +4,15 @@
        [end]="end"
        [arrowType]="arrowType"
        [text]="text"
-       [style]="style">
+       [style]="style"
+       [bent]="bent"
+       [controlPoints]="controlPoints"
+       [startAnchor]="startAnchor"
+       [endAnchor]="endAnchor"
+       [editable]="editable"
+       (geometryChange)="geometryChange.emit($event)"
+       (controlPointsChange)="controlPointsChange.emit($event)"
+       (startAnchorChange)="startAnchorChange.emit($event)"
+       (endAnchorChange)="endAnchorChange.emit($event)">
   </g>
-></svg:g>
+</svg:g>

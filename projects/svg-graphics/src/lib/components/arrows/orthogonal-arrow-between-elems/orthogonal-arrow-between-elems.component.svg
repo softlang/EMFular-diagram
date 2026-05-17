@@ -1,0 +1,19 @@
+<svg:g #arrow>
+  <g
+    *ngIf="positioned && start && end"
+    orthogonal-arrow-between-boxes
+    [start]="start"
+    [end]="end"
+    [controlPoints]="controlPoints"
+    [startAnchor]="startAnchor"
+    [endAnchor]="endAnchor"
+    [editable]="editable"
+    [arrowType]="arrowType"
+    [text]="text"
+    [style]="style"
+    (geometryChange)="onGeometryChange($event)"
+    (controlPointsChange)="onControlPointsChange($event)"
+    (startAnchorChange)="onStartAnchorChange($event)"
+    (endAnchorChange)="onEndAnchorChange($event)">
+  </g>
+</svg:g>
