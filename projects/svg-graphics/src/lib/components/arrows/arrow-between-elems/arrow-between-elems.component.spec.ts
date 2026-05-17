@@ -8,16 +8,31 @@ describe('ArrowBetweenElemsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [ArrowBetweenElemsComponent]
-})
-    .compileComponents();
+      imports: [ArrowBetweenElemsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ArrowBetweenElemsComponent);
     component = fixture.componentInstance;
+
+    component.startGID = 'start';
+    component.endGID = 'end';
+
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('creates the wrapper component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('builds element ids from gid and suffix inputs', () => {
+    component.startGID = 'start';
+    component.startSuffix = '-box';
+    component.endGID = 'end';
+    component.endSuffix = '-box';
+
+    component.ngOnChanges();
+
+    expect(component.startId).toBe('start-box');
+    expect(component.endId).toBe('end-box');
   });
 });

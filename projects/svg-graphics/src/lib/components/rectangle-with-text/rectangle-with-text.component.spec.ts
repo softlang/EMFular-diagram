@@ -14,6 +14,11 @@ describe('RectangleWithTextComponent', () => {
 
     fixture = TestBed.createComponent(RectangleWithTextComponent);
     component = fixture.componentInstance;
+
+    component.id = 'test-id';
+    component.text = 'Test';
+    component.position = { x: 0, y: 0, w: 100, h: 50 };
+
     fixture.detectChanges();
   });
 

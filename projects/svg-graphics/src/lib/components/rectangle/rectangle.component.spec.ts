@@ -14,6 +14,9 @@ describe('RectangleComponent', () => {
 
     fixture = TestBed.createComponent(RectangleComponent);
     component = fixture.componentInstance;
+
+    component.position = { x: 0, y: 0, w: 100, h: 50 };
+
     fixture.detectChanges();
   });
 
