@@ -1,6 +1,6 @@
 {
-  "name": "ngx-svg-graphics",
-  "version": "3.0.0",
+  "name": "ngx-emfular-diagram",
+  "version": "1.0.0",
   "description": "Small svg library to link components or svg elements with arrows and allow to drag components.",
   "keywords": ["Drag","Arrows", "SVG", "Angular", "EMF"],
   "author": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/softlang/EMFular/tree/main/projects/arrows"
+    "url": "https://github.com/softlang/EMFular/tree/main/projects/diagram"
   },
   "peerDependencies": {
     "@angular/common": "^19.2.4",
