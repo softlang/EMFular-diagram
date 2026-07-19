@@ -1,63 +1,33 @@
-# SVG-Graphics
+# EMFular-diagram
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.0.
+This project supplies components and services for the easier creation of ***svg-based*** diagrams.
+To support such components, the library provides and uses explicit contracts of ***graphical identity*** (`interface Identifiable`) and ***position*** (`interface Positionable`), that using code should implement.
+Diagram currently offers text alignment, drag-and-drop-support and arrow components that can attach to explicit points, bounding boxes, or identifiable objects.
+Further contributions are welcome.
 
-## Code scaffolding
+## Getting started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+Install the library via `npm`:
+```
+npm install ngx-emfular-diagram
+```
+or adapt your package.json manually to the required version:
+```
+"ngx-emfular-diagram": "^1.0.0",
+```
+older versions are available under the old package name, `ngx-svg-graphics`. The latest old version is:
+```
+"ngx-svg-graphics": "^3.0.0",
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Support
+Support is currently offered by the main developer, Susanne Göbel under goebel@uni-koblenz.de.
 
-```bash
-ng generate --help
-```
+## Contributing
+We are open to contributors. Maybe you would like to write your bachelor's or master's thesis on EMFular? Read our [arXiv-paper](https://arxiv.org/abs/2606.11442) and get in touch with Susanne Göbel goebel@uni-koblenz.de.
 
-## Building
-
-To build the library, run:
-
-```bash
-ng build svg-graphics
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/svg-graphics
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## License
+EMFular-diagram is subject to (C) 2026, SoftLang Research Team, University of Koblenz, Faculty of CS, contact Susanne Göbel or Ralf Lämmel.
+It is provided under the ***CC BY 4.0 license***.
+Basically, you are free to share and adapt the material as long as you give proper credit to us and our project.
+Feel free to include EMFular into your research but please cite us.
