@@ -16,7 +16,7 @@
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "test": "vitest --config vitest.config.ts",
-    "test:browser": "vitest --browser --config vitest.browser.config.ts"
+    "test:browser": "vitest --config=vitest.browser.config.ts"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "@types/uuid": "^10.0.0"
   },
   "dependencies": {
+    "@testing-library/dom": "^10.4.1",
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
