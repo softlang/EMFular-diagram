@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { beforeEach, describe, expect, it } from 'vitest';
+import {afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { TextAreaSvgComponent } from './text-area-svg.component';
 
@@ -7,14 +7,18 @@ describe('TextAreaSvgComponent', () => {
   let component: TextAreaSvgComponent;
   let fixture: ComponentFixture<TextAreaSvgComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [TextAreaSvgComponent],
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TextAreaSvgComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TextAreaSvgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   it('should create', () => {
