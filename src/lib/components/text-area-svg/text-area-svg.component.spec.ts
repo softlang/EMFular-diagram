@@ -1,15 +1,16 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { TextAreaSvgComponent } from './text-area-svg.component';
 
 describe('TextAreaSvgComponent', () => {
   let component: TextAreaSvgComponent;
   let fixture: ComponentFixture<TextAreaSvgComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TextAreaSvgComponent]
-    }).compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [TextAreaSvgComponent],
+    });
 
     fixture = TestBed.createComponent(TextAreaSvgComponent);
     component = fixture.componentInstance;
@@ -33,7 +34,7 @@ describe('TextAreaSvgComponent', () => {
     expect(component.distributedText).toEqual(distributedText);
   }
 
-  it('Should set a two line distributed text', () => {
+  it('should set a two line distributed text', () => {
     initializeDistributedText();
 
     verifyDistributedText(
@@ -42,7 +43,7 @@ describe('TextAreaSvgComponent', () => {
     );
   });
 
-  it('Should set a short distributed text after setting a longer one', () => {
+  it('should set a short distributed text after setting a longer one', () => {
     initializeDistributedText();
 
     verifyDistributedText(
@@ -50,10 +51,6 @@ describe('TextAreaSvgComponent', () => {
         ['Lorem ipsum dolor sit', 'amet, consetetur ...']
     );
 
-    verifyDistributedText(
-        'Short',
-        ['Short']
-    );
+    verifyDistributedText('Short', ['Short']);
   });
-
 });
