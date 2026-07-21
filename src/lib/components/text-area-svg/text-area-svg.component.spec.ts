@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TextAreaSvgComponent } from './text-area-svg.component';
 
 describe('TextAreaSvgComponent', () => {
@@ -21,39 +21,39 @@ describe('TextAreaSvgComponent', () => {
   });
 
   function initializeDistributedText() {
-    component.x = 20
-    component.y = 40
-    component.h = 50
-    component.w = 200
-
+    component.x = 20;
+    component.y = 40;
+    component.h = 50;
+    component.w = 200;
   }
 
   function verifyDistributedText(text: string, distributedText: string[]) {
     component.text = text;
-    component.distributeText()
-    expect(component.distributedText).toEqual(distributedText)
+    component.distributeText();
+    expect(component.distributedText).toEqual(distributedText);
   }
 
   it('Should set a two line distributed text', () => {
     initializeDistributedText();
 
     verifyDistributedText(
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-      ['Lorem ipsum dolor sit', 'amet, consetetur ...']
-    )
-  })
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        ['Lorem ipsum dolor sit', 'amet, consetetur ...']
+    );
+  });
 
   it('Should set a short distributed text after setting a longer one', () => {
     initializeDistributedText();
 
     verifyDistributedText(
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-      ['Lorem ipsum dolor sit', 'amet, consetetur ...']
-    ) //first set two lines, next set a shorter one
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        ['Lorem ipsum dolor sit', 'amet, consetetur ...']
+    );
+
     verifyDistributedText(
-      'Short',
-      ['Short']
-    )
-  })
+        'Short',
+        ['Short']
+    );
+  });
 
 });
