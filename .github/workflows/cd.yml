@@ -20,7 +20,14 @@ jobs:
       - name: Verify tag is on main
         run: |
           git fetch origin main
-          git merge-base --is-ancestor $GITHUB_SHA origin/main
+
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "You may only create releases from main."
+            echo "The tagged commit $GITHUB_SHA is not part of origin/main."
+            exit 1
+          fi
+
+          echo "Tag points to a commit on main"
 
       - uses: actions/setup-node@v4
         with:
