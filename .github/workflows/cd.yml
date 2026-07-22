@@ -41,7 +41,14 @@ jobs:
         run: |
           VERSION=$(node -p "require('./package.json').version")
           TAG=${GITHUB_REF#refs/tags/v}
-          test "$VERSION" = "$TAG"
+          
+          if [ "$VERSION" != "$TAG" ]; then
+            echo "Version mismatch!"
+            echo "package.json contains version $VERSION"
+            echo "but the tag is v$TAG"
+            exit 1
+          fi
+          echo "Versions match: $VERSION"
 
       - name: Publish
         run: npm publish --provenance --access public
