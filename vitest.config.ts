@@ -8,6 +8,19 @@ export default defineConfig({
     plugins: [
         angular()
     ],
+    optimizeDeps: {
+        include: [
+            '@angular/compiler',
+            '@angular/core',
+            '@angular/common',
+            '@angular/forms',
+            '@angular/core/testing',
+            '@angular/platform-browser-dynamic/testing',
+            'zone.js',
+            'zone.js/testing'
+        ]
+    },
+
     test: {
         setupFiles: ['./vitest.setup.ts'],
         browser: {
