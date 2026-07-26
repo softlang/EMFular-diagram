@@ -21,17 +21,16 @@
     "type": "git",
     "url": "https://github.com/softlang/EMFular-diagram"
   },
+  "sideEffects": false,
   "peerDependencies": {
     "@angular/cdk": "^19.2.7",
     "@angular/common": "^19.2.7",
     "@angular/core": "^19.2.7",
-    "@angular/forms": "^19.2.7",
-    "@types/uuid": "^10.0.0"
+    "@angular/forms": "^19.2.7"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false,
   "devDependencies": {
     "@analogjs/vite-plugin-angular": "^1.19.2",
     "@angular-devkit/build-angular": "^19.2.25",
