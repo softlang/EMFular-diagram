@@ -57,6 +57,14 @@ jobs:
           fi
           echo "Versions match: $VERSION"
 
+      - name: Debug publish
+        working-directory: dist
+        run: |
+          npm --version
+          node --version
+          npm whoami || true
+          npm publish --dry-run
+
       - name: Publish
         working-directory: dist
         run: npm publish --provenance --access public
