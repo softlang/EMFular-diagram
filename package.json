@@ -1,6 +1,6 @@
 {
   "name": "ngx-emfular-diagram",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small svg library to link components or svg elements with arrows and allow to drag components.",
   "keywords": [
     "Drag",
