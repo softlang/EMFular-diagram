@@ -70,11 +70,19 @@ jobs:
           echo "ACTIONS_ID_TOKEN_REQUEST_URL=${ACTIONS_ID_TOKEN_REQUEST_URL:+present}"
           echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN=${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+present}"
 
+      - name: Print GitHub context
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Workflow ref: $GITHUB_WORKFLOW_REF"
+          echo "Workflow: $GITHUB_WORKFLOW"
+          echo "Ref: $GITHUB_REF"
+          echo "SHA: $GITHUB_SHA"
+
       - name: Publish
         id: publish
         working-directory: dist
         continue-on-error: true
-        run: npm publish --provenance --access public
+        run: npm publish
 
       - name: Show npm debug log
         if: always()
