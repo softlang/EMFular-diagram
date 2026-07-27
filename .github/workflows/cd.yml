@@ -71,8 +71,25 @@ jobs:
           echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN=${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+present}"
 
       - name: Publish
+        id: publish
         working-directory: dist
+        continue-on-error: true
         run: npm publish --provenance --access public
+
+      - name: Show npm debug log
+        if: always()
+        run: |
+          echo "===== npm logs ====="
+          ls -l /home/runner/.npm/_logs
+          for f in /home/runner/.npm/_logs/*; do
+            echo
+            echo "===== $f ====="
+            cat "$f"
+          done
+
+      - name: Fail if publish failed
+        if: steps.publish.outcome != 'success'
+        run: exit 1
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
