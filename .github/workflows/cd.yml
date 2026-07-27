@@ -6,7 +6,7 @@ on:
       - "v*"
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 jobs:
@@ -56,27 +56,6 @@ jobs:
             exit 1
           fi
           echo "Versions match: $VERSION"
-
-      - name: Debug publish
-        working-directory: dist
-        run: |
-          npm --version
-          node --version
-          npm whoami || true
-          npm publish --dry-run
-
-      - name: Check OIDC environment
-        run: |
-          echo "ACTIONS_ID_TOKEN_REQUEST_URL=${ACTIONS_ID_TOKEN_REQUEST_URL:+present}"
-          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN=${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+present}"
-
-      - name: Print GitHub context
-        run: |
-          echo "Repository: $GITHUB_REPOSITORY"
-          echo "Workflow ref: $GITHUB_WORKFLOW_REF"
-          echo "Workflow: $GITHUB_WORKFLOW"
-          echo "Ref: $GITHUB_REF"
-          echo "SHA: $GITHUB_SHA"
 
       - name: Publish
         id: publish
