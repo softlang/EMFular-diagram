@@ -14,6 +14,8 @@
 /* Code snippet */
 .playground__code {
   min-width: 0;
+  border: 2px solid $color-orange-light;
+  border-radius: 4px;
 }
 
 .playground__code pre {
@@ -21,7 +23,7 @@
   overflow-x: auto;
 }
 
-/* Buttons below code */
+/* Buttons below form */
 .playground__actions {
   display: flex;
   gap: 0.5rem;
