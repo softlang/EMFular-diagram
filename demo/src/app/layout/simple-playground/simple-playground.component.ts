@@ -1,13 +1,10 @@
-import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {ModelCanvasComponent} from "../../../../../src/lib/components/model-canvas/model-canvas.component";
 
-type FormValue<TControls extends Record<string, AbstractControl<any, any>>> = {
-  [K in keyof TControls]:
-  TControls[K] extends AbstractControl<infer TValue, any>
-      ? TValue
-      : never;
-};
+export enum InputType {
+  'number', 'text', 'checkbox'
+}
 
 @Component({
   selector: 'demo-simple-playground',
@@ -22,10 +19,28 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
   @Input() form!: FormGroup<TInputs>;
   @Input() codeTemplate!: string;
 
-  initialValue: any
+  initialValue: any //todo
+  inputTypes: Record<string, InputType> = {};
+
 
   ngAfterViewInit() {
     this.initialValue = this.form.getRawValue();
+    for (const [name, control] of Object.entries(this.form.controls)) {
+      this.inputTypes[name] = this.detectInputType(control);
+    }
+  }
+
+  private detectInputType(control: AbstractControl): InputType {
+    const value = control.value;
+
+    switch (typeof value) {
+      case 'number':
+        return InputType.number;
+      case 'boolean':
+        return InputType.checkbox;
+      default:
+        return InputType.text;
+    }
   }
 
   reset(): void {
@@ -40,4 +55,5 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
     return Object.entries(this.form.controls);
   }
 
+  protected readonly InputType = InputType;
 }

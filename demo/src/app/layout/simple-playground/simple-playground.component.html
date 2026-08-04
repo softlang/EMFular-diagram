@@ -14,10 +14,10 @@
     <form [formGroup]="form" class="playground__form">
         @for (entry of formControls; track entry[0]) {
             <label>
-                {{ entry[0]+':' }}
+                {{ entry[0] }}
 
                 <input
-                        [type]="typeof entry[1].value === 'number' ? 'number' : 'text'"
+                        [type]="InputType[inputTypes[entry[0]]]"
                         [formControlName]="entry[0]">
             </label>
         }
