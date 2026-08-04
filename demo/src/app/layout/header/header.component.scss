@@ -3,6 +3,8 @@
 .header {
   display: flex;
   flex-direction: column; /* stacked by default */
+  align-items: flex-end;
+  justify-content: space-between; //flex-end for left alignment of nav to branding
   gap: 1rem;
   padding: 1rem 1.5rem;
   background: $color-gray-light;
@@ -51,12 +53,10 @@
   display: flex;
   gap: 1.5rem;
 
-  /* Center nav when stacked */
-  justify-content: center;
+  justify-content: left;
 
-  /* Right-align on wide screens */
   @media (min-width: 700px) {
-    justify-content: flex-end;
+    justify-content: left;
   }
 }
 
