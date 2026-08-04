@@ -1,0 +1,24 @@
+<section class="playground">
+
+    <!-- Code snippet -->
+    <div class="playground__code">
+        <pre><code>{{ codeTemplate }}</code></pre>
+
+        <div class="playground__actions">
+            <button type="button" (click)="copyCode()">Copy</button>
+            <button type="button" (click)="reset()">Reset</button>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="playground__form">
+        <ng-content select="[demo-form]"></ng-content>
+    </div>
+
+    <!-- Preview -->
+    <div class="playground__preview">
+        <ng-content select="[demo-preview]"></ng-content>
+    </div>
+
+</section>
+
