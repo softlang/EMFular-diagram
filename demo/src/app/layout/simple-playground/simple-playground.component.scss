@@ -1,51 +1,51 @@
 .playground {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(250px, 1fr) auto auto;
   gap: 1.5rem;
   align-items: start;
 
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.playground__code {
-  background: #f7f7f7;
-  border: 1px solid #ddd;
+  border: 2px solid orange;
+  border-radius: 8px;
   padding: 1rem;
-  border-radius: 6px;
-  overflow: auto;
 }
 
+/* Code snippet */
+.playground__code {
+  min-width: 0;
+}
+
+.playground__code pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+/* Buttons below code */
 .playground__actions {
-  margin-top: 0.75rem;
   display: flex;
   gap: 0.5rem;
-
-  button {
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: white;
-    cursor: pointer;
-
-    &:hover {
-      background: #eee;
-    }
-  }
-}
-
-.playground__form {
-  background: #fafafa;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 6px;
-}
-
-.playground__preview {
   margin-top: 1rem;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+}
+
+/* Generated form */
+.playground__form form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.playground__form label {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.playground__form input {
+  width: 6rem;
+}
+
+/* Preview */
+.playground__preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

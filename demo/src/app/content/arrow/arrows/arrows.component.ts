@@ -28,8 +28,8 @@ export class ArrowsComponent {
             Validators.max(200)
           ]
         }),
-    startY: new FormControl(100, { nonNullable: true }),
-    endX: new FormControl(80, { nonNullable: true }),
+    startY: new FormControl(10, { nonNullable: true }),
+    endX: new FormControl(180, { nonNullable: true }),
     endY: new FormControl(180, { nonNullable: true })
   });
 
