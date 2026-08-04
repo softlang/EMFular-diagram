@@ -2,26 +2,34 @@
 
     <!-- Code snippet -->
     <div class="playground__code">
-        <pre><code>{{ codeTemplate }}</code></pre>
+        <button
+                class="playground__copy"
+                type="button"
+                (click)="copyCode()"
+                title="Copy code">
+            ⧉
+        </button>
 
-        <div class="playground__actions">
-            <button type="button" (click)="copyCode()">Copy</button>
-            <button type="button" (click)="reset()">Reset</button>
-        </div>
+        <pre><code>{{ codeTemplate }}</code></pre>
     </div>
 
     <!-- Form -->
-    <form [formGroup]="form" class="playground__form">
-        @for (entry of formControls; track entry[0]) {
-            <label>
-                {{ entry[0] }}
+    <div class="playground__form">
+        <form [formGroup]="form">
+            @for (entry of formControls; track entry[0]) {
+                <label>
+                    {{ entry[0]+":" }}
 
-                <input
-                        [type]="InputType[inputTypes[entry[0]]]"
-                        [formControlName]="entry[0]">
-            </label>
-        }
-    </form>
+                    <input
+                            [type]="InputType[inputTypes[entry[0]]]"
+                            [formControlName]="entry[0]">
+                </label>
+            }
+        </form>
+        <div class="playground__actions">
+            <button type="button" (click)="reset()">Reset</button>
+        </div>
+    </div>
 
     <!-- Preview -->
     <div class="playground__preview">
