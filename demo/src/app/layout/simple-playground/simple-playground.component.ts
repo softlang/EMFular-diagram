@@ -19,7 +19,7 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
   @Input() form!: FormGroup<TInputs>;
   @Input() codeTemplate!: string;
 
-  initialValue: any //todo
+  initialValue!: ReturnType<FormGroup<TInputs>['getRawValue']>
   inputTypes: Record<string, InputType> = {};
 
 
@@ -34,12 +34,9 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
     const value = control.value;
 
     switch (typeof value) {
-      case 'number':
-        return InputType.number;
-      case 'boolean':
-        return InputType.checkbox;
-      default:
-        return InputType.text;
+      case 'number': return InputType.number;
+      case 'boolean': return InputType.checkbox;
+      default: return InputType.text;
     }
   }
 
