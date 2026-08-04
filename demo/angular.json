@@ -27,7 +27,9 @@
           "configurations": {
             "production": {
               "budgets": [],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/emfular-diagram/",
+              "deployUrl": "/emfular-diagram/"
             },
             "development": {
               "optimization": false,
