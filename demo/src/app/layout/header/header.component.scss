@@ -1,9 +1,11 @@
+@use 'src/styles.scss' as *;
+
 .header {
   display: flex;
   flex-direction: column;
   padding: 1rem 1.5rem;
-  background: #f8f9fa;
-  border-bottom: 1px solid #ddd;
+  background: $color-gray-light;
+  border-bottom: 3px solid $color-orange-primary;
 }
 
 .top-row {
@@ -26,12 +28,13 @@
   margin: 0;
   font-size: 1.6rem;
   font-weight: 600;
+  color: $color-orange-dark;
 }
 
 .subtitle {
   margin: 0;
   font-size: 0.9rem;
-  color: #666;
+  color: $color-gray-dark;
 }
 
 .nav {
@@ -43,17 +46,17 @@
 .nav a {
   text-decoration: none;
   font-size: 1rem;
-  color: #444;
+  color: $color-gray-dark;
   padding-bottom: 0.3rem;
   border-bottom: 2px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
 
 .nav a:hover {
-  color: #000;
+  color: $color-orange-dark;
 }
 
 .nav a.active {
-  border-color: #007acc;
-  color: #007acc;
+  border-color: $color-orange-primary;
+  color: $color-orange-primary;
 }
