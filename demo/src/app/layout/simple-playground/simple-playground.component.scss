@@ -7,7 +7,7 @@
   align-items: start;
 
   border: 2px solid $color-orange-primary;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 1rem;
 }
 
@@ -26,6 +26,15 @@
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
+  button {
+    &:hover {
+      background: antiquewhite;
+    }
+    color: $color-orange-dark;
+    background: none;
+    border: 1px solid $color-orange-dark;
+    border-radius: 4px;
+  }
 }
 
 /* Generated form */
@@ -52,5 +61,5 @@
   align-items: center;
   justify-content: center;
   border: 2px solid $color-orange-light;
-  border-radius: 8px;
+  border-radius: 4px;
 }
