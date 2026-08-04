@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import {SimplePlaygroundComponent} from "../../layout/simple-playground/simple-playground.component";
 
 @Component({
   selector: 'demo-arrows',
-  imports: [],
+  imports: [
+    SimplePlaygroundComponent
+  ],
   templateUrl: './arrows.component.html',
   styleUrl: './arrows.component.css'
 })

@@ -1,0 +1,16 @@
+<demo-simple-playground
+        [form]="this.form"
+        [initialValue]="this.initialValue"
+        [codeTemplate]="this.codeTemplate"
+>
+    <ng-content select="[demo-form]">
+        <p>Working demo form!</p>
+    </ng-content>
+    <ng-content select="[demo-preview]">
+        <model-canvas>
+            <svg:g canvas>
+
+            </svg:g>
+        </model-canvas>
+    </ng-content>
+</demo-simple-playground>

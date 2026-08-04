@@ -6,3 +6,16 @@ Depending on how you want to specify these points, you can choose between these 
 <h2>Arrows between points</h2>
 
 <p>Explicitly given points are the easiest and cheapest way to define arrows. The arrow adapts as soon as its input point changes. So make sure that this happens, e.g. when moving the object around.</p>
+
+<demo-simple-playground
+ [form]=""
+ [initialValue]=""
+ [codeTemplate]=""
+>
+    <ng-content select="[demo-form]">
+        <p>Working demo form!</p>
+    </ng-content>
+    <ng-content select="[demo-preview]">
+        [arrow-between-points]
+    </ng-content>
+</demo-simple-playground>
