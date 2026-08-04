@@ -2,13 +2,22 @@
 
 .header {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* stacked by default */
+  gap: 1rem;
   padding: 1rem 1.5rem;
   background: $color-gray-light;
   border-bottom: 3px solid $color-orange-primary;
+
+  /* Wide screens: branding left, nav right */
+  @media (min-width: 700px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
-.top-row {
+/* Branding block */
+.branding {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -37,10 +46,18 @@
   color: $color-gray-dark;
 }
 
+/* Navigation */
 .nav {
   display: flex;
   gap: 1.5rem;
-  margin-top: 1rem;
+
+  /* Center nav when stacked */
+  justify-content: center;
+
+  /* Right-align on wide screens */
+  @media (min-width: 700px) {
+    justify-content: flex-end;
+  }
 }
 
 .nav a {
