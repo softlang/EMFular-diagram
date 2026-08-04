@@ -8,13 +8,9 @@ Depending on how you want to specify these points, you can choose between these 
 <p>Explicitly given points are the easiest and cheapest way to define arrows. The arrow adapts as soon as its input point changes. So make sure that this happens, e.g. when moving the object around.</p>
 
 <demo-simple-playground
- [form]=""
- [initialValue]=""
+ [form]="form0"
  [codeTemplate]="'<g arrow-between-points'"
 >
-    <div demo-form>
-        <p>Working demo form!</p>
-    </div>
     <svg:g demo-preview
        arrow-between-points
        [startX]="form0.value.startX"

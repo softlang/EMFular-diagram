@@ -14,7 +14,12 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class ArrowsComponent {
 
-  form0 = new FormGroup({
+  form0: FormGroup<{
+      startX: FormControl<number>;
+      startY: FormControl<number>;
+      endX: FormControl<number>;
+      endY: FormControl<number>
+  }> = new FormGroup({
     startX: new FormControl(10,
         {
           nonNullable: true,
