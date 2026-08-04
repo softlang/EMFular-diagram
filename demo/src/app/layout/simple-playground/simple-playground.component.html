@@ -17,7 +17,14 @@
 
     <!-- Preview -->
     <div class="playground__preview">
-        <ng-content select="[demo-preview]"></ng-content>
+        <model-canvas
+                [svgwidth]="750"
+                [svgheigth]="750"
+        >
+            <svg:g canvas>
+                <ng-content select="[demo-preview]"></ng-content>
+            </svg:g>
+        </model-canvas>
     </div>
 
 </section>

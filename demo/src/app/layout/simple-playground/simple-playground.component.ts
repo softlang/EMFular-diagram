@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {AbstractControl, FormGroup} from "@angular/forms";
+import {ModelCanvasComponent} from "../../../../../src/lib/components/model-canvas/model-canvas.component";
 
 type FormValue<TControls extends Record<string, AbstractControl<any, any>>> = {
   [K in keyof TControls]:
@@ -10,7 +11,9 @@ type FormValue<TControls extends Record<string, AbstractControl<any, any>>> = {
 
 @Component({
   selector: 'demo-simple-playground',
-  imports: [],
+  imports: [
+    ModelCanvasComponent
+  ],
   templateUrl: './simple-playground.component.html',
   styleUrl: './simple-playground.component.scss'
 })

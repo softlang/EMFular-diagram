@@ -10,12 +10,18 @@ Depending on how you want to specify these points, you can choose between these 
 <demo-simple-playground
  [form]=""
  [initialValue]=""
- [codeTemplate]=""
+ [codeTemplate]="'<g arrow-between-points'"
 >
-    <ng-content select="[demo-form]">
+    <div demo-form>
         <p>Working demo form!</p>
-    </ng-content>
-    <ng-content select="[demo-preview]">
-        [arrow-between-points]
-    </ng-content>
+    </div>
+    <g demo-preview
+       arrow-between-points
+       [startX]="500"
+       [startY]="800"
+       [endX]="200"
+       [endY]="400"
+       [id]="'abp01'">
+    </g>
 </demo-simple-playground>
+
