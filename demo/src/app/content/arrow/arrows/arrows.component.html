@@ -15,13 +15,12 @@ Depending on how you want to specify these points, you can choose between these 
     <div demo-form>
         <p>Working demo form!</p>
     </div>
-    <g demo-preview
+    <svg:g demo-preview
        arrow-between-points
-       [startX]="500"
-       [startY]="800"
-       [endX]="200"
-       [endY]="400"
+       [startX]="form0.value.startX"
+       [startY]="form0.value.startY"
+       [endX]="form0.value.endX"
+       [endY]="form0.value.endY"
        [id]="'abp01'">
-    </g>
+    </svg:g>
 </demo-simple-playground>
-
