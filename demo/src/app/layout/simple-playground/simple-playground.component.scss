@@ -2,7 +2,7 @@
 
 .playground {
   display: grid;
-  grid-template-columns: minmax(250px, 1fr) auto auto;
+  grid-template-columns: minmax(20rem, 35rem) auto minmax(10rem, 35rem);
   gap: 1.5rem;
   align-items: stretch;
 
@@ -14,6 +14,7 @@
 /* Code snippet */
 .playground__code {
   display: flex;
+  max-width: 35rem;
   flex-direction: column;
   position: relative;
   min-width: 0;
@@ -53,6 +54,10 @@
 .playground__code pre {
   margin: 0;
   overflow: auto;
+
+  white-space: pre;
+  max-width: 100%;
+
   flex: 1;
 }
 
@@ -97,4 +102,8 @@
   justify-content: center;
   border: 2px solid $color-orange-light;
   border-radius: 4px;
+}
+
+.playground__preview model-canvas {
+  border: 1px solid $color-orange-dark;
 }
