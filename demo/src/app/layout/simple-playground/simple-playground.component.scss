@@ -1,14 +1,24 @@
 @use 'src/styles.scss' as *;
 
 .playground {
+  width: fit-content;
+
+  --code-width: 35rem;
+  --form-width: 15rem;
+  --preview-width: 20rem;
+  --preview-height: 20rem;
+
   display: grid;
-  grid-template-columns: minmax(20rem, 35rem) auto 20rem;
+  grid-template-columns:
+    var(--code-width)
+    var(--form-width)
+    var(--preview-width);
+
   gap: 1.5rem;
   align-items: stretch;
-
   border: 2px solid $color-orange-primary;
   border-radius: 4px;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 /* Code snippet */
@@ -104,6 +114,6 @@
   border: 2px solid $color-orange-light;
   border-radius: 4px;
 
-  width: 20rem;
-  height: 20rem;
+  width: var(--preview-width);
+  height: var(--preview-height);
 }
