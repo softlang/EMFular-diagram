@@ -4,6 +4,12 @@
     "module": "ES2022",
     "moduleResolution": "bundler",
 
+    "lib": [
+      "ES2022",
+      "ESNext",
+      "DOM"
+    ],
+
     "esModuleInterop": true,
     "strict": true,
     "declaration": true,
