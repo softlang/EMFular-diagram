@@ -3,16 +3,20 @@
 .playground {
   width: fit-content;
 
-  --code-width: 35rem;
-  --form-width: 15rem;
-  --preview-width: 20rem;
-  --preview-height: 20rem;
+  --code-min: 15rem;
+  --code-ratio: 2fr;
+
+  --form-min: 10rem;
+  --form-ratio: 1fr;
+
+  --preview-min: 15rem;
+  --preview-ratio: 1fr;
 
   display: grid;
   grid-template-columns:
-    var(--code-width)
-    var(--form-width)
-    var(--preview-width);
+    minmax(var(--code-min), var(--code-ratio))
+    minmax(var(--form-min), var(--form-ratio))
+    minmax(var(--preview-min), var(--preview-ratio));
 
   gap: 1.5rem;
   align-items: stretch;
@@ -114,6 +118,5 @@
   border: 2px solid $color-orange-light;
   border-radius: 4px;
 
-  width: var(--preview-width);
-  height: var(--preview-height);
+  width: 100%;
 }
