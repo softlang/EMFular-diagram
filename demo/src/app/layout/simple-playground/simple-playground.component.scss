@@ -80,18 +80,19 @@
 /* Generated form */
 .playground__form form {
   display: grid;
-  gap: 0.5rem;
+  grid-template-columns: max-content auto;
+  column-gap: 0.75rem;
+  row-gap: 0.5rem;
+  align-items: center;
 }
 
 .playground__form label {
   color: $color-orange-dark;
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 0.75rem;
-  align-items: center;
+  grid-column: 1;
 }
 
 .playground__form input {
+  grid-column: 2;
   width: 6rem;
 }
 

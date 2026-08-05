@@ -17,13 +17,14 @@
     <div class="playground__form">
         <form [formGroup]="form">
             @for (entry of formControls; track entry[0]) {
-                <label>
-                    {{ entry[0]+":" }}
-
-                    <input
-                            [type]="InputType[inputTypes[entry[0]]]"
-                            [formControlName]="entry[0]">
+                <label [for]="idPrefix + '-' + entry[0]">
+                    {{ entry[0] + ":" }}
                 </label>
+
+                <input
+                        [id]="idPrefix + '-' + entry[0]"
+                        [type]="InputType[inputTypes[entry[0]]]"
+                        [formControlName]="entry[0]">
             }
         </form>
         <div class="playground__actions">

@@ -19,6 +19,8 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
   @Input() form!: FormGroup<TInputs>;
   @Input() codeTemplate!: string;
 
+  idPrefix = `playground-${crypto.randomUUID()}`;
+
   initialValue!: ReturnType<FormGroup<TInputs>['getRawValue']>
   inputTypes: Record<string, InputType> = {};
 
