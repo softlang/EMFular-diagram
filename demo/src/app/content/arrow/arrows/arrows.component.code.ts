@@ -8,3 +8,5 @@ export const arrowBetweenPointsCode = `
    [id]="'abp01'">
 </svg:g>
 `;
+
+export const arrowBetweenBoxesCode = ``
