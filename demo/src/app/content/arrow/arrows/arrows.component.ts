@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import {SimplePlaygroundComponent} from "../../../layout/simple-playground/simple-playground.component";
-import {ArrowBetweenPointsComponent, ArrowBetweenBoxesComponent} from "ngx-emfular-diagram";
+import {ArrowBetweenPointsComponent, ArrowBetweenBoxesComponent, RectangleComponent} from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {arrowBetweenBoxesCode, arrowBetweenPointsCode} from "./arrows.component.code";
 
 @Component({
   selector: 'demo-arrows',
-  imports: [
-    SimplePlaygroundComponent,
-    ArrowBetweenPointsComponent,
-    ArrowBetweenBoxesComponent,
-  ],
+    imports: [
+        SimplePlaygroundComponent,
+        ArrowBetweenPointsComponent,
+        ArrowBetweenBoxesComponent,
+        RectangleComponent,
+    ],
   templateUrl: './arrows.component.html',
   styleUrl: './arrows.component.css'
 })
