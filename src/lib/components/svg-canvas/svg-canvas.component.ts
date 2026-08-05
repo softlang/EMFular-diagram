@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'demo-svg-canvas',
+  selector: 'svg-canvas',
   imports: [],
   templateUrl: './svg-canvas.component.html',
   styleUrl: './svg-canvas.component.css'

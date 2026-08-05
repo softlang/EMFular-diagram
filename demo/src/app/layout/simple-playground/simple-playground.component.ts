@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {ModelCanvasComponent} from "../../../../../src/lib/components/model-canvas/model-canvas.component";
+import {SvgCanvasComponent} from "../../../../../src/lib/components/svg-canvas/svg-canvas.component";
 
 export enum InputType {
   'number', 'text', 'checkbox'
@@ -9,7 +9,7 @@ export enum InputType {
 @Component({
   selector: 'demo-simple-playground',
   imports: [
-    ModelCanvasComponent,
+    SvgCanvasComponent,
     ReactiveFormsModule
   ],
   templateUrl: './simple-playground.component.html',
