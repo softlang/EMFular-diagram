@@ -32,15 +32,13 @@
     </div>
 
     <!-- Preview -->
-    <div class="playground__preview">
-        <svg-canvas
+    <svg-canvas class="playground__preview"
                 [viewBox]="'0 0 200 200'"
-        >
-            <svg:g canvas>
-                <ng-content select="[demo-preview]"></ng-content>
-            </svg:g>
-        </svg-canvas>
-    </div>
+    >
+        <svg:g canvas>
+            <ng-content select="[demo-preview]"></ng-content>
+        </svg:g>
+    </svg-canvas>
 
 </section>
 

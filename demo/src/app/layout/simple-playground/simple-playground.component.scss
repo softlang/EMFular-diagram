@@ -2,7 +2,7 @@
 
 .playground {
   display: grid;
-  grid-template-columns: minmax(20rem, 35rem) auto minmax(10rem, 35rem);
+  grid-template-columns: minmax(20rem, 35rem) auto 20rem;
   gap: 1.5rem;
   align-items: stretch;
 
@@ -102,8 +102,7 @@
   justify-content: center;
   border: 2px solid $color-orange-light;
   border-radius: 4px;
-}
 
-.playground__preview model-canvas {
-  border: 1px solid $color-orange-dark;
+  width: 20rem;
+  height: 20rem;
 }
