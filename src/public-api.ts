@@ -4,7 +4,7 @@
 
 export * from './lib/models/dragger'
 export * from './lib/components/draggable/draggable.component';
-export * from './lib/components/model-canvas/model-canvas.component';
+export * from './lib/components/svg-canvas/svg-canvas.component';
 export * from './lib/components/arrows/arrow-between-elems/arrow-between-elems.component';
 export * from './lib/components/arrows/arrow-between-boxes/arrow-between-boxes.component';
 export * from './lib/components/arrows/arrow-between-points/arrow-between-points.component';
