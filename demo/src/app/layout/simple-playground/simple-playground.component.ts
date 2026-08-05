@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, Input} from '@angular/core';
 import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {SvgCanvasComponent} from "../../../../../src/lib/components/svg-canvas/svg-canvas.component";
 import {CodeHighlighterService} from "../code-highlighter.service";
@@ -16,7 +16,7 @@ export enum InputType {
   templateUrl: './simple-playground.component.html',
   styleUrl: './simple-playground.component.scss'
 })
-export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements AfterViewInit {
+export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements AfterContentInit {
   @Input() form!: FormGroup<TInputs>;
   @Input() codeTemplate!: string;
 
@@ -32,7 +32,7 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
   ) {}
 
 
-  async ngAfterViewInit() {
+  async ngAfterContentInit() {
     this.initialValue = this.form.getRawValue();
     for (const [name, control] of Object.entries(this.form.controls)) {
       this.inputTypes[name] = this.detectInputType(control);
