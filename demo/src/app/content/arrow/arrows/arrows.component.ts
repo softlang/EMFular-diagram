@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {SimplePlaygroundComponent} from "../../../layout/simple-playground/simple-playground.component";
 import {ArrowBetweenPointsComponent} from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {arrowBetweenPointsCode} from "./arrows.component.code";
 
 @Component({
   selector: 'demo-arrows',
@@ -33,4 +34,5 @@ export class ArrowsComponent {
     endY: new FormControl(180, { nonNullable: true })
   });
 
+    protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
 }
