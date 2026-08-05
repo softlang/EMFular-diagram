@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {SvgCanvasComponent} from "../../../../../src/lib/components/svg-canvas/svg-canvas.component";
+import {CodeHighlighterService} from "../code-highlighter.service";
 
 export enum InputType {
   'number', 'text', 'checkbox'
@@ -24,12 +25,20 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
   initialValue!: ReturnType<FormGroup<TInputs>['getRawValue']>
   inputTypes: Record<string, InputType> = {};
 
+  highlightedCode = '';
 
-  ngAfterViewInit() {
+  constructor(
+      private readonly highlighter: CodeHighlighterService
+  ) {}
+
+
+  async ngAfterViewInit() {
     this.initialValue = this.form.getRawValue();
     for (const [name, control] of Object.entries(this.form.controls)) {
       this.inputTypes[name] = this.detectInputType(control);
     }
+    this.highlightedCode =
+        await this.highlighter.highlight(this.codeTemplate);
   }
 
   private detectInputType(control: AbstractControl): InputType {
