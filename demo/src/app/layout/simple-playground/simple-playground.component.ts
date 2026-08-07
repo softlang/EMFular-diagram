@@ -1,6 +1,6 @@
-import {AfterContentInit, AfterViewInit, Component, Input} from '@angular/core';
+import {AfterContentInit, Component, Input} from '@angular/core';
 import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {SvgCanvasComponent} from "../../../../../src/lib/components/svg-canvas/svg-canvas.component";
+import {SvgCanvasComponent} from "ngx-emfular-diagram";
 import {CodeHighlighterService} from "../code-highlighter.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 

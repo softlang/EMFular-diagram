@@ -22,8 +22,8 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "emfular-diagram": [
-        "../src/lib/public-api.ts"
+      "ngx-emfular-diagram": [
+        "../src/public-api.ts"
       ]
     }
   }
