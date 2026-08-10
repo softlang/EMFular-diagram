@@ -22,6 +22,12 @@ export default defineConfig({
     },
 
     test: {
+        include: ['src/**/*.spec.ts'],
+        exclude: [
+            'node_modules/**',
+            'dist/**',
+            'demo/**'
+        ],
         setupFiles: ['./vitest.setup.ts'],
         browser: {
             enabled: true,
