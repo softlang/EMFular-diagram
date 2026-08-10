@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+
+    "lib": [
+      "ES2022",
+      "ESNext",
+      "DOM"
+    ],
+
+    "esModuleInterop": true,
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "noImplicitOverride": true,
+    "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "paths": {
+      "ngx-emfular-diagram": [
+        "../src/public-api.ts"
+      ]
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<h1>Arrows</h1>
+
+<p>We are currently offering only direct arrows between two points, no multilines or curves.
+Depending on how you want to specify these points, you can choose between these components:</p>
+
+<h2>Arrows between Points</h2>
+
+<p>Explicitly given points are the easiest and cheapest way to define arrows. The arrow adapts as soon as its input point changes. So make sure that this happens, e.g. when moving the object around.</p>
+
+<demo-simple-playground
+ [form]="form0"
+ [codeTemplate]="arrowBetweenPointsCode"
+>
+    <svg:g demo-preview
+       arrow-between-points
+       [startX]="form0.value.startX"
+       [startY]="form0.value.startY"
+       [endX]="form0.value.endX"
+       [endY]="form0.value.endY"
+       [id]="'abp01'">
+    </svg:g>
+</demo-simple-playground>
+
+<h2>Arrows between Bounding Boxes</h2>
+
+<p>It is also possible to let arrows compute best matches for points based on a given bounding box. The best matching point will always be on the segment closest to the other bounding box. Since bounding boxes are all aligned, the fitting segmets are always parallel lines. If their projections onto the same line overlap, the bets point is the middle of the overlap, otherwise, the two edges closest to each other are used.</p>
+
+<demo-simple-playground
+        [form]="form1"
+        [codeTemplate]="arrowBetweenBoxesCode"
+>
+    <svg:g demo-preview>
+        <g rectangleG
+           [position]="{
+                x: form1.value.box1X,
+                y: form1.value.box1Y,
+                w: form1.value.box1W,
+                h: form1.value.box1H
+            }"
+           color="red"
+        >
+        </g>
+        <g arrow-between-boxes
+           [start]="{
+                x: form1.value.box1X,
+                y: form1.value.box1Y,
+                w: form1.value.box1W,
+                h: form1.value.box1H
+            }"
+           [end]="{
+                x: form1.value.box2X,
+                y: form1.value.box2Y,
+                w: form1.value.box2W,
+                h: form1.value.box2H
+           }"
+           >
+        </g>
+        <g rectangleG
+           [position]="{
+                x: form1.value.box2X,
+                y: form1.value.box2Y,
+                w: form1.value.box2W,
+                h: form1.value.box2H
+            }"
+           color="blue"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>

@@ -1,6 +1,6 @@
 {
   "name": "ngx-emfular-diagram",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Small svg library to link components or svg elements with arrows and allow to drag components.",
   "keywords": [
     "Drag",
@@ -29,7 +29,8 @@
     "@angular/forms": "^19.2.7"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "uuid": "^14.0.1"
   },
   "devDependencies": {
     "@analogjs/vite-plugin-angular": "^1.19.2",
