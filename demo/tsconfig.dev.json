@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/dev",
+    "types": [],
+    "paths": {
+      "ngx-emfular-diagram": [
+        "../src/public-api.ts"
+      ]
+    }
+  }
+}

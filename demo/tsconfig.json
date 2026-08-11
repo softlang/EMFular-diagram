@@ -19,12 +19,9 @@
     "experimentalDecorators": true,
     "noFallthroughCasesInSwitch": true,
 
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "paths": {
-      "ngx-emfular-diagram": [
-        "../src/public-api.ts"
-      ]
-    }
-  }
+    "baseUrl": "./"
+  },
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"],
+  "exclude": ["src/test.ts", "src/**/*.spec.ts"]
 }
