@@ -24,7 +24,11 @@ export default defineConfig(({mode})=>({
             '@angular/core/testing',
             '@angular/platform-browser-dynamic/testing',
             'zone.js',
-            'zone.js/testing'
+            'zone.js/testing',
+            'ngx-emfular-diagram',
+            '@angular/platform-browser',
+            '@angular/router',
+            'shiki'
         ]
     },
     css: {
