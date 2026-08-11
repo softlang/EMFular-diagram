@@ -36,7 +36,7 @@
 
         - name: Test demo
           working-directory: demo
-          run: npm run test -- --configuration production
+          run: npm run test:ci
 
         - name: Build demo
           working-directory: demo
