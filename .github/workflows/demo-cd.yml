@@ -43,7 +43,7 @@
 
         - name: Build demo
           working-directory: demo
-          run: ng build --configuration production
+          run: npx ng build --configuration production
 
         - name: Deploy to gh-pages
           uses: peaceiris/actions-gh-pages@v4
