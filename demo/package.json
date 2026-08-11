@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "serve": "ng serve",
-    "build": "ng build"
+    "build": "ng build",
+    "test": "vitest --config vitest.config.ts --mode development",
+    "test:ci": "vitest --config vitest.config.ts --run"
   },
   "repository": {
     "type": "git",
@@ -19,17 +21,22 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0",
     "ngx-emfular-diagram": "^1.1.0",
-    "shiki": "^4.4.2"
+    "rxjs": "~7.8.0",
+    "shiki": "^4.4.2",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.6.4",
     "@angular-devkit/build-angular": "^19.2.27",
     "@angular/cli": "^19.2.19",
     "@angular/compiler-cli": "^19.2.0",
     "@types/node": "^25.3.2",
-    "typescript": "~5.7.2"
+    "@vitest/browser": "^4.1.10",
+    "@vitest/browser-playwright": "^4.1.10",
+    "playwright": "^1.62.1",
+    "typescript": "~5.7.2",
+    "vitest": "^4.1.10"
   }
 }
