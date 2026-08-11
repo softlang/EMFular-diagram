@@ -27,6 +27,13 @@ export default defineConfig(({mode})=>({
             'zone.js/testing'
         ]
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                loadPaths: ['.']
+            }
+        }
+    },
 
     test: {
         include: ['src/**/*.spec.ts'],
