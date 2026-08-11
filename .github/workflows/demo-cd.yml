@@ -34,6 +34,9 @@
           working-directory: demo
           run: npm ci
 
+        - name: Install Playwright browsers (for vitest browser tests)
+          run: npx playwright install --with-deps chromium
+
         - name: Test demo
           working-directory: demo
           run: npm run test:ci
