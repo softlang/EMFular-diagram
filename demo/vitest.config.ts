@@ -32,8 +32,7 @@ export default defineConfig(({mode})=>({
         include: ['src/**/*.spec.ts'],
         exclude: [
             'node_modules/**',
-            'dist/**',
-            'demo/**'
+            'dist/**'
         ],
         globals: true,
         setupFiles: ['./vitest.setup.ts'],
