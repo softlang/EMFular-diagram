@@ -11,6 +11,7 @@ import { NgIf } from '@angular/common';
 import {BoundingBox} from "../../../models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
 import {SVGAccessService} from "../../../services/svg-access.service";
+import {ArrowStyleConfiguration} from "../../../models/arrow-style-configuration";
 
 @Component({
     selector: '[arrowElems]',
@@ -25,6 +26,7 @@ export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChan
   @Input() endGID!: string;
   @Input() endSuffix!: string;
   @Input() arrowType?: string;
+  @Input() styleConfiguration?: ArrowStyleConfiguration;
 
   @Input() breaks: BoundingBox[] = [];
   @Input() text?: string;

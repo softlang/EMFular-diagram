@@ -108,10 +108,9 @@ export const markerStyleConfig =
   [endX]="190"
   [endY]="100"
   [id]="'arrowstyle0'"
-  [styleConfiguration]="{color: 'blue',
-   dashed: [1],
-   startPointer: form3.value.startMarker,
-   endPointer: form3.value.endMarker
-   }"
+  [styleConfiguration]="{color: form3.value.color,
+   dashed: form3.value.dashed,
+    startPointer: form3.value.startMarker,
+     endPointer: form3.value.endMarker}"
  ></g>
 </svg:g>`
