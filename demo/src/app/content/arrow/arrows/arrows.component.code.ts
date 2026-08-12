@@ -78,3 +78,10 @@ export const arrowBetweenElemsCode = `<svg:g>
         >
         </g>
     </svg:g>`
+
+export const arrowStyleConfig = `export interface ArrowStyleConfiguration {
+    color: string;
+    dashed: number[];
+    startPointer?: string;
+    endPointer?: string;
+}`

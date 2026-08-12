@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {
-    RadioOption,
     RadioOptions,
     SimplePlaygroundComponent
 } from "../../../layout/simple-playground/simple-playground.component";
@@ -12,7 +11,13 @@ import {
     ArrowBetweenElemsComponent
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {arrowBetweenBoxesCode, arrowBetweenElemsCode, arrowBetweenPointsCode} from "./arrows.component.code";
+import {
+    arrowBetweenBoxesCode,
+    arrowBetweenElemsCode,
+    arrowBetweenPointsCode,
+    arrowStyleConfig
+} from "./arrows.component.code";
+import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
 
 @Component({
   selector: 'demo-arrows',
@@ -23,6 +28,7 @@ import {arrowBetweenBoxesCode, arrowBetweenElemsCode, arrowBetweenPointsCode} fr
         ArrowBetweenElemsComponent,
         RectangleComponent,
         TriangleComponent,
+        HighlightedCodeComponent,
     ],
   templateUrl: './arrows.component.html',
   styleUrl: './arrows.component.css'
@@ -81,4 +87,5 @@ export class ArrowsComponent {
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
   protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
   protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
+  protected readonly arrowStyleConfig = arrowStyleConfig;
 }
