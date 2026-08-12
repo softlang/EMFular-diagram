@@ -5,8 +5,16 @@ import {CodeHighlighterService} from "../code-highlighter.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 export enum InputType {
-  'number', 'text', 'checkbox'
+  'number', 'text', 'checkbox', 'radio'
 }
+
+export interface RadioOption {
+  value: string;
+  label: string;
+}
+
+export type RadioOptions = Record<string, RadioOption[]>;
+
 
 @Component({
   selector: 'demo-simple-playground',
@@ -20,6 +28,7 @@ export enum InputType {
 export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements AfterContentInit {
   @Input() form!: FormGroup<TInputs>;
   @Input() codeTemplate!: string;
+  @Input() radioOptions: RadioOptions = {};
 
   idPrefix = `playground-${crypto.randomUUID()}`;
 
@@ -37,7 +46,11 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
   async ngAfterContentInit() {
     this.initialValue = this.form.getRawValue();
     for (const [name, control] of Object.entries(this.form.controls)) {
-      this.inputTypes[name] = this.detectInputType(control);
+      if(Object.hasOwn(this.radioOptions, name)) {
+        this.inputTypes[name] = InputType.radio
+      } else {
+        this.inputTypes[name] = this.detectInputType(control);
+      }
     }
     this.highlightedCode = this.sanitizer.bypassSecurityTrustHtml(
         await this.highlighter.highlight(this.codeTemplate)

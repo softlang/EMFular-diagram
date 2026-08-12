@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import {SimplePlaygroundComponent} from "../../../layout/simple-playground/simple-playground.component";
+import {
+    RadioOption,
+    RadioOptions,
+    SimplePlaygroundComponent
+} from "../../../layout/simple-playground/simple-playground.component";
 import {
     ArrowBetweenPointsComponent,
     ArrowBetweenBoxesComponent,
@@ -55,9 +59,24 @@ export class ArrowsComponent {
   })
 
     form2 = new FormGroup({
-        startID: new FormControl("rectangle_0"),
-        endID: new FormControl("triangle_0"),
+        startID: new FormControl("rectangle_blue"),
+        endID: new FormControl("triangle_green"),
     })
+
+    form2_radioOptions: RadioOptions = {
+        startID: [
+            { value: 'triangle_green', label: 'Green Triangle' },
+            { value: 'triangle_black', label: 'Black Triangle' },
+            { value: 'rectangle_blue', label: 'Blue Rectangle' },
+            { value: 'rectangle_red', label: 'Red Rectangle' }
+        ],
+        endID: [
+            { value: 'triangle_green', label: 'Green Triangle' },
+            { value: 'triangle_black', label: 'Black Triangle' },
+            { value: 'rectangle_blue', label: 'Blue Rectangle' },
+            { value: 'rectangle_red', label: 'Red Rectangle' }
+        ]
+    };
 
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
   protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;

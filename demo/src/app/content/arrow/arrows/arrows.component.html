@@ -74,11 +74,12 @@ Depending on how you want to specify these points, you can choose between these 
 
 <demo-simple-playground
         [form]="form2"
+        [radioOptions]="form2_radioOptions"
         [codeTemplate]="arrowBetweenElemsCode"
 >
     <svg:g demo-preview>
         <g triangleG
-           id="triangle_0"
+           id="triangle_green"
            [A]="{x: 50, y:150}"
            [B]="{x: 10, y:150}"
            [C]="{x: 50, y:110}"
@@ -86,7 +87,7 @@ Depending on how you want to specify these points, you can choose between these 
         >
         </g>
         <g triangleG
-           id="triangle_1"
+           id="triangle_black"
            [A]="{x: 20, y:20}"
            [B]="{x: 10, y:20}"
            [C]="{x: 20, y:10}"
@@ -94,13 +95,13 @@ Depending on how you want to specify these points, you can choose between these 
         >
         </g>
         <g rectangleG
-           id="rectangle_0"
+           id="rectangle_blue"
            [position]="{x: 80,y: 80,w: 20,h: 20}"
            color="blue"
         >
         </g>
         <g rectangleG
-           id="rectangle_1"
+           id="rectangle_red"
            [position]="{x: 140,y: 100,w: 20,h: 20}"
            color="red">
         </g>
