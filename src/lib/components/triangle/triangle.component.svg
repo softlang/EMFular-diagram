@@ -1,0 +1,4 @@
+<svg:g>
+    <polygon [attr.points]="A.x+','+A.y+' '+B.x+','+B.y+' '+C.x+','+C.y" [attr.fill]="color" />
+</svg:g>
+

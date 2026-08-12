@@ -47,6 +47,8 @@ export class ArrowsComponent {
       box2H: new FormControl(7, { nonNullable: true }),
   })
 
-    protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
-    protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
+  allowedIds: string[] = ["triangle0", "triangle1", "box0", "box1"]
+
+  protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
+  protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
 }
