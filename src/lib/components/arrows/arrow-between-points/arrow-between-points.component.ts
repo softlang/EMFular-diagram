@@ -20,6 +20,7 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   @Input() endY!: number;
   @Input() text?: string;
   @Input() style?: string;
+  @Input() styleConfiguration?: ArrowStyleConfiguration;
 
   @Input() arrowType?: string;
 
@@ -33,7 +34,11 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow(this.arrowType)
+    if(this.styleConfiguration) {
+      this.arrowStyleConfiguration = this.styleConfiguration
+    } else {
+      this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow(this.arrowType)
+    }
   }
 
 }

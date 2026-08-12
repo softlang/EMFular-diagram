@@ -8,7 +8,7 @@ export enum InputType {
 }
 
 export interface RadioOption {
-  value: string;
+  value?: string;
   label: string;
 }
 

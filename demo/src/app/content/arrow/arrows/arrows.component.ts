@@ -15,7 +15,7 @@ import {
     arrowBetweenBoxesCode,
     arrowBetweenElemsCode,
     arrowBetweenPointsCode,
-    arrowStyleConfig
+    arrowStyleConfig, markerStyleConfig
 } from "./arrows.component.code";
 import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
 
@@ -84,8 +84,31 @@ export class ArrowsComponent {
         ]
     };
 
+    form3 = new FormGroup({
+        startMarker: new FormControl("B"),
+        endMarker: new FormControl("A"),
+    })
+
+    form3_radioOptions: RadioOptions = {
+        startMarker: [
+            { value: 'A', label: 'Circle' },
+            { value: 'B', label: 'Pointer' },
+            { value: 'C', label: 'Red X' },
+            { value: 'D', label: 'Green Lines' },
+            { value: undefined, label: '-' },
+        ],
+        endMarker: [
+            { value: 'A', label: 'Circle' },
+            { value: 'B', label: 'Pointer' },
+            { value: 'C', label: 'Red X' },
+            { value: 'D', label: 'Green Lines' },
+            { value: undefined, label: '-' },
+        ]
+    };
+
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
   protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
   protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
   protected readonly arrowStyleConfig = arrowStyleConfig;
+    protected readonly markerStyleConfig = markerStyleConfig;
 }

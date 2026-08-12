@@ -85,3 +85,33 @@ export const arrowStyleConfig = `export interface ArrowStyleConfiguration {
     startPointer?: string;
     endPointer?: string;
 }`
+
+export const markerStyleConfig =
+`<svg:g>
+  <svg:defs>
+   <marker id='A' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+     <path d='M0,0 L10,5 L0,10 L2,5 Z' stroke="black" fill="black"></path>
+   </marker>
+   <marker id='B' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+     <circle cx="5" cy="5" r="5" stroke="black" fill="white"></circle>
+   </marker>
+   <marker id='C' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+      <path d='M0,0 L10,10 L5,5 L0,10 L10,0' stroke="red" fill="none"></path>
+   </marker>
+   <marker id='D' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+      <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
+   </marker>
+ </svg:defs>
+ <g arrow-between-points
+  [startX]="10"
+  [startY]="10"
+  [endX]="190"
+  [endY]="100"
+  [id]="'arrowstyle0'"
+  [styleConfiguration]="{color: 'blue',
+   dashed: [1],
+   startPointer: form3.value.startMarker,
+   endPointer: form3.value.endMarker
+   }"
+ ></g>
+</svg:g>`

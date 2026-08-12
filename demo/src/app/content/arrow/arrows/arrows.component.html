@@ -120,3 +120,51 @@ Depending on how you want to specify these points, you can choose between these 
 
 <p>Arrow styling is driven by the following interface:</p>
 <demo-highlighted-code [code]="arrowStyleConfig"></demo-highlighted-code>
+
+<p>Color is any string you could put into the corresponding style attribute,
+    and dashed corresponds to the stroke-dasharray that many svgs support, e.g. '4 1 2' - but please specify [4,1,2] for the array.
+</p>
+
+<h3>Arrow Pointers</h3>
+
+<p>SVG lines can support three pointers: start, end and middle.
+    We currently only support start and end.
+    These pointers must be provided as markers, defined at the beginning of the SVG in the defs-section, and then referenced at each usage.
+    In order to support this mechanism, the start- and endPointers are just strings, that is the ids of defined markers.
+    Hence, arrow tips will only work, if you also provide a marker definition.
+</p>
+
+<h3>Defining Markers</h3>
+
+<p>Markers are available, if you have marker definitions inside the svg:defs section.</p>
+
+<demo-simple-playground
+        [form]="form3"
+        [radioOptions]="form3_radioOptions"
+        [codeTemplate]="markerStyleConfig"
+>
+    <svg:g demo-preview>
+        <svg:defs>
+            <marker id='A' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <path d='M0,0 L10,5 L0,10 L2,5 Z' stroke="black" fill="black"></path>
+            </marker>
+            <marker id='B' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <circle cx="5" cy="5" r="5" stroke="black" fill="white"></circle>
+            </marker>
+            <marker id='C' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <path d='M0,0 L10,10 L5,5 L0,10 L10,0' stroke="red" fill="none"></path>
+            </marker>
+            <marker id='D' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
+            </marker>
+        </svg:defs>
+        <g arrow-between-points
+           [startX]="10"
+           [startY]="10"
+           [endX]="190"
+           [endY]="100"
+           [id]="'arrowstyle0'"
+           [styleConfiguration]="{color: 'blue', dashed: [1], startPointer: form3.value.startMarker, endPointer: form3.value.endMarker}"
+        ></g>
+    </svg:g>
+</demo-simple-playground>
