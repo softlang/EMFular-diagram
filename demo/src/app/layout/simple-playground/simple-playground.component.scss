@@ -113,7 +113,7 @@
   grid-template-columns: max-content auto;
   column-gap: 0.75rem;
   row-gap: 0.5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .playground__form label {
@@ -127,50 +127,26 @@
 }
 
 /* Radio groups */
-.playground__form fieldset {
-  grid-column: 1 / -1;
+.playground__radio-options {
+  grid-column: 2;
 
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-
-  border: 0;
 }
 
-.playground__form fieldset legend {
-  padding: 0;
-  margin-bottom: 0.25rem;
-
-  color: $color-orange-dark;
-}
-
-.playground__form fieldset > div {
+.playground__radio-options > div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.playground__form fieldset input[type="radio"] {
+.playground__radio-options input[type="radio"] {
   width: auto;
   margin: 0;
 }
 
-.playground__form fieldset label {
+.playground__radio-options label {
   color: inherit;
   cursor: pointer;
-}
-
-/* Preview */
-.playground__preview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid $color-orange-light;
-  border-radius: 4px;
-
-  width: 100%;
 }
