@@ -1,8 +1,7 @@
 import {AfterContentInit, Component, Input} from '@angular/core';
 import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {SvgCanvasComponent} from "ngx-emfular-diagram";
-import {CodeHighlighterService} from "../code-highlighter.service";
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import {HighlightedCodeComponent} from "../highlighted-code/highlighted-code.component";
 
 export enum InputType {
   'number', 'text', 'checkbox', 'radio'
@@ -20,7 +19,8 @@ export type RadioOptions = Record<string, RadioOption[]>;
   selector: 'demo-simple-playground',
   imports: [
     SvgCanvasComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HighlightedCodeComponent
   ],
   templateUrl: './simple-playground.component.html',
   styleUrl: './simple-playground.component.scss'
@@ -35,12 +35,6 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
   initialValue!: ReturnType<FormGroup<TInputs>['getRawValue']>
   inputTypes: Record<string, InputType> = {};
 
-  highlightedCode: SafeHtml = '';
-
-  constructor(
-      private readonly highlighter: CodeHighlighterService,
-      private readonly sanitizer: DomSanitizer
-  ) {}
 
 
   async ngAfterContentInit() {
@@ -52,9 +46,6 @@ export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: Ab
         this.inputTypes[name] = this.detectInputType(control);
       }
     }
-    this.highlightedCode = this.sanitizer.bypassSecurityTrustHtml(
-        await this.highlighter.highlight(this.codeTemplate)
-    );
   }
 
   private detectInputType(control: AbstractControl): InputType {
