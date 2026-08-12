@@ -71,6 +71,7 @@ Depending on how you want to specify these points, you can choose between these 
 
 <p>It is also possible to define an arrow as connector between two elements, given by their IDs (that is the id attribute of the svg element).
    The component will then compute bounding boxes for both elements and then find best points to connect them.</p>
+<p>Be aware that the computed arrow attachment happens on the bounding box, so it might look strange if your shape is far from that box (see triangles below for examples).</p>
 
 <demo-simple-playground
         [form]="form2"
