@@ -126,6 +126,44 @@
   width: 6rem;
 }
 
+/* Radio groups */
+.playground__form fieldset {
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+.playground__form fieldset legend {
+  padding: 0;
+  margin-bottom: 0.25rem;
+
+  color: $color-orange-dark;
+}
+
+.playground__form fieldset > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.playground__form fieldset input[type="radio"] {
+  width: auto;
+  margin: 0;
+}
+
+.playground__form fieldset label {
+  color: inherit;
+  cursor: pointer;
+}
+
 /* Preview */
 .playground__preview {
   display: flex;
