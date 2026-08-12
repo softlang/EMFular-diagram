@@ -69,47 +69,46 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrows between Elements</h2>
 
-<p>It is also possible to define an arrow as connector between two elements, given by their IDs 8that is the id attribute of the svg element).
+<p>It is also possible to define an arrow as connector between two elements, given by their IDs (that is the id attribute of the svg element).
    The component will then compute bounding boxes for both elements and then find best points to connect them.</p>
 
 <demo-simple-playground
-        [form]="form1"
-        [codeTemplate]="arrowBetweenBoxesCode"
+        [form]="form2"
+        [codeTemplate]="arrowBetweenElemsCode"
 >
     <svg:g demo-preview>
-        <g rectangleG
-           [position]="{
-                x: form1.value.box1X,
-                y: form1.value.box1Y,
-                w: form1.value.box1W,
-                h: form1.value.box1H
-            }"
-           color="red"
+        <g triangleG
+           id="triangle_0"
+           [A]="{x: 50, y:150}"
+           [B]="{x: 10, y:150}"
+           [C]="{x: 50, y:110}"
+           color="green"
         >
         </g>
-        <g arrow-between-boxes
-           [start]="{
-                x: form1.value.box1X,
-                y: form1.value.box1Y,
-                w: form1.value.box1W,
-                h: form1.value.box1H
-            }"
-           [end]="{
-                x: form1.value.box2X,
-                y: form1.value.box2Y,
-                w: form1.value.box2W,
-                h: form1.value.box2H
-           }"
+        <g triangleG
+           id="triangle_1"
+           [A]="{x: 20, y:20}"
+           [B]="{x: 10, y:20}"
+           [C]="{x: 20, y:10}"
+           color="black"
         >
         </g>
         <g rectangleG
-           [position]="{
-                x: form1.value.box2X,
-                y: form1.value.box2Y,
-                w: form1.value.box2W,
-                h: form1.value.box2H
-            }"
+           id="rectangle_0"
+           [position]="{x: 80,y: 80,w: 20,h: 20}"
            color="blue"
+        >
+        </g>
+        <g rectangleG
+           id="rectangle_1"
+           [position]="{x: 140,y: 100,w: 20,h: 20}"
+           color="red">
+        </g>
+        <g arrowElems
+           [startGID]="form2.value.startID"
+           startSuffix=""
+           [endGID]="form2.value.endID"
+           endSuffix=""
         >
         </g>
     </svg:g>
