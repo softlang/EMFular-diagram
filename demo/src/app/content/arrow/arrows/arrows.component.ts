@@ -93,15 +93,15 @@ export class ArrowsComponent {
 
     form3_radioOptions: RadioOptions = {
         startMarker: [
-            { value: 'A', label: 'Circle' },
-            { value: 'B', label: 'Pointer' },
+            { value: 'A', label: 'Pointer' },
+            { value: 'B', label: 'Circle' },
             { value: 'C', label: 'Red X' },
             { value: 'D', label: 'Green Lines' },
             { value: undefined, label: '-' },
         ],
         endMarker: [
-            { value: 'A', label: 'Circle' },
-            { value: 'B', label: 'Pointer' },
+            { value: 'A', label: 'Pointer' },
+            { value: 'B', label: 'Circle' },
             { value: 'C', label: 'Red X' },
             { value: 'D', label: 'Green Lines' },
             { value: undefined, label: '-' },
