@@ -118,17 +118,20 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrow Styling</h2>
 
-<p>Arrow styling is driven by the following interface:</p>
+<p>Arrow styling is mainly driven by the following interface:</p>
 <demo-highlighted-code [code]="arrowStyleConfig"></demo-highlighted-code>
 
 <p>Color is any string you could put into the corresponding style attribute,
     and dashed corresponds to the stroke-dasharray that many svgs support, e.g. '4 1 2' - but please specify [4,1,2] for the array.
+    You can add arbitrary inline styles via the extra style-Attribute. For details on allowed attributes, consider <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/line">MDN</a>.
+    We ensured that the explicit style configuration has precedence, if you specify it.
+    Please do NEVER use external css to control svg behaviour, since it will not be exported with the SVG.
 </p>
 
 <h3>Arrow Pointers</h3>
 
 <p>SVG lines can support three pointers: start, end and middle.
-    We currently only support start and end.
+    We currently only support start and end (since we have no poly-lines).
     These pointers must be provided as markers, defined at the beginning of the SVG in the defs-section, and then referenced at each usage.
     In order to support this mechanism, the start- and endPointers are just strings, that is the ids of defined markers.
     Hence, arrow tips will only work, if you also provide a marker definition.
@@ -172,7 +175,7 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h3>Adding Text</h3>
 <p>You may also add text to an arrow, by using the optional text attribute. Be ware, text that is longer than the arrow line, will not be visible.
-    You may control text style attributes via an optional style, that gets attached to the specific href of the textpath, which is `'#'+id+'-path'`.</p>
+    You may control text style attributes via tow optional inputs, textStyle and textPathStyle. For more details on available attributes, please consider the official style guides, e.g. MDN.</p>
 
 <demo-simple-playground
         [form]="form4"
@@ -186,7 +189,7 @@ Depending on how you want to specify these points, you can choose between these 
            [endY]="100"
            id="arrowtext0"
            [style]="'stroke:red; stroke-dasharray: 1'"
-           [styleConfiguration]="{color: 'green', dashed: [1, 2, 4]}"
+           [styleConfiguration]="{color: 'green', dashed: [1]}"
            [text]="form4.value.text"
            [textStyle]="form4.value.style"
         ></g>
