@@ -110,7 +110,7 @@ export class ArrowsComponent {
 
     form4 = new FormGroup({
         text: new FormControl("This text is far too long. See where it gets truncated"),
-        style: new FormControl("'font-size': '12px', 'fill': 'blue'"),
+        style: new FormControl("fill: blue; font-size: 12px;"),
     })
 
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;

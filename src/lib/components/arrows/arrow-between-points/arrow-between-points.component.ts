@@ -23,8 +23,8 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   @Input() arrowType?: string;
 
   @Input() text?: string;
-  @Input() textStyle: Record<string, string> = {};
-  @Input() textPathStyle: Record<string, string> = {};
+  @Input() textStyle: string | Record<string, string>  = '';
+  @Input() textPathStyle: string | Record<string, string>  = '';
 
   arrowStyleConfiguration: ArrowStyleConfiguration;
   id = uuidv4();
