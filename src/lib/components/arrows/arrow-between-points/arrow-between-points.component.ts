@@ -18,8 +18,15 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   @Input() startY!: number;
   @Input() endX!: number;
   @Input() endY!: number;
+
+  /**
+   * @deprecated: use lineStyle.style
+   */
   @Input() style?: string;
-  @Input() styleConfiguration?: ArrowStyleConfiguration;
+  @Input() lineStyle?: ArrowStyleConfiguration;
+  /**
+   * @deprecated: use own enum to ArrowStyleConfiguration mapping
+   */
   @Input() arrowType?: string;
 
   @Input() text?: string;
@@ -30,14 +37,14 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   id = uuidv4();
 
   constructor(
-      private arrowStyleConfigService: ArrowStyleConfigurationService,) {
-
+      private arrowStyleConfigService: ArrowStyleConfigurationService,
+  ) {
     this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow()
   }
 
   ngOnChanges() {
-    if(this.styleConfiguration) {
-      this.arrowStyleConfiguration = this.styleConfiguration
+    if(this.lineStyle) {
+      this.arrowStyleConfiguration = this.lineStyle
     } else {
       this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow(this.arrowType)
     }

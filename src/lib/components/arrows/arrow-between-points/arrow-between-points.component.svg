@@ -1,7 +1,7 @@
 <svg:g>
     <path [attr.id]="id+'-path'"
           [attr.d]="'M '+startX+','+startY+' L '+endX+','+endY"
-          [style]="style"
+          [style]="arrowStyleConfiguration.style? arrowStyleConfiguration.style: style"
           [style.stroke]="arrowStyleConfiguration.color"
           [style.stroke-dasharray]="arrowStyleConfiguration.dashed.join(' ')"
           [style.marker-start]='"url(#"+arrowStyleConfiguration.startPointer+")"'

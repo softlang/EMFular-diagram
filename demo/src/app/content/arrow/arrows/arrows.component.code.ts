@@ -108,7 +108,7 @@ export const markerStyleConfig =
   [endX]="190"
   [endY]="100"
   [id]="'arrowstyle0'"
-  [styleConfiguration]="{color: form3.value.color,
+  [lineStyle]="{color: form3.value.color,
    dashed: form3.value.dashed,
     startPointer: form3.value.startMarker,
      endPointer: form3.value.endMarker}"
