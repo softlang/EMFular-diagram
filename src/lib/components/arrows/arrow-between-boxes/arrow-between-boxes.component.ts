@@ -4,7 +4,7 @@ import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../../models/bounding-box";
 import {PathLayouter} from "../../../utils/path-layouter";
 import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
-import {ArrowStyleConfiguration} from "../../../models/arrow-style-configuration";
+import {LineStyleConfiguration} from "../../../models/arrow-style-configuration";
 
 @Component({
     selector: '[arrow-between-boxes]',
@@ -15,10 +15,20 @@ import {ArrowStyleConfiguration} from "../../../models/arrow-style-configuration
 export class ArrowBetweenBoxesComponent implements OnChanges, AfterViewInit {
   @Input() start!: BoundingBox;
   @Input() end!: BoundingBox;
-  @Input() arrowType?: string;
-  @Input() text?: string;
+  /**
+   * @deprecated: use lineStyle.style
+   */
   @Input() style?: string;
-  @Input() styleConfiguration?: ArrowStyleConfiguration;
+  @Input() lineStyle?: LineStyleConfiguration;
+  /**
+   * @deprecated: use own enum to ArrowStyleConfiguration mapping
+   */
+  @Input() arrowType?: string;
+
+  @Input() text?: string;
+  @Input() textStyle: string | Record<string, string>  = '';
+  @Input() textPathStyle: string | Record<string, string>  = '';
+
 
 
   x1: number = 0;

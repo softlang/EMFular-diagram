@@ -5,6 +5,6 @@
        [arrowType]="arrowType"
        [text]="text"
        [style]="style"
-       [styleConfiguration]="styleConfiguration">
+       [lineStyle]="lineStyle">
   </g>
 ></svg:g>

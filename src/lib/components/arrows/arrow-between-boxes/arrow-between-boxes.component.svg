@@ -7,7 +7,7 @@
      [text]="text"
      [arrowType]="arrowType"
      [style]="style"
-     [lineStyle]="styleConfiguration"
+     [lineStyle]="lineStyle"
   >
   </g>
 </svg:g>
