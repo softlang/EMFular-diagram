@@ -79,11 +79,12 @@ export const arrowBetweenElemsCode = `<svg:g>
         </g>
     </svg:g>`
 
-export const arrowStyleConfig = `export interface ArrowStyleConfiguration {
-    color: string;
-    dashed: number[];
-    startPointer?: string;
-    endPointer?: string;
+export const arrowStyleConfig = `export interface LineStyleConfiguration {
+  color: string; //= stroke
+  dashed: string; //=dashArray e.g. '1 2 4'
+  startPointer?: string; //marker-Id
+  endPointer?: string; //marker-Id
+  style?: Record<string, string>|string; //additional styles, no overwrite of other attributes
 }`
 
 export const markerStyleConfig =
@@ -114,3 +115,17 @@ export const markerStyleConfig =
      endPointer: form3.value.endMarker}"
  ></g>
 </svg:g>`
+
+
+export const textAndStyles = `<svg:g>
+        <g arrow-between-points
+           id="arrowtext0"
+           [startX]="10"
+           [startY]="10"
+           [endX]="190"
+           [endY]="100"
+           [lineStyle]="{color: 'blue', dashed: '1 2'}"
+           [text]="form4.value.text"
+           [textStyle]="form4.value.textStyle"
+        ></g>
+    </svg:g>`

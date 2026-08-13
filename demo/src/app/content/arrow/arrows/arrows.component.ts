@@ -15,7 +15,7 @@ import {
     arrowBetweenBoxesCode,
     arrowBetweenElemsCode,
     arrowBetweenPointsCode,
-    arrowStyleConfig, markerStyleConfig
+    arrowStyleConfig, markerStyleConfig, textAndStyles
 } from "./arrows.component.code";
 import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
 
@@ -110,7 +110,7 @@ export class ArrowsComponent {
 
     form4 = new FormGroup({
         text: new FormControl("This text is far too long. See where it gets truncated"),
-        style: new FormControl("fill: blue; font-size: 12px;"),
+        textStyle: new FormControl("fill: red; font-size: 12px;"),
     })
 
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
@@ -118,4 +118,5 @@ export class ArrowsComponent {
   protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
   protected readonly arrowStyleConfig = arrowStyleConfig;
     protected readonly markerStyleConfig = markerStyleConfig;
+    protected readonly textAndStyles = textAndStyles;
 }

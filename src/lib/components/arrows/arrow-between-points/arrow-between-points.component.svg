@@ -3,7 +3,7 @@
           [attr.d]="'M '+startX+','+startY+' L '+endX+','+endY"
           [style]="lineStyleConfiguration.style? lineStyleConfiguration.style: style"
           [style.stroke]="lineStyleConfiguration.color"
-          [style.stroke-dasharray]="lineStyleConfiguration"
+          [style.stroke-dasharray]="lineStyleConfiguration.dashed"
           [style.marker-start]='"url(#"+lineStyleConfiguration.startPointer+")"'
           [style.marker-end]='"url(#"+lineStyleConfiguration.endPointer+")"'
     >
