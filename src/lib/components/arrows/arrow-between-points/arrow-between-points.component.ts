@@ -18,11 +18,13 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   @Input() startY!: number;
   @Input() endX!: number;
   @Input() endY!: number;
-  @Input() text?: string;
   @Input() style?: string;
   @Input() styleConfiguration?: ArrowStyleConfiguration;
-
   @Input() arrowType?: string;
+
+  @Input() text?: string;
+  @Input() textStyle: Record<string, string> = {};
+  @Input() textPathStyle: Record<string, string> = {};
 
   arrowStyleConfiguration: ArrowStyleConfiguration;
   id = uuidv4();

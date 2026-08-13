@@ -170,3 +170,23 @@ Depending on how you want to specify these points, you can choose between these 
     </svg:g>
 </demo-simple-playground>
 
+<h3>Adding Text</h3>
+<p>You may also add text to an arrow, by using the optional text attribute. Be ware, text that is longer than the arrow line, will not be visible.
+    You may control text style attributes via an optional style, that gets attached to the specific href of the textpath, which is `'#'+id+'-path'`.</p>
+
+<demo-simple-playground
+        [form]="form4"
+        [codeTemplate]="markerStyleConfig"
+>
+    <svg:g demo-preview>
+        <g arrow-between-points
+           [startX]="10"
+           [startY]="10"
+           [endX]="190"
+           [endY]="100"
+           id="arrowtext0"
+           [text]="form4.value.text"
+           [textStyle]="{'font-size': '12px', 'fill': 'blue'}"
+        ></g>
+    </svg:g>
+</demo-simple-playground>

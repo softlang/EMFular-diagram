@@ -7,8 +7,8 @@
           [attr.marker-end]='"url(#"+arrowStyleConfiguration.endPointer+")"'
           style="{{style}}">
     </path>
-    <text *ngIf="text">
-        <textPath [attr.href]="'#'+id+'-path'">
+    <text *ngIf="text" [style]="textStyle">
+        <textPath [attr.href]="'#'+id+'-path'" [style]="textPathStyle">
             {{text}}
         </textPath>
     </text>
