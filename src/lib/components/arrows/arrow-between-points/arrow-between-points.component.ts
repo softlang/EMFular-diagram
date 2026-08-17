@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {ArrowStyleConfigurationService} from "../../../services/arrow-style-configuration.service";
-import {ArrowStyleConfiguration, LineStyleConfiguration} from "../../../models/arrow-style-configuration";
+import {ArrowStyleConfiguration, ArrowStyle} from "../../../models/arrow-style-configuration";
 import {v4 as uuidv4} from "uuid";
 
 @Component({
@@ -20,12 +20,12 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   @Input() endY!: number;
 
   /**
-   * @deprecated: use lineStyle.style
+   * @deprecated: use arrowStyle.style
    */
   @Input() style?: string;
-  @Input() lineStyle?: LineStyleConfiguration;
+  @Input() arrowStyle?: ArrowStyle;
   /**
-   * @deprecated: use own enum to ArrowStyleConfiguration mapping
+   * @deprecated: use own enum to ArrowStyle mapping
    */
   @Input() arrowType?: string;
 
@@ -33,24 +33,24 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   @Input() textStyle: string | Record<string, string>  = '';
   @Input() textPathStyle: string | Record<string, string>  = '';
 
-  lineStyleConfiguration: LineStyleConfiguration;
+  arrowStyleConfiguration: ArrowStyle;
   id = uuidv4();
 
   constructor(
       private arrowStyleConfigService: ArrowStyleConfigurationService,
   ) {
-    this.lineStyleConfiguration = this.arrow2line(this.arrowStyleConfigService.styleArrow())
+    this.arrowStyleConfiguration = this.oldArrowConfig2new(this.arrowStyleConfigService.styleArrow())
   }
 
   ngOnChanges() {
-    if(this.lineStyle) {
-      this.lineStyleConfiguration = this.lineStyle
+    if(this.arrowStyle) {
+      this.arrowStyleConfiguration = this.arrowStyle
     } else {
-      this.lineStyleConfiguration = this.arrow2line(this.arrowStyleConfigService.styleArrow(this.arrowType))
+      this.arrowStyleConfiguration = this.oldArrowConfig2new(this.arrowStyleConfigService.styleArrow(this.arrowType))
     }
   }
 
-  private arrow2line(arrowStyle: ArrowStyleConfiguration): LineStyleConfiguration {
+  private oldArrowConfig2new(arrowStyle: ArrowStyleConfiguration): ArrowStyle {
     return {...arrowStyle, ...{dashed: arrowStyle.dashed.join(' ') }}
   }
 

@@ -6,7 +6,7 @@ export interface ArrowStyleConfiguration {
   style?: Record<string, string>|string;
 }
 
-export interface LineStyleConfiguration {
+export interface ArrowStyle {
   color: string; //= stroke
   dashed: string; //=dashArray e.g. '1 2 4'
   startPointer?: string; //marker-Id
