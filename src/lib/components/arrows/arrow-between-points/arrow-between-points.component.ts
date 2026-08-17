@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {ArrowStyleConfigurationService} from "../../../services/arrow-style-configuration.service";
-import {ArrowStyleConfiguration} from "../../../models/arrow-style-configuration";
+import {ArrowStyleConfiguration, ArrowStyle} from "../../../models/arrow-style-configuration";
 import {v4 as uuidv4} from "uuid";
 
 @Component({
@@ -18,22 +18,40 @@ export class ArrowBetweenPointsComponent implements OnChanges {
   @Input() startY!: number;
   @Input() endX!: number;
   @Input() endY!: number;
-  @Input() text?: string;
-  @Input() style?: string;
 
+  /**
+   * @deprecated: use arrowStyle.style
+   */
+  @Input() style?: string;
+  @Input() arrowStyle?: ArrowStyle;
+  /**
+   * @deprecated: use own enum to ArrowStyle mapping
+   */
   @Input() arrowType?: string;
 
-  arrowStyleConfiguration: ArrowStyleConfiguration;
+  @Input() text?: string;
+  @Input() textStyle: string | Record<string, string>  = '';
+  @Input() textPathStyle: string | Record<string, string>  = '';
+
+  arrowStyleConfiguration: ArrowStyle;
   id = uuidv4();
 
   constructor(
-      private arrowStyleConfigService: ArrowStyleConfigurationService,) {
-
-    this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow()
+      private arrowStyleConfigService: ArrowStyleConfigurationService,
+  ) {
+    this.arrowStyleConfiguration = this.oldArrowConfig2new(this.arrowStyleConfigService.styleArrow())
   }
 
   ngOnChanges() {
-    this.arrowStyleConfiguration = this.arrowStyleConfigService.styleArrow(this.arrowType)
+    if(this.arrowStyle) {
+      this.arrowStyleConfiguration = this.arrowStyle
+    } else {
+      this.arrowStyleConfiguration = this.oldArrowConfig2new(this.arrowStyleConfigService.styleArrow(this.arrowType))
+    }
+  }
+
+  private oldArrowConfig2new(arrowStyle: ArrowStyleConfiguration): ArrowStyle {
+    return {...arrowStyle, ...{dashed: arrowStyle.dashed.join(' ') }}
   }
 
 }

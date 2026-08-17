@@ -1,8 +1,23 @@
 import { Component } from '@angular/core';
-import {SimplePlaygroundComponent} from "../../../layout/simple-playground/simple-playground.component";
-import {ArrowBetweenPointsComponent, ArrowBetweenBoxesComponent, RectangleComponent} from "ngx-emfular-diagram";
+import {
+    RadioOptions,
+    SimplePlaygroundComponent
+} from "../../../layout/simple-playground/simple-playground.component";
+import {
+    ArrowBetweenPointsComponent,
+    ArrowBetweenBoxesComponent,
+    RectangleComponent,
+    TriangleComponent,
+    ArrowBetweenElemsComponent
+} from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {arrowBetweenBoxesCode, arrowBetweenPointsCode} from "./arrows.component.code";
+import {
+    arrowBetweenBoxesCode,
+    arrowBetweenElemsCode,
+    arrowBetweenPointsCode,
+    arrowStyleConfig, markerStyleConfig, textAndStyles
+} from "./arrows.component.code";
+import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
 
 @Component({
   selector: 'demo-arrows',
@@ -10,7 +25,10 @@ import {arrowBetweenBoxesCode, arrowBetweenPointsCode} from "./arrows.component.
         SimplePlaygroundComponent,
         ArrowBetweenPointsComponent,
         ArrowBetweenBoxesComponent,
+        ArrowBetweenElemsComponent,
         RectangleComponent,
+        TriangleComponent,
+        HighlightedCodeComponent,
     ],
   templateUrl: './arrows.component.html',
   styleUrl: './arrows.component.css'
@@ -22,18 +40,17 @@ export class ArrowsComponent {
       startY: FormControl<number>;
       endX: FormControl<number>;
       endY: FormControl<number>
-  }> = new FormGroup({
-    startX: new FormControl(10,
-        {
+    }> = new FormGroup({
+        startX: new FormControl(10, {
           nonNullable: true,
           validators: [
             Validators.min(0),
             Validators.max(200)
           ]
         }),
-    startY: new FormControl(10, { nonNullable: true }),
-    endX: new FormControl(180, { nonNullable: true }),
-    endY: new FormControl(180, { nonNullable: true })
+        startY: new FormControl(10, { nonNullable: true }),
+        endX: new FormControl(180, { nonNullable: true }),
+        endY: new FormControl(180, { nonNullable: true })
   });
 
   form1 = new FormGroup({
@@ -47,6 +64,59 @@ export class ArrowsComponent {
       box2H: new FormControl(7, { nonNullable: true }),
   })
 
-    protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
-    protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
+    form2 = new FormGroup({
+        startID: new FormControl("rectangle_blue"),
+        endID: new FormControl("triangle_green"),
+    })
+
+    form2_radioOptions: RadioOptions = {
+        startID: [
+            { value: 'triangle_green', label: 'Green Triangle' },
+            { value: 'triangle_black', label: 'Black Triangle' },
+            { value: 'rectangle_blue', label: 'Blue Rectangle' },
+            { value: 'rectangle_red', label: 'Red Rectangle' }
+        ],
+        endID: [
+            { value: 'triangle_green', label: 'Green Triangle' },
+            { value: 'triangle_black', label: 'Black Triangle' },
+            { value: 'rectangle_blue', label: 'Blue Rectangle' },
+            { value: 'rectangle_red', label: 'Red Rectangle' }
+        ]
+    };
+
+    form3 = new FormGroup({
+        color: new FormControl("red"),
+        dashed: new FormControl([1,2,1]),
+        startMarker: new FormControl("B"),
+        endMarker: new FormControl("A"),
+    })
+
+    form3_radioOptions: RadioOptions = {
+        startMarker: [
+            { value: 'A', label: 'Pointer' },
+            { value: 'B', label: 'Circle' },
+            { value: 'C', label: 'Red X' },
+            { value: 'D', label: 'Green Lines' },
+            { value: undefined, label: '-' },
+        ],
+        endMarker: [
+            { value: 'A', label: 'Pointer' },
+            { value: 'B', label: 'Circle' },
+            { value: 'C', label: 'Red X' },
+            { value: 'D', label: 'Green Lines' },
+            { value: undefined, label: '-' },
+        ]
+    };
+
+    form4 = new FormGroup({
+        text: new FormControl("This text is far too long. See where it gets truncated"),
+        textStyle: new FormControl("fill: red; font-size: 12px;"),
+    })
+
+  protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
+  protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
+  protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
+  protected readonly arrowStyleConfig = arrowStyleConfig;
+    protected readonly markerStyleConfig = markerStyleConfig;
+    protected readonly textAndStyles = textAndStyles;
 }

@@ -9,8 +9,7 @@ Depending on how you want to specify these points, you can choose between these 
 
 <demo-simple-playground
  [form]="form0"
- [codeTemplate]="arrowBetweenPointsCode"
->
+ [codeTemplate]="arrowBetweenPointsCode">
     <svg:g demo-preview
        arrow-between-points
        [startX]="form0.value.startX"
@@ -65,5 +64,133 @@ Depending on how you want to specify these points, you can choose between these 
            color="blue"
         >
         </g>
+    </svg:g>
+</demo-simple-playground>
+
+<h2>Arrows between Elements</h2>
+
+<p>It is also possible to define an arrow as connector between two elements, given by their IDs (that is the id attribute of the svg element).
+   The component will then compute bounding boxes for both elements and then find best points to connect them.</p>
+<p>Be aware that the computed arrow attachment happens on the bounding box, so it might look strange if your shape is far from that box (see triangles below for examples).</p>
+
+<demo-simple-playground
+        [form]="form2"
+        [radioOptions]="form2_radioOptions"
+        [codeTemplate]="arrowBetweenElemsCode"
+>
+    <svg:g demo-preview>
+        <g triangleG
+           id="triangle_green"
+           [A]="{x: 50, y:150}"
+           [B]="{x: 10, y:150}"
+           [C]="{x: 50, y:110}"
+           color="green"
+        >
+        </g>
+        <g triangleG
+           id="triangle_black"
+           [A]="{x: 20, y:20}"
+           [B]="{x: 10, y:20}"
+           [C]="{x: 20, y:10}"
+           color="black"
+        >
+        </g>
+        <g rectangleG
+           id="rectangle_blue"
+           [position]="{x: 80,y: 80,w: 20,h: 20}"
+           color="blue"
+        >
+        </g>
+        <g rectangleG
+           id="rectangle_red"
+           [position]="{x: 140,y: 100,w: 20,h: 20}"
+           color="red">
+        </g>
+        <g arrowElems
+           [startGID]="form2.value.startID"
+           startSuffix=""
+           [endGID]="form2.value.endID"
+           endSuffix=""
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
+<h2>Arrow Styling</h2>
+
+<p>Arrow styling is mainly driven by the following interface:</p>
+<demo-highlighted-code [code]="arrowStyleConfig"></demo-highlighted-code>
+
+<p>Color is any string you could put into the corresponding style attribute,
+    and dashed corresponds to the stroke-dasharray that many svgs support, e.g. '4 1 2' - but please specify [4,1,2] for the array.
+    You can add arbitrary inline styles via the extra style-Attribute. For details on allowed attributes, consider <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/line">MDN</a>.
+    We ensured that the explicit style configuration has precedence, if you specify it.
+    Please do NEVER use external css to control svg behaviour, since it will not be exported with the SVG.
+</p>
+
+<h3>Arrow Pointers</h3>
+
+<p>SVG lines can support three pointers: start, end and middle.
+    We currently only support start and end (since we have no poly-lines).
+    These pointers must be provided as markers, defined at the beginning of the SVG in the defs-section, and then referenced at each usage.
+    In order to support this mechanism, the start- and endPointers are just strings, that is the ids of defined markers.
+    Hence, arrow tips will only work, if you also provide a marker definition.
+</p>
+
+<h3>Defining Markers</h3>
+
+<p>Markers are available, if you have marker definitions inside the svg:defs section.</p>
+<p>If you use arrow tips, make sure to add the respective defs section at the beginning of your svg.</p>
+
+<demo-simple-playground
+        [form]="form3"
+        [radioOptions]="form3_radioOptions"
+        [codeTemplate]="markerStyleConfig"
+>
+    <svg:g demo-preview>
+        <svg:defs>
+            <marker id='A' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <path d='M0,0 L10,5 L0,10 L2,5 Z' stroke="black" fill="black"></path>
+            </marker>
+            <marker id='B' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <circle cx="5" cy="5" r="5" stroke="black" fill="white"></circle>
+            </marker>
+            <marker id='C' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <path d='M0,0 L10,10 L5,5 L0,10 L10,0' stroke="red" fill="none"></path>
+            </marker>
+            <marker id='D' orient="auto" markerWidth='10' markerHeight='10' refX='10' refY='5'>
+                <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
+            </marker>
+        </svg:defs>
+        <g arrow-between-points
+           [startX]="10"
+           [startY]="10"
+           [endX]="190"
+           [endY]="100"
+           [id]="'arrowstyle0'"
+           [arrowStyle]="{color: form3.value.color, dashed: form3.value.dashed, startPointer: form3.value.startMarker, endPointer: form3.value.endMarker}"
+        ></g>
+    </svg:g>
+</demo-simple-playground>
+
+<h3>Adding Text</h3>
+<p>You may also add text to an arrow, by using the optional text attribute. Be ware, text that is longer than the arrow line, will not be visible.
+    You can control text style attributes via two optional inputs, textStyle and textPathStyle. For more details on available attributes, please consider the official style guides, e.g. MDN.</p>
+
+<demo-simple-playground
+        [form]="form4"
+        [codeTemplate]="textAndStyles"
+>
+    <svg:g demo-preview>
+        <g arrow-between-points
+           id="arrowtext0"
+           [startX]="10"
+           [startY]="10"
+           [endX]="190"
+           [endY]="100"
+           [arrowStyle]="{color: 'blue', dashed: '1 2'}"
+           [text]="form4.value.text"
+           [textStyle]="form4.value.textStyle"
+        ></g>
     </svg:g>
 </demo-simple-playground>

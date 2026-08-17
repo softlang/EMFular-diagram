@@ -4,10 +4,17 @@ import angular from "@analogjs/vite-plugin-angular";
 
 //we use only browser config since the lib is mostly for graphical components and hence heavily depends on the DOM
 
-export default defineConfig({
+export default defineConfig(({mode})=>({
     plugins: [
         angular()
     ],
+    resolve: mode === 'development'
+        ? {
+            alias: {
+                'ngx-emfular-diagram': '../src/public-api.ts'
+            }
+        }
+        : {},
     optimizeDeps: {
         include: [
             '@angular/compiler',
@@ -17,18 +24,28 @@ export default defineConfig({
             '@angular/core/testing',
             '@angular/platform-browser-dynamic/testing',
             'zone.js',
-            'zone.js/testing'
+            'zone.js/testing',
+            'ngx-emfular-diagram',
+            '@angular/platform-browser',
+            '@angular/router',
+            'shiki'
         ]
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                loadPaths: ['.']
+            }
+        }
     },
 
     test: {
-        globals: true,
         include: ['src/**/*.spec.ts'],
         exclude: [
             'node_modules/**',
-            'dist/**',
-            'demo/**'
+            'dist/**'
         ],
+        globals: true,
         setupFiles: ['./vitest.setup.ts'],
         browser: {
             enabled: true,
@@ -39,4 +56,4 @@ export default defineConfig({
             ],
         },
     },
-})
+}))

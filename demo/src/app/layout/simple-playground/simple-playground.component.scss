@@ -1,7 +1,11 @@
 @use 'src/styles.scss' as *;
 
 .playground {
-  width: fit-content;
+  box-sizing: border-box;
+
+  --playground-height: 22rem;
+  max-height: var(--playground-height);
+  width: 100%;
 
   --code-min: 15rem;
   --code-ratio: 2fr;
@@ -18,6 +22,8 @@
     minmax(var(--form-min), var(--form-ratio))
     minmax(var(--preview-min), var(--preview-ratio));
 
+  grid-template-rows: minmax(0, 1fr);
+
   gap: 1.5rem;
   align-items: stretch;
   border: 2px solid $color-orange-primary;
@@ -25,13 +31,17 @@
   padding: 0.5rem;
 }
 
-/* Code snippet */
 .playground__code {
   display: flex;
-  max-width: 35rem;
   flex-direction: column;
   position: relative;
+
   min-width: 0;
+  min-height: 0;
+  overflow: auto;
+
+  max-width: 35rem;
+
   border: 2px solid $color-orange-light;
   border-radius: 4px;
 }
@@ -66,13 +76,14 @@
 }
 
 .playground__code pre {
-  margin: 0;
+  flex: 1;
+
+  min-width: 0;
+  min-height: 0;
   overflow: auto;
 
+  margin: 0;
   white-space: pre;
-  max-width: 100%;
-
-  flex: 1;
 }
 
 /* Buttons below form */
@@ -92,12 +103,17 @@
 }
 
 /* Generated form */
+.playground__form {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
 .playground__form form {
   display: grid;
   grid-template-columns: max-content auto;
   column-gap: 0.75rem;
   row-gap: 0.5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .playground__form label {
@@ -110,13 +126,27 @@
   width: 6rem;
 }
 
-/* Preview */
-.playground__preview {
+/* Radio groups */
+.playground__radio-options {
+  grid-column: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.playground__radio-options > div {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 2px solid $color-orange-light;
-  border-radius: 4px;
+  gap: 0.5rem;
+}
 
-  width: 100%;
+.playground__radio-options input[type="radio"] {
+  width: auto;
+  margin: 0;
+}
+
+.playground__radio-options label {
+  color: inherit;
+  cursor: pointer;
 }

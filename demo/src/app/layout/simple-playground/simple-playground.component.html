@@ -9,22 +9,41 @@
                 title="Copy code">
             ⧉
         </button>
-
-        <pre><code [innerHTML]="highlightedCode"></code></pre>
+        <demo-highlighted-code [code]="codeTemplate"></demo-highlighted-code>
     </div>
 
     <!-- Form -->
     <div class="playground__form">
         <form [formGroup]="form">
             @for (entry of formControls; track entry[0]) {
+
                 <label [for]="idPrefix + '-' + entry[0]">
                     {{ entry[0] + ":" }}
                 </label>
 
-                <input
-                        [id]="idPrefix + '-' + entry[0]"
-                        [type]="InputType[inputTypes[entry[0]]]"
-                        [formControlName]="entry[0]">
+                @if (inputTypes[entry[0]] === InputType.radio) {
+                    <div class="playground__radio-options">
+                        @for (option of radioOptions[entry[0]]; track option.value) {
+                            <div>
+                                <input
+                                        [id]="idPrefix + '-' + entry[0] + '-' + option.value"
+                                        type="radio"
+                                        [value]="option.value"
+                                        [formControlName]="entry[0]">
+
+                                <label [for]="idPrefix + '-' + entry[0] + '-' + option.value">
+                                    {{ option.label }}
+                                </label>
+                            </div>
+                        }
+                    </div>
+                } @else {
+                    <input
+                            [id]="idPrefix + '-' + entry[0]"
+                            [type]="InputType[inputTypes[entry[0]]]"
+                            [formControlName]="entry[0]">
+                }
+
             }
         </form>
         <div class="playground__actions">

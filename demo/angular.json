@@ -28,13 +28,14 @@
             "production": {
               "budgets": [],
               "outputHashing": "all",
-              "baseHref": "/emfular-diagram/",
-              "deployUrl": "/emfular-diagram/"
+              "baseHref": "/EMFular-diagram/",
+              "deployUrl": "/EMFular-diagram/"
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "tsConfig": "tsconfig.dev.json"
             }
           },
           "defaultConfiguration": "production"
