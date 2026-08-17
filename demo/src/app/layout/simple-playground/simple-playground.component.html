@@ -21,29 +21,42 @@
                     {{ entry[0] + ":" }}
                 </label>
 
-                @if (inputTypes[entry[0]] === InputType.radio) {
-                    <div class="playground__radio-options">
-                        @for (option of radioOptions[entry[0]]; track option.value) {
-                            <div>
-                                <input
-                                        [id]="idPrefix + '-' + entry[0] + '-' + option.value"
-                                        type="radio"
-                                        [value]="option.value"
-                                        [formControlName]="entry[0]">
+                @switch (inputTypes[entry[0]]) {
 
-                                <label [for]="idPrefix + '-' + entry[0] + '-' + option.value">
-                                    {{ option.label }}
-                                </label>
-                            </div>
-                        }
-                    </div>
-                } @else {
-                    <input
-                            [id]="idPrefix + '-' + entry[0]"
-                            [type]="InputType[inputTypes[entry[0]]]"
-                            [formControlName]="entry[0]">
+                    @case (InputType.radio) {
+                        <div class="playground__radio-options">
+                            @for (option of radioOptions[entry[0]]; track option.value) {
+                                <div>
+                                    <input
+                                            [id]="idPrefix + '-' + entry[0] + '-' + option.value"
+                                            type="radio"
+                                            [value]="option.value"
+                                            [formControlName]="entry[0]"
+                                    >
+                                    <label [for]="idPrefix + '-' + entry[0] + '-' + option.value">
+                                        {{ option.label }}
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @case (InputType.number) {
+                        <input
+                                [id]="idPrefix + '-' + entry[0]"
+                                type="number"
+                                [formControlName]="entry[0]"
+                        >
+                    }
+
+                    @default {
+                        <input
+                                [id]="idPrefix + '-' + entry[0]"
+                                [type]="InputType[inputTypes[entry[0]]]"
+                                [formControlName]="entry[0]"
+                        >
+                    }
                 }
-
             }
         </form>
         <div class="playground__actions">
