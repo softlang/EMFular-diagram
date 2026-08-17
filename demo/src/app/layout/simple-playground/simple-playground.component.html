@@ -38,10 +38,17 @@
                         }
                     </div>
                 } @else {
-                    <input
+                    @if (inputTypes[entry[0]] === InputType.number) {
+                        <input
+                                [id]="idPrefix + '-' + entry[0]"
+                                type="number"
+                                [formControlName]="entry[0]">
+                    } @else {
+                        <input
                             [id]="idPrefix + '-' + entry[0]"
                             [type]="InputType[inputTypes[entry[0]]]"
                             [formControlName]="entry[0]">
+                    }
                 }
 
             }
