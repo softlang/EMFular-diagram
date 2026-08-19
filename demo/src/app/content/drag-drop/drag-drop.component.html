@@ -20,12 +20,14 @@ Hence, this section is concerned with all types of mouse events.</p>
 <!-- It will report clicks by a color change. -->
 
 <demo-simple-playground
-        [form]=""
-        [codeTemplate]=""
+        [form]="formDrag0"
+        [codeTemplate]="''"
 >
     <svg:g demo-preview>
-        <g draggable>
-
+        <g demo-rect
+           [id]="'demo-rect-drag'"
+           [position]="{x: formDrag0.value.x, y: formDrag0.value.y, w: 10, h: 5 }"
+        >
         </g>
     </svg:g>
 </demo-simple-playground>

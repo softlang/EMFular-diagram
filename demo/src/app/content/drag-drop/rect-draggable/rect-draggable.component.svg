@@ -1,0 +1,9 @@
+<svg:g rectangleG
+       [position]="elem.position"
+       [color]="elem.color"
+        [attr.id]="elem.$gId"
+       (mousedown)="startDrag($event)"
+       (mousemove)="drag($event)"
+       (mouseup)="endDrag($event)"
+       (click)="clickElem($event)">
+</svg:g>

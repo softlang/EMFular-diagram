@@ -16,7 +16,7 @@ export abstract class DraggableComponent<T extends Draggable> implements AfterVi
   elem!: T;
   elemDragger!: Dragger<T>;
 
-  protected constructor(
+  constructor(
     protected svgAccessService: SVGAccessService
   ) {}
 
