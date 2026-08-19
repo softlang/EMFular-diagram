@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
-import {dragDropComponent} from "./drag-drop.component.code";
+import {dragDropComponent, draggableInterface} from "./drag-drop.component.code";
 import {SimplePlaygroundComponent} from "../../layout/simple-playground/simple-playground.component";
 
 @Component({
@@ -15,4 +15,5 @@ import {SimplePlaygroundComponent} from "../../layout/simple-playground/simple-p
 export class DragDropComponent {
 
   protected readonly dragDropComponent = dragDropComponent;
+  protected readonly draggableInterface = draggableInterface;
 }

@@ -6,8 +6,7 @@ import {Dragger} from "../../models/dragger";
 @Component({
   imports: [],
   selector: '[draggable]',
-  templateUrl: './draggable.component.svg',
-  styleUrl: './draggable.component.css'
+  templateUrl: './draggable.component.svg'
 })
 export abstract class DraggableComponent<T extends Draggable> implements AfterViewInit {
 

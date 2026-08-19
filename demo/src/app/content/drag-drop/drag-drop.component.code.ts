@@ -1,3 +1,15 @@
+export const draggableInterface = `
+export type Draggable = Positionable & Identifiable;
+
+export interface Positionable {
+  position: BoundingBox
+}
+
+export interface Identifiable {
+  $gId: string;
+}`
+
+
 export const dragDropComponent = `
 import {AfterViewInit, Component, EventEmitter, Output} from '@angular/core';
 import {SVGAccessService} from '../../services/svg-access.service';

@@ -6,12 +6,17 @@ Hence, this section is concerned with all types of mouse events.</p>
 
 <h3>Dragging</h3>
 
-<p>There is an explicit draggable svg component, it is supposed to be extended by an own svg component with an own template.
-The base component makes sure that drag events are correctly reported to the SVGAccessService.</p>
+<p>There is an explicit draggable svg component.
+    This base component makes sure that drag events are correctly reported to the SVGAccessService.
+    It is supposed to be extended by an own svg component with an own template.
+    This own component must provide an element that satisfies the interface `draggable`.</p>
+<demo-highlighted-code [code]="draggableInterface"></demo-highlighted-code>
 
 <demo-highlighted-code [code]="dragDropComponent"></demo-highlighted-code>
 
-<p>As for the our extending component, its template shows a small rectangle that we can drag.</p>
+<p>The base component provides an SVG template with the required mouse-event bindings.
+    It has no visual representation of its own; applications extend it with a component containing their own SVG template.
+    As for our extending component, its template shows a small rectangle that we can drag.</p>
 <!-- It will report clicks by a color change. -->
 
 <demo-simple-playground
