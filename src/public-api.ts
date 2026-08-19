@@ -5,6 +5,8 @@
 export * from './lib/models/dragger'
 export * from './lib/models/point2d'
 export * from './lib/components/draggable/draggable.component';
+export * from './lib/components/input-draggable/input-draggable.component';
+
 export * from './lib/components/svg-canvas/svg-canvas.component';
 export * from './lib/components/arrows/arrow-between-elems/arrow-between-elems.component';
 export * from './lib/components/arrows/arrow-between-boxes/arrow-between-boxes.component';
