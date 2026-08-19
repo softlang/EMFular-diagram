@@ -19,7 +19,8 @@ export class DragDropComponent {
 
   formDrag0: FormGroup = new FormGroup({
     x: new FormControl(0, {nonNullable: true}),
-    y: new FormControl(0, {nonNullable: true})
+    y: new FormControl(0, {nonNullable: true}),
+    color: new FormControl("#000000", {nonNullable: true}),
   })
 
   protected readonly dragDropComponent = dragDropComponent;
