@@ -27,9 +27,21 @@ Hence, this section is concerned with all types of mouse events.</p>
 >
     <svg:g demo-preview>
         <g demo-rect
-           [elem]="valueDrag0"
+           [elem]="elemDrag0"
            (chooseElem)="onClickFormDrag0()"
        >
         </g>
     </svg:g>
 </demo-simple-playground>
+
+<demo-svg-simple-playground
+        [value]="elemDrag1"
+        [codeTemplate]="''"
+>
+    <svg:g demo-preview>
+        <g demo-rect
+           [elem]="elemDrag1"
+        >
+        </g>
+    </svg:g>
+</demo-svg-simple-playground>

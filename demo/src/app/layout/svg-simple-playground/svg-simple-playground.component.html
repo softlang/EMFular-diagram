@@ -1,0 +1,85 @@
+<section class="playground">
+
+    <!-- Code snippet -->
+    <div class="playground__code">
+        <button
+                class="playground__code_copy"
+                type="button"
+                (click)="copyCode()"
+                title="Copy code">
+            ⧉
+        </button>
+        <demo-highlighted-code [code]="codeTemplate"></demo-highlighted-code>
+    </div>
+
+    <!-- Form -->
+    <div class="playground__form">
+        <form #form="ngForm">
+
+            @for (entry of values; track entry[0]) {
+
+                <label [for]="idPrefix + '-' + entry[0]">
+                    {{ entry[0] + ":" }}
+                </label>
+
+                @switch (inputTypes[entry[0]]) {
+
+                    @case (InputType.radio) {
+                        <div class="playground__radio-options">
+                            @for (option of radioOptions[entry[0]]; track option.value) {
+                                <div>
+                                    <input
+                                            [id]="idPrefix + '-' + entry[0] + '-' + option.value"
+                                            [name]="entry[0]"
+                                            type="radio"
+                                            [value]="option.value"
+                                            [(ngModel)]="value[entry[0]]"
+                                    >
+
+                                    <label
+                                            [for]="idPrefix + '-' + entry[0] + '-' + option.value">
+                                        {{ option.label }}
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @case (InputType.number) {
+                        <input
+                                [id]="idPrefix + '-' + entry[0]"
+                                [name]="entry[0]"
+                                type="number"
+                                [(ngModel)]="value[entry[0]]"
+                        >
+                    }
+
+                    @default {
+                        <input
+                                [id]="idPrefix + '-' + entry[0]"
+                                [name]="entry[0]"
+                                [type]="InputType[inputTypes[entry[0]]]"
+                                [(ngModel)]="value[entry[0]]"
+                        >
+                    }
+                }
+            }
+        </form>
+
+        <div class="playground__actions">
+            <button type="button" (click)="reset()">Reset</button>
+        </div>
+    </div>
+
+    <!-- Preview -->
+    <svg-canvas class="playground__preview"
+                [viewBox]="'0 0 200 200'"
+    >
+        <svg:g canvas>
+            <ng-content select="[demo-preview]"></ng-content>
+        </svg:g>
+    </svg-canvas>
+
+</section>
+
+

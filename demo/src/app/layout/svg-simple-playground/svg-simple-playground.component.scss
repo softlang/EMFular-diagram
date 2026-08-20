@@ -1,0 +1,152 @@
+@use 'src/styles.scss' as *;
+
+.playground {
+  box-sizing: border-box;
+
+  --playground-height: 22rem;
+  max-height: var(--playground-height);
+  width: 100%;
+
+  --code-min: 15rem;
+  --code-ratio: 2fr;
+
+  --form-min: 10rem;
+  --form-ratio: 1fr;
+
+  --preview-min: 15rem;
+  --preview-ratio: 1fr;
+
+  display: grid;
+  grid-template-columns:
+    minmax(var(--code-min), var(--code-ratio))
+    minmax(var(--form-min), var(--form-ratio))
+    minmax(var(--preview-min), var(--preview-ratio));
+
+  grid-template-rows: minmax(0, 1fr);
+
+  gap: 1.5rem;
+  align-items: stretch;
+  border: 2px solid $color-orange-primary;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.playground__code {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+
+  max-width: 35rem;
+
+  border: 2px solid $color-orange-light;
+  border-radius: 4px;
+}
+
+.playground__code_copy {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+
+  width: 1.75rem;
+  height: 1.75rem;
+
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: none;
+
+  border: 1px solid $color-orange-dark;
+  border-radius: 4px;
+  background: white;
+  color: $color-orange-dark;
+
+  cursor: pointer;
+
+  &:hover {
+    background: antiquewhite;
+  }
+}
+
+.playground__code pre {
+  flex: 1;
+
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+
+  margin: 0;
+  white-space: pre;
+}
+
+/* Buttons below form */
+.playground__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  button {
+    &:hover {
+      background: antiquewhite;
+    }
+    color: $color-orange-dark;
+    background: none;
+    border: 1px solid $color-orange-dark;
+    border-radius: 4px;
+  }
+}
+
+/* Generated form */
+.playground__form {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+.playground__form form {
+  display: grid;
+  grid-template-columns: max-content auto;
+  column-gap: 0.75rem;
+  row-gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.playground__form label {
+  color: $color-orange-dark;
+  grid-column: 1;
+}
+
+.playground__form input {
+  grid-column: 2;
+  width: 6rem;
+}
+
+/* Radio groups */
+.playground__radio-options {
+  grid-column: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.playground__radio-options > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.playground__radio-options input[type="radio"] {
+  width: auto;
+  margin: 0;
+}
+
+.playground__radio-options label {
+  color: inherit;
+  cursor: pointer;
+}
