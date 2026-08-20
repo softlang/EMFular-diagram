@@ -5,15 +5,13 @@ import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playgrou
 import {RectDraggableComponent} from "./rect-draggable/rect-draggable.component";
 import {FormControl, FormGroup} from "@angular/forms";
 import {SVGAccessService} from "ngx-emfular-diagram";
-import {SvgSimplePlaygroundComponent} from "../../layout/svg-simple-playground/svg-simple-playground.component";
 
 @Component({
   selector: 'demo-drag-drop',
   imports: [
     HighlightedCodeComponent,
     SvgReactivePlaygroundComponent,
-    RectDraggableComponent,
-    SvgSimplePlaygroundComponent
+    RectDraggableComponent
   ],
   templateUrl: './drag-drop.component.html',
   styleUrl: './drag-drop.component.css'
@@ -30,9 +28,9 @@ export class DragDropComponent {
     })
     //also bind form changes to the object:
     this.formDrag0.valueChanges.subscribe(value => {
-      this.elemDrag0.position.x = value.x;
-      this.elemDrag0.position.y = value.y;
-      this.elemDrag0.color = value.color;
+      this.valueDrag0.position.x = value.x;
+      this.valueDrag0.position.y = value.y;
+      this.valueDrag0.color = value.color;
     });
   }
 
@@ -42,31 +40,18 @@ export class DragDropComponent {
     color: new FormControl("#000000", {nonNullable: true}),
   })
 
-  elemDrag0 = {
+  valueDrag0 = {
     $gId: this.demo0id,
     color: this.formDrag0.value.color,
     position: {x: this.formDrag0.value.x, y: this.formDrag0.value.y, w: 20, h: 20 }
   }
 
-  valueDrag1 = {
-    x: 0,
-    y: 0,
-    color: '#000000'
-  }
-
-  elemDrag1 = {
-    $gId: "demo1id",
-    color: this.valueDrag1.color,
-    position: {x: this.valueDrag1.x, y: this.valueDrag1.y, w: 20, h: 20 }
-
-  }
-
   onClickFormDrag0() {
-    this.formDrag0.patchValue({color: this.elemDrag0.color, x: this.elemDrag0.position.x, y: this.elemDrag0.position.y});
+    this.formDrag0.patchValue({color: this.valueDrag0.color, x: this.valueDrag0.position.x, y: this.valueDrag0.position.y});
   }
 
   onPositionChangeFormDrag0() {
-    this.formDrag0.patchValue({ x: this.elemDrag0.position.x, y: this.elemDrag0.position.y });
+    this.formDrag0.patchValue({ x: this.valueDrag0.position.x, y: this.valueDrag0.position.y });
   }
 
   protected readonly dragDropComponent = dragDropComponent;
