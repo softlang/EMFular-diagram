@@ -16,9 +16,9 @@ Hence, this section is concerned with all types of mouse events.</p>
 
 <p>The base component provides an SVG template with the required mouse-event bindings.
     It has no visual representation of its own; applications extend it with a component containing their own SVG template.
-    As for our extending component, its template shows a small rectangle that we can drag.</p>
-<!-- It will report clicks by a color change. -->
-
+    As for our extending component, its template shows a small rectangle that we can drag. Clicks trigger a color change for the rectangle.</p>
+<p>Please note, that position and color changes are not read back into the form - this is due to Angular's value copying: the form value is the driver, whose changes ARE reflected in the object, but object changes do not read back into the control.</p>
+<!-- change that? maybe manual read-back in demo component?-->
 <demo-simple-playground
         [form]="formDrag0"
         [codeTemplate]="''"
