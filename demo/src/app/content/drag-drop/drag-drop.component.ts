@@ -23,6 +23,16 @@ export class DragDropComponent {
     color: new FormControl("#000000", {nonNullable: true}),
   })
 
+  valueDrag0 = {
+    id: 'demo-rect-drag',
+    color: this.formDrag0.value.color,
+    position: {x: this.formDrag0.value.x, y: this.formDrag0.value.y, w: 20, h: 20 }
+  }
+
+  onChangeFormDrag0Ext() {
+    this.formDrag0.patchValue({color: this.valueDrag0.color, x: this.valueDrag0.position.x, y: this.valueDrag0.position.y});
+  }
+
   protected readonly dragDropComponent = dragDropComponent;
   protected readonly draggableInterface = draggableInterface;
 }
