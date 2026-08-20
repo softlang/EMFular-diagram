@@ -96,4 +96,14 @@ export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
 
   onPositionChangeFormDrag0() {
     this.formDrag0.patchValue({ x: this.valueDrag0.position.x, y: this.valueDrag0.position.y });
-  }`
+  }
+  
+  //the click binding is used on the actual template:
+      <svg:g demo-preview>
+        <g demo-rect
+           [elem]="valueDrag0"
+           (chooseElem)="onClickFormDrag0()"
+       >
+        </g>
+    </svg:g>
+`
