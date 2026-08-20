@@ -22,10 +22,10 @@ export type RadioOptions = Record<string, RadioOption[]>;
     ReactiveFormsModule,
     HighlightedCodeComponent
   ],
-  templateUrl: './simple-playground.component.html',
-  styleUrl: './simple-playground.component.scss'
+  templateUrl: './svg-reactive-playground.component.html',
+  styleUrl: './svg-reactive-playground.component.scss'
 })
-export class SimplePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements AfterContentInit {
+export class SvgReactivePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements AfterContentInit {
   @Input() form!: FormGroup<TInputs>;
   @Input() codeTemplate!: string;
   @Input() radioOptions: RadioOptions = {};

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {dragDropComponent, draggableInterface} from "./drag-drop.component.code";
-import {SimplePlaygroundComponent} from "../../layout/simple-playground/simple-playground.component";
+import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {RectDraggableComponent} from "./rect-draggable/rect-draggable.component";
 import {FormControl, FormGroup} from "@angular/forms";
 import {SVGAccessService} from "ngx-emfular-diagram";
@@ -10,7 +10,7 @@ import {SVGAccessService} from "ngx-emfular-diagram";
   selector: 'demo-drag-drop',
   imports: [
     HighlightedCodeComponent,
-    SimplePlaygroundComponent,
+    SvgReactivePlaygroundComponent,
     RectDraggableComponent
   ],
   templateUrl: './drag-drop.component.html',

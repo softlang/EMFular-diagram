@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SimplePlaygroundComponent } from './simple-playground.component';
+import { SvgReactivePlaygroundComponent } from './svg-reactive-playground.component';
 import {FormControl, FormGroup} from "@angular/forms";
 
 describe('SimplePlaygroundComponent', () => {
-  let component: SimplePlaygroundComponent;
-  let fixture: ComponentFixture<SimplePlaygroundComponent>;
+  let component: SvgReactivePlaygroundComponent;
+  let fixture: ComponentFixture<SvgReactivePlaygroundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SimplePlaygroundComponent]
+      imports: [SvgReactivePlaygroundComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SimplePlaygroundComponent);
+    fixture = TestBed.createComponent(SvgReactivePlaygroundComponent);
     component = fixture.componentInstance;
     const form = new FormGroup({
       startX: new FormControl(0),
