@@ -61,3 +61,39 @@ export abstract class DraggableComponent<T extends Draggable> implements AfterVi
 
 }
 `
+
+export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
+
+  constructor(svgAccessService: SVGAccessService) {
+    svgAccessService.positionChange.subscribe(position => {
+      if(position == this.demo0id) {
+        this.onPositionChangeFormDrag0()
+      }
+    })
+    //also bind form changes to the object:
+    this.formDrag0.valueChanges.subscribe(value => {
+      this.valueDrag0.position.x = value.x;
+      this.valueDrag0.position.y = value.y;
+      this.valueDrag0.color = value.color;
+    });
+  }
+
+  formDrag0: FormGroup = new FormGroup({
+    x: new FormControl(0, {nonNullable: true}),
+    y: new FormControl(0, {nonNullable: true}),
+    color: new FormControl("#000000", {nonNullable: true}),
+  })
+
+  valueDrag0 = {
+    $gId: this.demo0id,
+    color: this.formDrag0.value.color,
+    position: {x: this.formDrag0.value.x, y: this.formDrag0.value.y, w: 20, h: 20 }
+  }
+
+  onClickFormDrag0() {
+    this.formDrag0.patchValue({color: this.valueDrag0.color, x: this.valueDrag0.position.x, y: this.valueDrag0.position.y});
+  }
+
+  onPositionChangeFormDrag0() {
+    this.formDrag0.patchValue({ x: this.valueDrag0.position.x, y: this.valueDrag0.position.y });
+  }`

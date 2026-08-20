@@ -17,8 +17,9 @@ Hence, this section is concerned with all types of mouse events.</p>
 <p>The base component provides an SVG template with the required mouse-event bindings.
     It has no visual representation of its own; applications extend it with a component containing their own SVG template.
     As for our extending component, its template shows a small rectangle that we can drag. Clicks trigger a color change for the rectangle.</p>
-<p>Please note, that position and color changes are not read back into the form - this is due to Angular's value copying: the form value is the driver, whose changes ARE reflected in the object, but object changes do not read back into the control.
-We added an extra binding to trigger a complete form patch on every click (color change) - it would be possible to also detect position changes via the svgAccessService and read that back as well.</p>
+<p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically.
+    We hence need artificial bindings, that we can avoid in a traditional form bound via ngModel.
+</p>
 <!-- change that? maybe manual read-back in demo component?-->
 <demo-simple-playground
         [form]="formDrag0"
@@ -27,7 +28,7 @@ We added an extra binding to trigger a complete form patch on every click (color
     <svg:g demo-preview>
         <g demo-rect
            [elem]="valueDrag0"
-           (chooseElem)="onChangeFormDrag0Ext()"
+           (chooseElem)="onClickFormDrag0()"
        >
         </g>
     </svg:g>
