@@ -8,18 +8,36 @@ export class Dragger<T extends Positionable> {
   dragStartX: number = 0;
   dragStartY: number = 0;
 
-  constructor(element: T) {
+  private readonly boundDrag = (event: MouseEvent) => {
+    console.log('WINDOW LISTENER', this.elem, this.dragActive);
+    this.drag(event);
+  };
+
+  private readonly boundEndDrag = (event: MouseEvent) => {
+    this.endDrag(event);
+  };
+
+
+  constructor(public element: T, private readonly onPositionChange: () => void = ()=>{}) {
     this.elem = element;
   }
 
   startDrag(event: MouseEvent) {
+    console.log('START DRAG', this.elem);
     this.dragStartX = event.clientX;
     this.dragStartY = event.clientY;
     this.dragActive = true;
+    this.wasReallyDragged = false;
+
+    console.log('REGISTER WINDOW LISTENER', this.elem);
+    window.addEventListener('mousemove', this.boundDrag);
+    window.addEventListener('mouseup', this.boundEndDrag);
+    console.log("Start drag-e")
   }
 
   // returns true in the case of a real drag event, false otherwise
   drag(event: MouseEvent): boolean {
+    console.log("Consider drag", event);
     if (this.dragActive) {
       this.wasReallyDragged = true;
       event.preventDefault();
@@ -29,26 +47,42 @@ export class Dragger<T extends Positionable> {
       const dragY = event.clientY;
       this.elem.position.y+= (dragY - this.dragStartY);
       this.dragStartY = dragY;
+      this.onPositionChange();
       return true;
     }
+    console.trace("Inactive drag "+this.elem)
     return false;
   }
 
   endDrag(event: MouseEvent) {
+    console.log("End drag-s", event);
     this.dragActive = false;
-    // todo was working for click vs drag, not now setTimeout(() => {this.dragActive = false;}, 50);
+
+    window.removeEventListener('mousemove', this.boundDrag);
+    window.removeEventListener('mouseup', this.boundEndDrag);
+
     event.preventDefault();
+    console.log("End drag-e")
   }
 
   //returns true if the click should be treated as click, false if it was from drag
   clickElem(event: MouseEvent): boolean {
+    event.preventDefault();
     if (this.wasReallyDragged) {
+      this.dragActive = false;
       this.wasReallyDragged = false;
+      console.log('No click')
       return false;
     } else {
-      event.preventDefault();
+      console.log('click')
       return true;
     }
+  }
+
+  destroy() {
+    window.removeEventListener('mousemove', this.boundDrag);
+    window.removeEventListener('mouseup', this.boundEndDrag);
+    this.dragActive = false;
   }
 
 }

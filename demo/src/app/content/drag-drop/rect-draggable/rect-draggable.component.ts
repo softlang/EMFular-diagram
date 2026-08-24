@@ -1,6 +1,5 @@
-import {Component, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {BoundingBox, InputDraggableComponent, RectangleComponent} from "ngx-emfular-diagram";
-import {v4 as uuidv4} from "uuid";
 
 export interface MyPositionable {
   $gId: string;
