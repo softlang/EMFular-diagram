@@ -3,6 +3,10 @@ import {SVGAccessService} from '../../services/svg-access.service';
 import { Draggable } from '../../models/positionable';
 import {Dragger} from "../../models/dragger";
 
+
+/**
+ * @deprecated: use InputDraggable component to get the whole expertise on wiring the svg access service in - it will replace this base component in the next major release
+ */
 @Component({
   imports: [],
   selector: '[draggable]',
