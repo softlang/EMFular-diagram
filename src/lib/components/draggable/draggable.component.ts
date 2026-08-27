@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, EventEmitter, OnDestroy, Output} from '@angular/core';
 import {SVGAccessService} from '../../services/svg-access.service';
 import { Draggable } from '../../models/positionable';
-import {Dragger} from "../../models/dragger";
+import {Dragger} from "../../utils/dragger";
 
 
 /**

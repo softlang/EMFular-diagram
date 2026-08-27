@@ -2,7 +2,8 @@
  * Public API Surface of arrows
  */
 
-export * from './lib/models/dragger'
+export * from './lib/utils/dragger'
+export * from './lib/utils/single-vs-double-click'
 export * from './lib/models/point2d'
 export * from './lib/components/draggable/draggable.component';
 export * from './lib/components/input-draggable/input-draggable.component';
