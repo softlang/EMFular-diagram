@@ -18,10 +18,10 @@ import {Dragger} from "../../models/dragger";
   selector: '[input-draggable]',
   templateUrl: './input-draggable.component.svg'
 })
-export abstract class InputDraggableComponent<T extends Draggable> implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export abstract class InputDraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input()  elem!: T;
-  @Output() chooseElem = new EventEmitter<T>();
+  @Output() elemReallyClicked = new EventEmitter<T>();
 
   elemDragger!: Dragger<T>;
 
@@ -29,14 +29,9 @@ export abstract class InputDraggableComponent<T extends Draggable> implements On
     protected svgAccessService: SVGAccessService
   ) {}
 
-
+  // dragger that notifies access service about dragging
   private createDragger(elem: T): Dragger<T> {
     return new Dragger<T>(elem, ()=> this.svgAccessService.notifyPositionChange(elem.$gId));
-  }
-
-
-  ngOnInit() {
-    this.elemDragger = this.createDragger(this.elem);
   }
 
   ngAfterViewInit() {
@@ -62,7 +57,7 @@ export abstract class InputDraggableComponent<T extends Draggable> implements On
   clickElem(event: MouseEvent) {
     if (this.elemDragger.clickElem(event)) {
       this.onClick();
-      this.chooseElem.emit(this.elem);
+      this.elemReallyClicked.emit(this.elem);
     }
   }
 
