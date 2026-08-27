@@ -83,6 +83,12 @@ export const inputDraggableTemplate = `
 `
 
 export const exampleDragRect = `
+export interface MyPositionable {
+  $gId: string;
+  position: BoundingBox;
+  color: string;
+}
+
 @Component({
   selector: '[demo-rect]',
   imports: [RectangleComponent],
