@@ -54,10 +54,23 @@ export abstract class InputDraggableComponent<T extends Draggable> implements On
     this.elemDragger.startDrag(event);
   }
 
+  /**
+   * call this on your template's click binding:
+   * just forward click to dragger and only react, if that fires
+   * You can add reactions prior to emit via the onClick hook
+   */
   clickElem(event: MouseEvent) {
     if (this.elemDragger.clickElem(event)) {
+      this.onClick();
       this.chooseElem.emit(this.elem);
     }
+  }
+
+  /**
+   * @protected
+   * Only adapt this to add a prior reaction to really detected clicks
+   */
+  protected onClick() {
   }
 
   ngOnDestroy() {

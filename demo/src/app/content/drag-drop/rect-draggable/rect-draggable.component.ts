@@ -15,9 +15,8 @@ export interface MyPositionable {
 })
 export class RectDraggableComponent extends InputDraggableComponent<MyPositionable> {
 
-  override clickElem(event: MouseEvent) {
+  override onClick() {
     this.elem.color = this.randomColor()
-    super.clickElem(event);
   }
 
   randomColor() {
