@@ -11,55 +11,103 @@ export interface Identifiable {
 
 
 export const dragDropComponent = `
-import {AfterViewInit, Component, EventEmitter, Output} from '@angular/core';
-import {SVGAccessService} from '../../services/svg-access.service';
-import { Draggable } from '../../models/positionable';
-import {Dragger} from "../../models/dragger";
-
 @Component({
   imports: [],
-  selector: '[draggable]',
-  templateUrl: './draggable.component.svg',
-  styleUrl: './draggable.component.css'
+  selector: '[input-draggable]',
+  templateUrl: './input-draggable.component.svg'
 })
-export abstract class DraggableComponent<T extends Draggable> implements AfterViewInit {
+export abstract class InputDraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
 
-  @Output() chooseElem = new EventEmitter<T>();
-  //the caller must initialize both required elements (elem and elementDragger) either in the constructor
-  // (or if they are inputs) in the ngOnInit life cycle hook
-  elem!: T;
+  @Input()  elem!: T;
+  @Output() elemReallyClicked = new EventEmitter<T>();
+
   elemDragger!: Dragger<T>;
 
-  protected constructor(
+  constructor(
     protected svgAccessService: SVGAccessService
   ) {}
 
+  // dragger that notifies access service about dragging
+  private createDragger(elem: T): Dragger<T> {
+    return new Dragger<T>(elem, ()=> this.svgAccessService.notifyPositionChange(elem.$gId));
+  }
 
   ngAfterViewInit() {
     this.svgAccessService.notifyPositionChange(this.elem.$gId)
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['elem']) {
+      this.elemDragger?.destroy()
+      this.elemDragger = this.createDragger(this.elem);
+    }
   }
 
   startDrag(event: MouseEvent) {
     this.elemDragger.startDrag(event);
   }
 
-  drag(event: MouseEvent) {
-    if (this.elemDragger.drag(event)) {
-      this.svgAccessService.notifyPositionChange(this.elem.$gId)
-    }
-  }
-
-  endDrag(event: MouseEvent) {
-    this.elemDragger.endDrag(event);
-  }
-
+  /**
+   * call this on your template's click binding:
+   * just forward click to dragger and only react, if that fires
+   * You can add reactions prior to emit via the onClick hook
+   */
   clickElem(event: MouseEvent) {
     if (this.elemDragger.clickElem(event)) {
-      this.chooseElem.emit(this.elem);
+      this.onClick();
+      this.elemReallyClicked.emit(this.elem);
     }
+  }
+
+  /**
+   * @protected
+   * Only adapt this to add a prior reaction to really detected clicks
+   */
+  protected onClick() {
+  }
+
+  ngOnDestroy() {
+    this.elemDragger?.destroy();
   }
 
 }
+`
+
+export const inputDraggableTemplate = `
+<svg:g>
+  <g [attr.id]="elem.$gId"
+     (mousedown)="startDrag($event)"
+     (click)="clickElem($event)">
+  </g>
+</svg:g>
+`
+
+export const exampleDragRect = `
+@Component({
+  selector: '[demo-rect]',
+  imports: [RectangleComponent],
+  templateUrl: './rect-draggable.component.svg',
+  styleUrl: './rect-draggable.component.css'
+})
+export class RectDraggableComponent extends InputDraggableComponent<MyPositionable> {
+
+  override onClick() {
+    this.elem.color = this.randomColor()
+  }
+
+  randomColor() {
+    return'#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+  }
+
+}
+// template:
+<svg:g rectangleG
+       [position]="elem.position"
+       [color]="elem.color"
+        [attr.id]="elem.$gId"
+       (mousedown)="startDrag($event)"
+       (click)="clickElem($event)">
+</svg:g>
 `
 
 export const BindingsForDrag = `  demo0id = 'demo-rect-drag'

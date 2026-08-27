@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
-import {BindingsForDrag, dragDropComponent, draggableInterface} from "./drag-drop.component.code";
+import {
+  BindingsForDrag,
+  dragDropComponent,
+  draggableInterface, exampleDragRect,
+  inputDraggableTemplate
+} from "./drag-drop.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {RectDraggableComponent} from "./rect-draggable/rect-draggable.component";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -57,4 +62,6 @@ export class DragDropComponent {
   protected readonly dragDropComponent = dragDropComponent;
   protected readonly draggableInterface = draggableInterface;
   protected readonly BindingsForDrag = BindingsForDrag;
+  protected readonly inputDraggableTemplate = inputDraggableTemplate;
+  protected readonly exampleDragRect = exampleDragRect;
 }

@@ -1,23 +1,36 @@
-<h2>Drag and drop</h2>
+<h2>Mouse event handling</h2>
 
 <p>Angular has no built in drag and drop for svg elements - instead, we must use mouse down to discover the selection of an element, then move it while the mouse moves and finally stop the drag when the mouse moves up again.
 However, we need to make sure that we can also detect a click and a double-click and that these events do neither interfere with each other nor with drag and drop.
 Hence, this section is concerned with all types of mouse events.</p>
 
-<h3>Dragging</h3>
+<h3>Drag and Drop</h3>
 
-<p>There is an explicit draggable svg component.
-    This base component makes sure that drag events are correctly reported to the SVGAccessService.
-    It is supposed to be extended by an own svg component with an own template.
-    This own component must provide an element that satisfies the interface `draggable`.</p>
+<p>There is an explicit input-draggable svg component, that expects to receive some `Draggable` element as input.
+    We strongly suggest to extend that instead of using the dragger directly.
+    Only if you cannot provide an id (`$gId`) and hence only want to provide a `Positionable`, a direct usage might make sense.
+</p>
 <demo-highlighted-code [code]="draggableInterface"></demo-highlighted-code>
 
-<demo-highlighted-code [code]="dragDropComponent"></demo-highlighted-code>
-
-<p>The base component provides an SVG template with the required mouse-event bindings.
+<p>
+    The input-draggable component makes sure that drag events are correctly reported to the SVGAccessService (that communicates position changes) and that drags and clicks are distinguished.
+    It provides an output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
+    If additional work must be done before the click event really fires, users who override the base component can override the onClick hook.
+    Please note that drag and click are both detected as DOM events, so it is important that any extending component wires the bindings in on their own template.
+    FOr reference, the base component provides an example SVG template with the required mouse-event bindings.
     It has no visual representation of its own; applications extend it with a component containing their own SVG template.
-    As for our extending component, its template shows a small rectangle that we can drag. Clicks trigger a color change for the rectangle.</p>
-<p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically.
+</p>
+
+<demo-highlighted-code [code]="inputDraggableTemplate"></demo-highlighted-code>
+
+<p>
+    Our extending component shows a small rectangle that we can drag.
+    Clicks trigger a color change for the rectangle.
+</p>
+<demo-highlighted-code [code]="exampleDragRect"></demo-highlighted-code>
+
+<h4>Manual binding between copies</h4>
+<p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically between the actual element provided to our demo component and the form.
     We hence need to bind the two models manually. You will need this process only if you do NOT supply an object immediately for drag and drop updates.
 </p>
 <!-- change that? maybe manual read-back in demo component?-->
@@ -33,3 +46,14 @@ Hence, this section is concerned with all types of mouse events.</p>
         </g>
     </svg:g>
 </demo-simple-playground>
+
+<h3>Click vs Double Click</h3>
+
+<p>
+    When using the Angular DOM events click and dblClick directly, you will see that each double click also triggers two single clicks - which is usually not intended.
+    We hence provide a very small class SingleVsDoubleClick to send the DOM events (or manually created clicks) to in order to fire only one event.
+    Since a single click needs to wait for the set timeout, before being sure that it is not part of a double click, all single clicks will be delayed by that time.
+    You can adapt the timeout, we provide the standard 250ms if not instructed otherwise.
+</p>
+
+
