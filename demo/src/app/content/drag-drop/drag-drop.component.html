@@ -55,10 +55,11 @@ Hence, this section is concerned with all types of mouse events.</p>
     We hence provide a very small class SingleVsDoubleClick to send the DOM events (or manually created clicks) to in order to fire only one event.
     Since a single click needs to wait for the set timeout, before being sure that it is not part of a double click, all single clicks will be delayed by that time.
     You can adapt the timeout, we provide the standard 250ms if not instructed otherwise.
+    Please note, how a changed timeout influences click discovery: below 150ms it gets almost impossible to trigger a double click, while above 300ms the UI seems frozen, since click events happen so late.
 </p>
 <demo-simple-playground
         [form]="formDblClick0"
-        [codeTemplate]="BindingsForDrag"
+        [codeTemplate]="dblClick0"
 >
     <svg:g demo-preview>
         <g demo-dblclick-rect

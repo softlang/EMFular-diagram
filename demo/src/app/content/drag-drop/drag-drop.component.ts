@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {
-  BindingsForDrag,
+  BindingsForDrag, dblClick0,
   draggableInterface, exampleDragRect,
   inputDraggableTemplate
 } from "./drag-drop.component.code";
@@ -102,4 +102,5 @@ export class DragDropComponent {
   protected readonly BindingsForDrag = BindingsForDrag;
   protected readonly inputDraggableTemplate = inputDraggableTemplate;
   protected readonly exampleDragRect = exampleDragRect;
+  protected readonly dblClick0 = dblClick0;
 }

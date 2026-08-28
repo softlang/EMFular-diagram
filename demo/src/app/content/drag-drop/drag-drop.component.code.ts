@@ -161,3 +161,14 @@ export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
         </g>
     </svg:g>
 `
+
+export const dblClick0 = `
+    <svg:g demo-preview>
+        <g demo-dblclick-rect
+           [elem]="valueDblCl"
+           [timeout]="formDblClick0.value.timeout"
+           (singleClicked)="onSingleClickFormDblClick0()"
+           (dblClicked)="onDoubleClickFormDblClick0()"
+        >
+        </g>
+    </svg:g>`
