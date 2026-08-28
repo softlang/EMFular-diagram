@@ -8,16 +8,18 @@ import {
     ArrowBetweenBoxesComponent,
     RectangleComponent,
     TriangleComponent,
-    ArrowBetweenElemsComponent
+    ArrowBetweenElemsComponent, SVGAccessService
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
     arrowBetweenBoxesCode,
     arrowBetweenElemsCode,
-    arrowBetweenPointsCode,
+    arrowBetweenPointsCode, arrowDrag,
     arrowStyleConfig, markerStyleConfig, textAndStyles
 } from "./arrows.component.code";
 import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
+import {MyPositionable} from "../../drag-drop/rect-draggable/rect-draggable.component";
+import {DblclickRectComponent} from "../../drag-drop/dblclick-rect/dblclick-rect.component";
 
 @Component({
   selector: 'demo-arrows',
@@ -29,11 +31,15 @@ import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlig
         RectangleComponent,
         TriangleComponent,
         HighlightedCodeComponent,
+        DblclickRectComponent,
     ],
   templateUrl: './arrows.component.html',
   styleUrl: './arrows.component.css'
 })
 export class ArrowsComponent {
+
+    constructor(public svgAccessService: SVGAccessService) {
+    }
 
   form0: FormGroup<{
       startX: FormControl<number>;
@@ -113,10 +119,34 @@ export class ArrowsComponent {
         textStyle: new FormControl("fill: red; font-size: 12px;"),
     })
 
+    dragID0="dragArrow0"
+    dragID1="dragArrow1"
+    drag0: MyPositionable = {
+        $gId: this.dragID0,
+        color: "blue",
+        position: {x:0, y: 0, w: 15, h: 10}
+    }
+    drag1: MyPositionable = {
+        $gId: this.dragID1,
+        color: "red",
+        position: {x:50, y: 50, w: 15, h: 10}
+    }
+
+    form5 = new FormGroup({
+        notifyAutomatically: new FormControl(false),
+    })
+
+    onDoubleClick(id: string) {
+        if(this.form5.value.notifyAutomatically) {
+            this.svgAccessService.notifyPositionChange(id)
+        }
+    }
+
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
   protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
   protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
   protected readonly arrowStyleConfig = arrowStyleConfig;
     protected readonly markerStyleConfig = markerStyleConfig;
     protected readonly textAndStyles = textAndStyles;
+    protected readonly arrowDrag = arrowDrag;
 }
