@@ -14,6 +14,7 @@ describe('RectDraggableComponent', () => {
 
     fixture = TestBed.createComponent(RectDraggableComponent);
     component = fixture.componentInstance;
+    component.elem = {$gId: "id0", color: "#111111", position: {x: 0, y: 0, w: 0, h: 0}}
     fixture.detectChanges();
   });
 
