@@ -9,7 +9,6 @@ export class Dragger<T extends Positionable> {
   dragStartY: number = 0;
 
   private readonly boundDrag = (event: MouseEvent) => {
-    console.log('WINDOW LISTENER', this.elem, this.dragActive);
     this.drag(event);
   };
 
@@ -23,21 +22,16 @@ export class Dragger<T extends Positionable> {
   }
 
   startDrag(event: MouseEvent) {
-    console.log('START DRAG', this.elem);
     this.dragStartX = event.clientX;
     this.dragStartY = event.clientY;
     this.dragActive = true;
     this.wasReallyDragged = false;
-
-    console.log('REGISTER WINDOW LISTENER', this.elem);
     window.addEventListener('mousemove', this.boundDrag);
     window.addEventListener('mouseup', this.boundEndDrag);
-    console.log("Start drag-e")
   }
 
   // returns true in the case of a real drag event, false otherwise
   drag(event: MouseEvent): boolean {
-    console.log("Consider drag", event);
     if (this.dragActive) {
       this.wasReallyDragged = true;
       event.preventDefault();
@@ -50,19 +44,14 @@ export class Dragger<T extends Positionable> {
       this.onPositionChange();
       return true;
     }
-    console.trace("Inactive drag "+this.elem)
     return false;
   }
 
   endDrag(event: MouseEvent) {
-    console.log("End drag-s", event);
     this.dragActive = false;
-
     window.removeEventListener('mousemove', this.boundDrag);
     window.removeEventListener('mouseup', this.boundEndDrag);
-
     event.preventDefault();
-    console.log("End drag-e")
   }
 
   //returns true if the click should be treated as click, false if it was from drag
@@ -71,10 +60,8 @@ export class Dragger<T extends Positionable> {
     if (this.wasReallyDragged) {
       this.dragActive = false;
       this.wasReallyDragged = false;
-      console.log('No click')
       return false;
     } else {
-      console.log('click')
       return true;
     }
   }
