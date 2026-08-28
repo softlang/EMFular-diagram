@@ -1,12 +1,12 @@
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 export class SingleVsDblClick {
 
     private readonly singleClickSubject = new Subject<void>();
     private readonly doubleClickSubject = new Subject<void>();
 
-    readonly singleClick$ = this.singleClickSubject.asObservable();
-    readonly doubleClick$ = this.doubleClickSubject.asObservable();
+    readonly singleClick$: Observable<void> = this.singleClickSubject.asObservable();
+    readonly doubleClick$: Observable<void> = this.doubleClickSubject.asObservable();
 
     private clickTimer?: ReturnType<typeof setTimeout>;
 

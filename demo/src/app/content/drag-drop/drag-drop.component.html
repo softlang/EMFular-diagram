@@ -31,7 +31,8 @@ Hence, this section is concerned with all types of mouse events.</p>
 
 <h4>Manual binding between copies</h4>
 <p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically between the actual element provided to our demo component and the form.
-    We hence need to bind the two models manually. You will need this process only if you do NOT supply an object immediately for drag and drop updates.
+    We hence need to bind the two models manually.
+    You will need this process only if you also deal with several data copies for drag and drop updates.
 </p>
 <!-- change that? maybe manual read-back in demo component?-->
 <demo-simple-playground
@@ -41,7 +42,7 @@ Hence, this section is concerned with all types of mouse events.</p>
     <svg:g demo-preview>
         <g demo-rect
            [elem]="valueDrag0"
-           (chooseElem)="onClickFormDrag0()"
+           (elemReallyClicked)="onClickFormDrag0()"
        >
         </g>
     </svg:g>
@@ -55,5 +56,18 @@ Hence, this section is concerned with all types of mouse events.</p>
     Since a single click needs to wait for the set timeout, before being sure that it is not part of a double click, all single clicks will be delayed by that time.
     You can adapt the timeout, we provide the standard 250ms if not instructed otherwise.
 </p>
-
+<demo-simple-playground
+        [form]="formDblClick0"
+        [codeTemplate]="BindingsForDrag"
+>
+    <svg:g demo-preview>
+        <g demo-dblclick-rect
+           [elem]="valueDblCl"
+           [timeout]="formDblClick0.value.timeout"
+           (singleClicked)="onSingleClickFormDblClick0()"
+           (dblClicked)="onDoubleClickFormDblClick0()"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
 

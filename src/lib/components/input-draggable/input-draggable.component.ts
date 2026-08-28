@@ -30,7 +30,7 @@ export abstract class InputDraggableComponent<T extends Draggable> implements Af
   ) {}
 
   // dragger that notifies access service about dragging
-  private createDragger(elem: T): Dragger<T> {
+  protected createDragger(elem: T): Dragger<T> {
     return new Dragger<T>(elem, ()=> this.svgAccessService.notifyPositionChange(elem.$gId));
   }
 
