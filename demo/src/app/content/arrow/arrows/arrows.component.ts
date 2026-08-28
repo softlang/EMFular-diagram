@@ -14,7 +14,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
     arrowBetweenBoxesCode,
     arrowBetweenElemsCode,
-    arrowBetweenPointsCode, arrowDrag,
+    arrowBetweenPointsCode, arrowBoxesDrag, arrowDrag,
     arrowStyleConfig, markerStyleConfig, textAndStyles
 } from "./arrows.component.code";
 import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
@@ -142,8 +142,30 @@ export class ArrowsComponent {
         }
     }
 
-    onBoxDblClick() {
+    dragBlueId="dragArrow0"
+    dragBlue: MyPositionable = {
+        $gId: this.dragBlueId,
+        color: "blue",
+        position: {x:0, y: 0, w: 15, h: 10}
+    }
+    dragRedId="dragArrow1"
+    dragRed: MyPositionable = {
+        $gId: this.dragRedId,
+        color: "red",
+        position: {x:50, y: 50, w: 15, h: 10}
+    }
 
+    form6 = new FormGroup({
+        notifyRed: new FormControl(false, { nonNullable: true }),
+        notifyBlue: new FormControl(false, { nonNullable: true }),
+    })
+
+    onPosChangeArBetwBoxes(elem: MyPositionable, isActive?: boolean) {
+        if(isActive) {
+            elem.position = {
+                ...elem.position
+            };
+        }
     }
 
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
@@ -153,4 +175,5 @@ export class ArrowsComponent {
     protected readonly markerStyleConfig = markerStyleConfig;
     protected readonly textAndStyles = textAndStyles;
     protected readonly arrowDrag = arrowDrag;
+    protected readonly arrowBoxesDrag = arrowBoxesDrag;
 }

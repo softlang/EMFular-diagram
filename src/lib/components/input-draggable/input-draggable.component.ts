@@ -22,6 +22,7 @@ export abstract class InputDraggableComponent<T extends Draggable> implements Af
 
   @Input()  elem!: T;
   @Output() elemReallyClicked = new EventEmitter<T>();
+  @Output() positionChanged = new EventEmitter<T>();
 
   elemDragger!: Dragger<T>;
 
@@ -31,7 +32,12 @@ export abstract class InputDraggableComponent<T extends Draggable> implements Af
 
   // dragger that notifies access service about dragging
   protected createDragger(elem: T): Dragger<T> {
-    return new Dragger<T>(elem, ()=> this.svgAccessService.notifyPositionChange(elem.$gId));
+    return new Dragger<T>(elem, ()=> this.notifyPositionChange(elem));
+  }
+
+  protected notifyPositionChange(elem: T): void {
+    this.positionChanged.emit(elem);
+    this.svgAccessService.notifyPositionChange(elem.$gId)
   }
 
   ngAfterViewInit() {

@@ -223,7 +223,7 @@ Depending on how you want to specify these points, you can choose between these 
         ></g>
         <g arrowElems
            id="arrowdrag0"
-            [startGID]="dragID0"
+           [startGID]="dragID0"
            [startSuffix]="''"
            [endGID]="dragID1"
            [endSuffix]="''"
@@ -242,25 +242,28 @@ Depending on how you want to specify these points, you can choose between these 
 
 <p>
     The box offers no such mechanism "out of the box" ;)<br>
-    Please use
+    Please use an mechanism to re-assign the position, so that a change is detected, e.g. by creating a new object and reassigning the former content.
+    An example for that is `elem.position = &#123;...elem.position&#125;;`.
 </p>
 <demo-simple-playground
-        [form]="form5"
-        [codeTemplate]="arrowDrag"
+        [form]="form6"
+        [codeTemplate]="arrowBoxesDrag"
 >
     <svg:g demo-preview>
         <g demo-dblclick-rect
-           [elem]="drag0"
-           (dblClicked)="onBoxDblClick()"
+           [elem]="dragBlue"
+           (positionChanged)="onPosChangeArBetwBoxes(dragBlue, form6.value.notifyBlue)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragBlue, form6.value.notifyBlue)"
         ></g>
         <g demo-dblclick-rect
-           [elem]="drag1"
-           (dblClicked)="onBoxDblClick()"
+           [elem]="dragRed"
+           (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.value.notifyRed)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.value.notifyRed)"
         ></g>
         <g arrow-between-boxes
            id="arrowdrag0"
-           [start]="drag0.position"
-           [end]="drag1.position"
+           [start]="dragBlue.position"
+           [end]="dragRed.position"
         ></g>
     </svg:g>
 </demo-simple-playground>
