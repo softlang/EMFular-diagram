@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {
     RadioOptions,
-    SimplePlaygroundComponent
-} from "../../../layout/simple-playground/simple-playground.component";
+    SvgReactivePlaygroundComponent
+} from "../../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {
     ArrowBetweenPointsComponent,
     ArrowBetweenBoxesComponent,
@@ -22,7 +22,7 @@ import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlig
 @Component({
   selector: 'demo-arrows',
     imports: [
-        SimplePlaygroundComponent,
+        SvgReactivePlaygroundComponent,
         ArrowBetweenPointsComponent,
         ArrowBetweenBoxesComponent,
         ArrowBetweenElemsComponent,

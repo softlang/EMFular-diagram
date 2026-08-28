@@ -1,4 +1,4 @@
-import {Positionable} from './positionable';
+import {Positionable} from '../models/positionable';
 
 export class Dragger<T extends Positionable> {
   elem: T;
@@ -8,7 +8,16 @@ export class Dragger<T extends Positionable> {
   dragStartX: number = 0;
   dragStartY: number = 0;
 
-  constructor(element: T) {
+  private readonly boundDrag = (event: MouseEvent) => {
+    this.drag(event);
+  };
+
+  private readonly boundEndDrag = (event: MouseEvent) => {
+    this.endDrag(event);
+  };
+
+
+  constructor(public element: T, private readonly onPositionChange: () => void = ()=>{}) {
     this.elem = element;
   }
 
@@ -16,6 +25,9 @@ export class Dragger<T extends Positionable> {
     this.dragStartX = event.clientX;
     this.dragStartY = event.clientY;
     this.dragActive = true;
+    this.wasReallyDragged = false;
+    window.addEventListener('mousemove', this.boundDrag);
+    window.addEventListener('mouseup', this.boundEndDrag);
   }
 
   // returns true in the case of a real drag event, false otherwise
@@ -29,6 +41,7 @@ export class Dragger<T extends Positionable> {
       const dragY = event.clientY;
       this.elem.position.y+= (dragY - this.dragStartY);
       this.dragStartY = dragY;
+      this.onPositionChange();
       return true;
     }
     return false;
@@ -36,19 +49,27 @@ export class Dragger<T extends Positionable> {
 
   endDrag(event: MouseEvent) {
     this.dragActive = false;
-    // todo was working for click vs drag, not now setTimeout(() => {this.dragActive = false;}, 50);
+    window.removeEventListener('mousemove', this.boundDrag);
+    window.removeEventListener('mouseup', this.boundEndDrag);
     event.preventDefault();
   }
 
   //returns true if the click should be treated as click, false if it was from drag
   clickElem(event: MouseEvent): boolean {
+    event.preventDefault();
     if (this.wasReallyDragged) {
+      this.dragActive = false;
       this.wasReallyDragged = false;
       return false;
     } else {
-      event.preventDefault();
       return true;
     }
+  }
+
+  destroy() {
+    window.removeEventListener('mousemove', this.boundDrag);
+    window.removeEventListener('mouseup', this.boundEndDrag);
+    this.dragActive = false;
   }
 
 }

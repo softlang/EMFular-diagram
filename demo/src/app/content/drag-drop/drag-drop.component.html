@@ -1,1 +1,77 @@
-<p>Coming soon...</p>
+<h2>Mouse event handling</h2>
+
+<p>Angular has no built in drag and drop for svg elements - instead, we must use mouse down to discover the selection of an element, then move it while the mouse moves and finally stop the drag when the mouse moves up again.
+However, we need to make sure that we can also detect a click and a double-click and that these events do neither interfere with each other nor with drag and drop.
+Hence, this section is concerned with all types of mouse events.</p>
+
+<h3>Drag and Drop</h3>
+
+<p>There is an explicit input-draggable svg component, that expects to receive some `Draggable` element as input.
+    We strongly suggest to extend that instead of using the dragger directly.
+    Only if you cannot provide an id (`$gId`) and hence only want to provide a `Positionable`, a direct usage might make sense.
+</p>
+<demo-highlighted-code [code]="draggableInterface"></demo-highlighted-code>
+
+<p>
+    The input-draggable component makes sure that drag events are correctly reported to the SVGAccessService (that communicates position changes) and that drags and clicks are distinguished.
+    It provides an output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
+    If additional work must be done before the click event really fires, users who override the base component can override the onClick hook.
+    Please note that drag and click are both detected as DOM events, so it is important that any extending component wires the bindings in on their own template.
+    FOr reference, the base component provides an example SVG template with the required mouse-event bindings.
+    It has no visual representation of its own; applications extend it with a component containing their own SVG template.
+</p>
+
+<demo-highlighted-code [code]="inputDraggableTemplate"></demo-highlighted-code>
+
+<p>
+    Our extending component shows a small rectangle that we can drag.
+    Clicks trigger a color change for the rectangle.
+</p>
+<demo-highlighted-code [code]="exampleDragRect"></demo-highlighted-code>
+
+<h4>Manual binding between copies</h4>
+<p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically between the actual element provided to our demo component and the form.
+    We hence need to bind the two models manually.
+    You will need this process only if you also deal with several data copies for drag and drop updates.
+</p>
+<!-- change that? maybe manual read-back in demo component?-->
+<demo-simple-playground
+        [form]="formDrag0"
+        [codeTemplate]="BindingsForDrag"
+>
+    <svg:g demo-preview>
+        <g demo-rect
+           [elem]="valueDrag0"
+           (elemReallyClicked)="onClickFormDrag0()"
+       >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
+<h3>Click vs Double Click</h3>
+
+<p>
+    When using the Angular DOM events click and dblClick directly, you will see that each double click also triggers two single clicks - which is usually not intended.
+    We hence provide a very small class SingleVsDoubleClick to send the DOM events (or manually created clicks) to in order to fire only one event.
+    Since a single click needs to wait for the set timeout, before being sure that it is not part of a double click, all single clicks will be delayed by that time.
+    You can adapt the timeout, we provide the standard 250ms if not instructed otherwise.
+    </p>
+<p>
+    Please note how a changed timeout influences click discovery: below 150ms it gets almost impossible to trigger a double click, while above 300ms the UI seems frozen, since click events happen so late.
+    Also, due to the timeout, we cannot use the `elemReallyClicked` output of the base component, since it fires immediately, hence BEFORE color changes. Instead, we make the component expose own dedicated outputs that fire AFTER decision and bind to them.
+</p>
+<demo-simple-playground
+        [form]="formDblClick0"
+        [codeTemplate]="dblClick0"
+>
+    <svg:g demo-preview>
+        <g demo-dblclick-rect
+           [elem]="valueDblCl"
+           [timeout]="formDblClick0.value.timeout"
+           (singleClicked)="onSingleClickFormDblClick0()"
+           (dblClicked)="onDoubleClickFormDblClick0()"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
