@@ -5,6 +5,10 @@ To support such components, the library provides and uses explicit contracts of 
 Diagram currently offers text alignment, drag-and-drop-support and arrow components that can attach to explicit points, bounding boxes, or identifiable objects.
 Further contributions are welcome.
 
+## Library content
+
+The available library elements are best learned from our [interactive playground](https://softlang.github.io/EMFular-diagram/).
+
 ## Getting started
 
 Install the library via `npm`:
