@@ -153,10 +153,10 @@ export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
   }
   
   //the click binding is used on the actual template:
-      <svg:g demo-preview>
+      <svg:g>
         <g demo-rect
            [elem]="valueDrag0"
-           (chooseElem)="onClickFormDrag0()"
+           (elemReallyClicked)="onClickFormDrag0()"
        >
         </g>
     </svg:g>
