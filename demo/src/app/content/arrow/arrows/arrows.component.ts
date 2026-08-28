@@ -142,6 +142,10 @@ export class ArrowsComponent {
         }
     }
 
+    onBoxDblClick() {
+
+    }
+
   protected readonly arrowBetweenPointsCode = arrowBetweenPointsCode;
   protected readonly arrowBetweenBoxesCode = arrowBetweenBoxesCode;
   protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
