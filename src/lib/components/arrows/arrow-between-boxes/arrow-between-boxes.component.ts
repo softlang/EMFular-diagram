@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges,} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input,} from '@angular/core';
 import { Point } from "@angular/cdk/drag-drop";
 import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../../models/bounding-box";
@@ -12,9 +12,18 @@ import {ArrowStyle} from "../../../models/arrow-style-configuration";
     styleUrl: './arrow-between-boxes.component.css',
     imports: [ArrowBetweenPointsComponent]
 })
-export class ArrowBetweenBoxesComponent implements OnChanges, AfterViewInit {
-  @Input() start!: BoundingBox;
-  @Input() end!: BoundingBox;
+export class ArrowBetweenBoxesComponent implements AfterViewInit {
+  private _start!: BoundingBox;
+  @Input() set start(bb: BoundingBox) {
+    this._start = bb;
+    if (this.positioned) this.computePositions();
+  }
+
+  private _end!: BoundingBox;
+  @Input() set end(bb: BoundingBox) {
+    this._end = bb;
+    if (this.positioned) this.computePositions();
+  }
   /**
    * @deprecated: use arrowStyle.style
    */
@@ -28,8 +37,6 @@ export class ArrowBetweenBoxesComponent implements OnChanges, AfterViewInit {
   @Input() text?: string;
   @Input() textStyle: string | Record<string, string>  = '';
   @Input() textPathStyle: string | Record<string, string>  = '';
-
-
 
   x1: number = 0;
   y1: number = 0;
@@ -50,16 +57,9 @@ export class ArrowBetweenBoxesComponent implements OnChanges, AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  ngOnChanges() {
-    if(this.positioned) {
-      this.computePositions()
-    }
-  }
-
-
   private computePositions() {
-    let res = PathLayouter.bestPoints(this.start, this.end);
-    this.applyBestPoints(res)
+    const res = PathLayouter.bestPoints(this._start, this._end);
+    this.applyBestPoints(res);
   }
 
   private applyBestPoints(res: Point[]) {
