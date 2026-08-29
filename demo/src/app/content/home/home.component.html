@@ -1,4 +1,4 @@
-<h2>Diagram Playground</h2>
+<h1>Diagram Playground</h1>
 
 <p>
     This interactive playground lets you explore <strong>EMFular-diagram v1.x</strong> concepts, services, and components.
@@ -12,3 +12,26 @@
     <a href="https://github.com/softlang/EMFular-diagram" target="_blank" rel="noopener">
         project on GitHub</a>.
 </p>
+
+<h2>Angular with SVG-Templates</h2>
+
+<p>Angular is so attractive for svg-based diagrams, since components can have SVG instead of HTML templates.
+    There is a <a href="https://v17.angular.io/guide/svg-in-templates" target="_blank" rel="noopener">short explanation</a> by Angular, but as of August 2026, it does not cover cases, where a component is part of a bigger svg.
+    In order to compose one svg of svg-components, you need to know a few things:</p>
+<ul>
+    <li>Angular components are always HTML elements unless hosted on a real SVG element.
+        Therefore, every SVG component must be attached to an svg group (selector 'g') or an other SVG element. You also need to write the component selector for 'my-component' as [my-component]. Only then, others can write <code>&lt;g my-component&gt; ... &lt;g/&gt;</code> to use it within their svgs.</li>
+    <li>Even though your template ends on svg instead of html, the component contents will only live in the svg namespace, if you use <code>&lt;svg:g&gt; .. &lt;/svg:g&gt;</code> and not only a "g" as top level element. Once, the namespace is established, you can use any svg-primitive inside without the extra 'svg:'.</li>
+    <li>Angular treats many SVG properties differently from HTML ones.
+        Most SVG fields, like x, y, cx, d, and, transform, are <em>attributes</em> and must be bound with attr.x, attr.transform, etc.
+        Property binding ([x]) only works for attributes that Angular knows as DOM properties.</li>
+    <li>SVG attributes are case-sensitive, while HTML is not - so pay attention to casing.</li>
+    <li>If you ever export your svg, make sure that all component styles are svg-styles, not normal css.
+        The latter will not be transferred into the downloaded svg.</li>
+    <li>If you ever mix HTML inside SVG via 'foreignObject' (e.g. for text inputs), Angular's change detection works, but exporting the SVG will drop all HTML content.
+        Don't worry: We have a text component that also provides an svg text underneath to transport it.</li>
+</ul>
+
+<h2>The Drawing Canvas</h2>
+
+Each svg-component needs to live inside one top level svg element, the real svg that one can also export.
