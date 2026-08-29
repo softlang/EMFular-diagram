@@ -48,11 +48,18 @@
                                 [formControlName]="entry[0]"
                         >
                     }
+                    @case (InputType.checkbox) {
+                        <input
+                                [id]="idPrefix + '-' + entry[0]"
+                                type="checkbox"
+                                [formControlName]="entry[0]"
+                        >
+                    }
 
                     @default {
                         <input
                                 [id]="idPrefix + '-' + entry[0]"
-                                [type]="InputType[inputTypes[entry[0]]]"
+                                type="text"
                                 [formControlName]="entry[0]"
                         >
                     }

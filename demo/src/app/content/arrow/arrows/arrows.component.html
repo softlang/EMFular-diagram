@@ -194,3 +194,76 @@ Depending on how you want to specify these points, you can choose between these 
         ></g>
     </svg:g>
 </demo-simple-playground>
+
+<h2>Arrow Adaptation on External Movement</h2>
+
+<p>
+    If your arrows attach to bounding boxes or elements, the arrow's automatic change detection will only realize if the underlying position is replaced, but not if its coordinates changed.
+</p>
+
+<h3>Arrow Notification on Arrows Between Elements</h3>
+<p>
+    Arrows between elements listen to the `svgAccessService`, to see changes of one of the relevant ids for start and end.
+    The service gets notified about position changes and communicates them to all subscribers.
+    For drag-based interactions, we strongly suggest that you use the input-draggable-component as basis, so that this service is already correctly wired in.
+</p>
+
+<demo-simple-playground
+        [form]="form5"
+        [codeTemplate]="arrowDrag"
+>
+    <svg:g demo-preview>
+        <g demo-dblclick-rect
+           [elem]="drag0"
+           (dblClicked)="onDoubleClick(drag0.$gId)"
+           ></g>
+        <g demo-dblclick-rect
+           [elem]="drag1"
+           (dblClicked)="onDoubleClick(drag1.$gId)"
+        ></g>
+        <g arrowElems
+           id="arrowdrag0"
+           [startGID]="dragID0"
+           [startSuffix]="''"
+           [endGID]="dragID1"
+           [endSuffix]="''"
+        ></g>
+    </svg:g>
+</demo-simple-playground>
+
+<p>
+    You can see that all drag events are indeed correctly seen but that the double click event that changes the position of the box is not captured, unless we notify the service manually.
+    You can activate this notification in the control and will see it afterwards on every double click induced position change.
+    If you have any methods that could change an object's position, notify the svgAccessService of these changes for the arrow to see the change.
+</p>
+
+
+<h3>Arrow Notification on Arrows Between Boxes</h3>
+
+<p>
+    The box offers no such mechanism "out of the box" ;)<br>
+    Please use an mechanism to re-assign the position, so that a change is detected, e.g. by creating a new object and reassigning the former content.
+    An example for that is `elem.position = &#123;...elem.position&#125;;`.
+</p>
+<demo-simple-playground
+        [form]="form6"
+        [codeTemplate]="arrowBoxesDrag"
+>
+    <svg:g demo-preview>
+        <g demo-dblclick-rect
+           [elem]="dragBlue"
+           (positionChanged)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
+        ></g>
+        <g demo-dblclick-rect
+           [elem]="dragRed"
+           (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
+        ></g>
+        <g arrow-between-boxes
+           id="arrowdrag0"
+           [start]="dragBlue.position"
+           [end]="dragRed.position"
+        ></g>
+    </svg:g>
+</demo-simple-playground>

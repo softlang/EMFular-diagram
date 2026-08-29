@@ -129,3 +129,58 @@ export const textAndStyles = `<svg:g>
            [textStyle]="form4.value.textStyle"
         ></g>
     </svg:g>`
+
+export const arrowDrag = `
+        <svg:g demo-preview>
+        <g demo-dblclick-rect
+           [elem]="drag0"
+           (dblClicked)="onDoubleClick(drag0.$gId)"
+           ></g>
+        <g demo-dblclick-rect
+           [elem]="drag1"
+           (dblClicked)="onDoubleClick(drag1.$gId)"
+        ></g>
+        <g arrowElems
+           id="arrowdrag0"
+            [startGID]="dragID0"
+           [startSuffix]="''"
+           [endGID]="dragID1"
+           [endSuffix]="''"
+        ></g>
+    </svg:g>
+
+//and change is:
+    onDoubleClick(id: string) {
+        if(this.form5.value.notifyAutomatically) {
+            this.svgAccessService.notifyPositionChange(id)
+        }
+    }
+`
+
+export const arrowBoxesDrag = `
+<svg:g demo-preview>
+        <g demo-dblclick-rect
+           [elem]="dragBlue"
+           (positionChanged)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
+        ></g>
+        <g demo-dblclick-rect
+           [elem]="dragRed"
+           (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
+        ></g>
+        <g arrow-between-boxes
+           id="arrowdrag0"
+           [start]="dragBlue.position"
+           [end]="dragRed.position"
+        ></g>
+    </svg:g>
+
+//with :
+onPosChangeArBetwBoxes(elem: MyPositionable, isActive: boolean) {
+        if(isActive) {
+            elem.position = {
+                ...elem.position
+            };
+        }
+    }`
