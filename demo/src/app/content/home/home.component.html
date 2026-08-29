@@ -34,4 +34,14 @@
 
 <h2>The Drawing Canvas</h2>
 
-Each svg-component needs to live inside one top level svg element, the real svg that one can also export.
+<p>
+    Each svg-component needs to live inside one top level svg element, that opens the svg-namespace inside HTML.
+    We provide a drawing canvas, that only defines the absolutely necessary viewBox and offers a content projection slot for the svg-components that it should display.
+    Again, projected top-level elements must provide "svg:g", not only "g".
+</p>
+
+
+
+
+
+
