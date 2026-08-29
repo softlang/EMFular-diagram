@@ -252,13 +252,13 @@ Depending on how you want to specify these points, you can choose between these 
     <svg:g demo-preview>
         <g demo-dblclick-rect
            [elem]="dragBlue"
-           (positionChanged)="onPosChangeArBetwBoxes(dragBlue, form6.value.notifyBlue)"
-           (dblClicked)="onPosChangeArBetwBoxes(dragBlue, form6.value.notifyBlue)"
+           (positionChanged)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
         ></g>
         <g demo-dblclick-rect
            [elem]="dragRed"
-           (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.value.notifyRed)"
-           (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.value.notifyRed)"
+           (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
         ></g>
         <g arrow-between-boxes
            id="arrowdrag0"

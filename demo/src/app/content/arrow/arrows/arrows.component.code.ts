@@ -1,5 +1,3 @@
-import {MyPositionable} from "../../drag-drop/rect-draggable/rect-draggable.component";
-
 export const arrowBetweenPointsCode = `<svg:g
    arrow-between-points
    [startX]="form0.value.startX"
@@ -163,13 +161,13 @@ export const arrowBoxesDrag = `
 <svg:g demo-preview>
         <g demo-dblclick-rect
            [elem]="dragBlue"
-           (positionChanged)="onPosChangeArBetwBoxes(dragBlue, form6.value.notifyBlue)"
-           (dblClicked)="onPosChangeArBetwBoxes(dragBlue, form6.value.notifyBlue)"
+           (positionChanged)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragBlue, form6.controls.notifyBlue.value)"
         ></g>
         <g demo-dblclick-rect
            [elem]="dragRed"
-           (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.value.notifyRed)"
-           (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.value.notifyRed)"
+           (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
+           (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
         ></g>
         <g arrow-between-boxes
            id="arrowdrag0"
@@ -179,7 +177,7 @@ export const arrowBoxesDrag = `
     </svg:g>
 
 //with :
-onPosChangeArBetwBoxes(elem: MyPositionable, isActive?: boolean) {
+onPosChangeArBetwBoxes(elem: MyPositionable, isActive: boolean) {
         if(isActive) {
             elem.position = {
                 ...elem.position

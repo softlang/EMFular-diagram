@@ -160,7 +160,7 @@ export class ArrowsComponent {
         notifyBlue: new FormControl(false, { nonNullable: true }),
     })
 
-    onPosChangeArBetwBoxes(elem: MyPositionable, isActive?: boolean) {
+    onPosChangeArBetwBoxes(elem: MyPositionable, isActive: boolean) {
         if(isActive) {
             elem.position = {
                 ...elem.position
