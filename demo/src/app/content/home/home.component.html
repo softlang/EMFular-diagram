@@ -40,8 +40,37 @@
     Again, projected top-level elements must provide "svg:g", not only "g".
 </p>
 
-
-
-
+<demo-simple-playground
+    [form]="form0"
+    [codeTemplate]="canvas0"
+>
+    <svg:g demo-preview>
+        <g demo-rect *ngIf="form0.value.displayRed"
+           [elem]="rectRed0"
+        >
+        </g>
+        <g demo-rect *ngIf="form0.value.displayBlue"
+           [elem]="rectBlue0"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+<!--
+<svg-canvas
+        [viewBox]="'0 0 200 200'"
+>
+    <svg:g canvas>
+        <g demo-rect *ngIf="form0.value.displayRed"
+           [elem]="rectRed0"
+        >
+        </g>
+        <g demo-rect *ngIf="form0.value.displayBlue"
+           [elem]="rectBlue0"
+        >
+        </g>
+    </svg:g>
+</svg-canvas>
+-->
+<p>The shown code is actually a small portion of the playground's svg canvas. Interested readers may refer to the demo code to explore its content porjection idea.</p>
 
 
