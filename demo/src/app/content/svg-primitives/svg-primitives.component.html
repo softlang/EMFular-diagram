@@ -11,6 +11,27 @@
     Defining an own SVG-component is simple, just refer to a normal SVG guide to create your template.
 </p>
 
+<h2>Triangles</h2>
+
+<p>
+    Triangles are defined over three input Point2Ds, A, B, C, and a color string.
+    For any other free position shapes, you can just generalize this model.
+</p>
+<demo-simple-playground
+        [form]="form0"
+        [codeTemplate]="rotate0"
+>
+    <svg:g  demo-preview>
+        <g triangleG
+           [A]="{x:5, y:50}"
+           [B]="{x:20, y:80}"
+           [C]="{x: form0.controls.Cx.value, y: form0.controls.Cy.value}"
+           [color]="form0.value.color"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
 <h2>Rectangles</h2>
 
 <p>The rectangle component guarantees orthogonality.
@@ -20,19 +41,27 @@
     You can also rotate the example rectangle, but we control the rotation by external style, hence exporting it to an svg would not transport the rotation.
 </p>
 <demo-simple-playground
-        [form]="form0"
+        [form]="form1"
         [codeTemplate]="rotate0"
 >
     <svg:g  demo-preview>
         <g rectangleG
            [position]="{x: 50,y: 50,w: 40,h:20}"
-           [color]="form0.value.color"
-           [attr.transform]="'rotate('+form0.value.rotate+',70,60)'"
+           [color]="form1.value.color"
+           [attr.transform]="'rotate('+form1.value.rotate+',70,60)'"
         >
         </g>
     </svg:g>
 </demo-simple-playground>
 
-<h3>Adding Text</h3>
-<p></p>
+<h2>Text Inputs</h2>
 
+<p>
+
+</p>
+
+<h2>Combining a Rectangle with Text</h2>
+
+<p>
+
+</p>
