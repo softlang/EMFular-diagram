@@ -1,6 +1,18 @@
-<svg:text [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h" dy="0" [attr.style]="" (click)="handleClick()">
+<svg:text [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h" dy="0" (click)="handleClick()"
+          [attr.fill]="textStyle.fill"
+          [attr.font-family]="textStyle['font-family']"
+          [attr.font-size]="textStyle['font-size']"
+          [attr.font-weight]="textStyle['font-weight']"
+          [attr.font-style]="textStyle['font-style']"
+          [attr.text-anchor]="textStyle['text-anchor']">
   <tspan dy="1.2em" [attr.x]="x" *ngFor="let line of distributedText">{{line}}</tspan>
 </svg:text>
 <svg:foreignObject  *ngIf="isActive" [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h">
-  <input id="text-area" type="text" [(ngModel)]="this.text" (focusout)="leaveTextInput()"/>
+  <textarea id="text-area" [(ngModel)]="this.text" (focusout)="leaveTextInput()"
+         [style.font-family]="textStyle['font-family']"
+         [style.font-size]="textStyle['font-size']"
+         [style.font-weight]="textStyle['font-weight']"
+         [style.font-style]="textStyle['font-style']"
+         [style.color]="textStyle.fill"
+  ></textarea>
 </svg:foreignObject>

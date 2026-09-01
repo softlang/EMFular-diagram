@@ -4,7 +4,6 @@
 
 export * from './lib/utils/dragger'
 export * from './lib/utils/single-vs-double-click'
-export * from './lib/models/point2d'
 export * from './lib/components/draggable/draggable.component';
 export * from './lib/components/input-draggable/input-draggable.component';
 
@@ -22,8 +21,10 @@ export * from './lib/utils/position-helper';
 export * from './lib/utils/path-layouter';
 export * from './lib/utils/text-distributor';
 
+export * from './lib/models/point2d'
 export type {BoundingBox} from './lib/models/bounding-box';
 export type {ArrowStyleConfiguration} from './lib/models/arrow-style-configuration';
 export type {Identifiable} from './lib/models/identifiable'; //gId: string - soft connection to Referencable
 export type {Positionable, Draggable} from './lib/models/positionable';
+export type {SvgTextStyle} from './lib/models/svg-text-style'
 
