@@ -1,9 +1,38 @@
 <h1>Provided SVG-Primitives</h1>
 
 <p>
+    Our SVG components are built around two concepts, a Point2D and a BoundingBox.
+</p>
+<demo-highlighted-code [code]="boundingBox"></demo-highlighted-code>
+
+<p>
     We want to offer some basic functionality for those who only require basic building blocks like rectangles, triangles and text.
     <a routerLink="arrows" routerLinkActive="active">Arrows</a> can be seen as further primitives, however, their complex structure justifies that we handle them separately.
-    Defining an own SVG-component is simple, just refer to a normal SVG guide.
+    Defining an own SVG-component is simple, just refer to a normal SVG guide to create your template.
 </p>
 
 <h2>Rectangles</h2>
+
+<p>The rectangle component guarantees orthogonality.
+    If not rotated, it has sides parallel to the axes, just like a bounding box, that it consumes as input.
+    The second input is to define a color (otherwise black).
+    This color becomes an inner svg property and is hence exported on svg download.
+    You can also rotate the example rectangle, but we control the rotation by external style, hence exporting it to an svg would not transport the rotation.
+</p>
+<demo-simple-playground
+        [form]="form0"
+        [codeTemplate]="rotate0"
+>
+    <svg:g  demo-preview>
+        <g rectangleG
+           [position]="{x: 50,y: 50,w: 40,h:20}"
+           [color]="form0.value.color"
+           [attr.transform]="'rotate('+form0.value.rotate+',70,60)'"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
+<h3>Adding Text</h3>
+<p></p>
+
