@@ -54,14 +54,30 @@
     </svg:g>
 </demo-simple-playground>
 
-<h2>Text Inputs</h2>
+<h2>Text Display and Input</h2>
 
 <p>
+    The TextAreaSvgComponent displays text inside a fixed-size SVG area.
+    The text is automatically distributed across multiple lines and shortened with
+    <code>...</code> if it does not fit.
+</p>
 
+<p>
+    Set the position and size with <code>x</code>, <code>y</code>, <code>w</code> and <code>h</code>, and provide the
+    displayed text through <code>text</code>.
+</p>
+
+<p>
+    By default, the text is read-only. Set
+    <code>singleEdit="true"</code> to allow the user to click the text and edit it
+    directly via an HTML input.
+    Like usually, this is done via a foreign element, that holds the HTML input.
+    However, such foreign elements are not exported on svg download, hence, we need the backup svg native representation of the text to ensure export.
+    When editing finishes, the changed text is emitted through <code>textChange</code>.
 </p>
 
 <h2>Combining a Rectangle with Text</h2>
 
 <p>
-
+We also offer one compound component that displays a text area on top of a rectangle with matching size.
 </p>
