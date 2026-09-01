@@ -73,8 +73,25 @@
     directly via an HTML input.
     Like usually, this is done via a foreign element, that holds the HTML input.
     However, such foreign elements are not exported on svg download, hence, we need the backup svg native representation of the text to ensure export.
-    When editing finishes, the changed text is emitted through <code>textChange</code>.
+    When editing finishes (click somewhere else!), the changed text is emitted through <code>textChange</code>.
 </p>
+
+<demo-simple-playground
+        [form]="form2"
+        [codeTemplate]="text0"
+>
+    <svg:g  demo-preview>
+        <g text-area-svg
+           [(text)]="form2Text"
+           [singleEdit]="form2.controls.singleEdit.value"
+           [x]="form2.controls.x.value"
+           [y]="form2.controls.y.value"
+           [w]="form2.controls.w.value"
+           [h]="form2.controls.h.value"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
 
 <h2>Combining a Rectangle with Text</h2>
 

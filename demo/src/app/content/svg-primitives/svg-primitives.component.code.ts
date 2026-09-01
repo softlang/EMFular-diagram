@@ -27,3 +27,21 @@ export const rotate0=
      [attr.transform]="'rotate('+form0.value.rotate+',70,60)'"
 >
 </svg:g>`
+
+export const text0 =
+    `<g text-area-svg
+           [(text)]="form2Text"
+           [singleEdit]="form2.controls.singleEdit.value"
+           [x]="form2.controls.x.value"
+           [y]="form2.controls.y.value"
+           [w]="form2.controls.w.value"
+           [h]="form2.controls.h.value"
+    >
+    </g>
+    //banana binding of text to form value via:
+    get form2Text(){
+        return this.form2.value.text
+    }
+    set form2Text(value){
+        this.form2.patchValue({text: value})
+    }`
