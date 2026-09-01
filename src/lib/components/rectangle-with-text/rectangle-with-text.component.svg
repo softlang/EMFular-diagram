@@ -3,12 +3,12 @@
        [position]="position"
        [color]="color">
     </g>
-    <!-- class name -->
     <g text-area-svg
        [(text)]="text"
        [x]="position.x"
        [y]="position.y"
        [w]="position.w"
-       [h]="position.h">
+       [h]="position.h"
+       [textStyle]="textStyle">
     </g>
 </svg:g>

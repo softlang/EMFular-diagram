@@ -3,7 +3,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {pointAndBB, rotate0, text0, triangle0} from "./svg-primitives.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
-import {BoundingBox, RectangleComponent, TextAreaSvgComponent, TriangleComponent} from "ngx-emfular-diagram";
+import {RectangleComponent, TextAreaSvgComponent, TriangleComponent} from "ngx-emfular-diagram";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -47,6 +47,9 @@ export class SvgPrimitivesComponent {
         y: new FormControl(5, {nonNullable: true}),
         w: new FormControl(200, {nonNullable: true}),
         h: new FormControl(50, {nonNullable: true}),
+        'font-family': new FormControl('sans-serif', { nonNullable: true }),
+        'font-size': new FormControl('16px', { nonNullable: true }),
+        fill: new FormControl('#999999', { nonNullable: true }),
     })
 
 

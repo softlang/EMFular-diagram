@@ -88,6 +88,11 @@
            [y]="form2.controls.y.value"
            [w]="form2.controls.w.value"
            [h]="form2.controls.h.value"
+           [textStyle]="{
+            fill: form2.controls.fill.value,
+            'font-family': form2.controls['font-family'].value,
+            'font-size': form2.controls['font-size'].value
+            }"
         >
         </g>
     </svg:g>
