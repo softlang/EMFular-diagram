@@ -2,12 +2,12 @@
  * Public API Surface of arrows
  */
 
+export type {Identifiable} from './lib/shared/models/identifiable'; //gId: string - soft connection to Referencable
+export type {Positionable, Draggable} from './lib/shared/models/positionable';
 export type {Point2D} from './lib/shared/models/point2d';
 export type {BoundingBox} from './lib/shared/models/bounding-box';
-export type {ArrowStyleConfiguration} from './lib/arrows/arrow-style-configuration';
-export type {Identifiable} from './lib/mouse-events/identifiable'; //gId: string - soft connection to Referencable
-export type {Positionable, Draggable} from './lib/mouse-events/positionable';
 export type {SvgTextStyle} from './lib/shared/style-configs/svg-text-style'
+export type {ArrowStyleConfiguration} from './lib/arrows/arrow-style-configuration';
 
 export * from './lib/shared/svg-canvas/svg-canvas.component';
 export * from './lib/shared/svg-access.service';

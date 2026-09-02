@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { Dragger } from './dragger';
-import { Positionable } from './positionable';
+import { Positionable } from '../shared/models/positionable';
 
 describe('Dragger', () => {
 

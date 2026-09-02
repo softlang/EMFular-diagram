@@ -10,7 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {SVGAccessService} from '../../shared/svg-access.service';
-import { Draggable } from '../positionable';
+import { Draggable } from '../../shared/models/positionable';
 import {Dragger} from "../dragger";
 
 @Component({
