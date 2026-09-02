@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {MyPositionable, RectDraggableComponent} from "../drag-drop/rect-draggable/rect-draggable.component";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -9,8 +8,6 @@ import {canvas0} from "./home.component.code";
 @Component({
   selector: 'demo-home',
     imports: [
-        RouterLink,
-        RouterLinkActive,
         SvgReactivePlaygroundComponent,
         RectDraggableComponent,
         NgIf,
