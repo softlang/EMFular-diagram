@@ -3,7 +3,12 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {pointAndBB, rotate0, styles, text0, triangle0} from "./svg-primitives.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
-import {RectangleComponent, TextAreaSvgComponent, TriangleComponent} from "ngx-emfular-diagram";
+import {
+    RectangleComponent,
+    RectangleWithTextComponent,
+    TextAreaSvgComponent,
+    TriangleComponent
+} from "ngx-emfular-diagram";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -15,7 +20,8 @@ import {FormControl, FormGroup} from "@angular/forms";
         SvgReactivePlaygroundComponent,
         RectangleComponent,
         TriangleComponent,
-        TextAreaSvgComponent
+        TextAreaSvgComponent,
+        RectangleWithTextComponent
     ],
   templateUrl: './svg-primitives.component.html',
   styleUrl: './svg-primitives.component.css'
@@ -51,6 +57,25 @@ export class SvgPrimitivesComponent {
         'font-size': new FormControl('16px', { nonNullable: true }),
         fill: new FormControl('#999999', { nonNullable: true }),
     })
+
+    form3 = new FormGroup({
+        color: new FormControl("#000000",),
+        text: new FormControl("Example text, very long text, try to expand"),
+        x: new FormControl(5, {nonNullable: true}),
+        y: new FormControl(5, {nonNullable: true}),
+        w: new FormControl(200, {nonNullable: true}),
+        h: new FormControl(50, {nonNullable: true}),
+        'font-family': new FormControl('sans-serif', { nonNullable: true }),
+        'font-size': new FormControl('16px', { nonNullable: true }),
+        fill: new FormControl('#999999', { nonNullable: true }),
+    })
+
+    get form3Text(){
+        return this.form3.value.text
+    }
+    set form3Text(value){
+        this.form3.patchValue({text: value})
+    }
 
 
     protected readonly boundingBox = pointAndBB;

@@ -4,7 +4,9 @@
        [color]="color">
     </g>
     <g text-area-svg
+       [singleEdit]="true"
        [(text)]="text"
+       (textChange)="onTextChange($event)"
        [x]="position.x"
        [y]="position.y"
        [w]="position.w"

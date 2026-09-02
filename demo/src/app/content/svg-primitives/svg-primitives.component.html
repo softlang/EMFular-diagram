@@ -108,5 +108,31 @@
 <h2>Combining a Rectangle with Text</h2>
 
 <p>
-We also offer one compound component that displays a text area on top of a rectangle with matching size.
+    We also offer a compound component that displays a text area on top of a rectangle,
+    using the same position and size for both.
 </p>
+
+<p>
+    The <code>position</code>, <code>color</code>, <code>text</code>, and
+    <code>textStyle</code> inputs configure the two underlying components.
+    Changes to the text are emitted through <code>textChange</code>, so that double-binding works.
+</p>
+
+<demo-simple-playground
+[form]="form3"
+[codeTemplate]="''">
+    <svg:g demo-preview>
+        <g rectangle-with-text
+           [id]="'form3rectWithText'"
+           [color]="form3.controls.color.value"
+           [(text)]="form3Text"
+           [position]="{x: form3.value.x, y: form3.value.y, w: form3.value.w, h: form3.value.h}"
+           [textStyle]="{
+            fill: form3.controls.fill.value,
+            'font-family': form3.controls['font-family'].value,
+            'font-size': form3.controls['font-size'].value
+            }"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>

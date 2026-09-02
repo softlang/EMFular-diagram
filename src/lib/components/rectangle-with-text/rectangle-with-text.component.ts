@@ -21,4 +21,8 @@ export class RectangleWithTextComponent {
   @Input() text!: string;
   @Output() textChange = new EventEmitter<string>();
   @Input() textStyle: SvgTextStyle = {}
+
+  onTextChange(event: string) {
+    this.textChange.emit(event);
+  }
 }
