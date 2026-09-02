@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {BoundingBox} from "../../models/bounding-box";
+import {BoundingBox} from "../../shared/models/bounding-box";
 import {RectangleComponent} from "../rectangle/rectangle.component";
 import {TextAreaSvgComponent} from "../text-area-svg/text-area-svg.component";
-import {SvgTextStyle} from "../../models/svg-text-style";
+import {SvgTextStyle} from "../../shared/style-configs/svg-text-style";
 
 @Component({
   selector: '[rectangle-with-text]',

@@ -1,25 +1,23 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { Dragger } from './dragger';
-import { Positionable } from '../models/positionable';
+import { Positionable } from '../shared/models/positionable';
 
 describe('Dragger', () => {
 
-    let elem: Positionable;
+    let element: Positionable;
     let onPositionChange: ReturnType<typeof vi.fn>;
     let dragger: Dragger<Positionable>;
 
     beforeEach(() => {
-        elem = {
+        element = {
             position: {
                 x: 10,
                 y: 20,
-                w: 100,
-                h: 50
             }
         };
 
         onPositionChange = vi.fn();
-        dragger = new Dragger(elem, onPositionChange);
+        dragger = new Dragger(element, onPositionChange);
     });
 
     afterEach(() => {
@@ -58,8 +56,8 @@ describe('Dragger', () => {
 
         expect(dragger.drag(event)).toBe(true);
 
-        expect(elem.position.x).toBe(20);
-        expect(elem.position.y).toBe(185);
+        expect(element.position.x).toBe(20);
+        expect(element.position.y).toBe(185);
         expect(dragger.wasReallyDragged).toBe(true);
         expect(onPositionChange).toHaveBeenCalledOnce();
     });
@@ -80,8 +78,8 @@ describe('Dragger', () => {
             clientY: 215
         }));
 
-        expect(elem.position.x).toBe(25);
-        expect(elem.position.y).toBe(35);
+        expect(element.position.x).toBe(25);
+        expect(element.position.y).toBe(35);
         expect(onPositionChange).toHaveBeenCalledTimes(2);
     });
 
@@ -93,8 +91,8 @@ describe('Dragger', () => {
 
         expect(dragger.drag(event)).toBe(false);
         expect(dragger.dragActive).toBe(false);
-        expect(elem.position.x).toBe(10);
-        expect(elem.position.y).toBe(20);
+        expect(element.position.x).toBe(10);
+        expect(element.position.y).toBe(20);
         expect(onPositionChange).not.toHaveBeenCalled();
     });
 
@@ -112,8 +110,8 @@ describe('Dragger', () => {
             clientX: 100,
             clientY: 100
         }));
-        expect(elem.position.x).toBe(10);
-        expect(elem.position.y).toBe(20);
+        expect(element.position.x).toBe(10);
+        expect(element.position.y).toBe(20);
         expect(onPositionChange).not.toHaveBeenCalled();
     });
 
@@ -127,8 +125,8 @@ describe('Dragger', () => {
             clientY: 120
         }));
 
-        expect(elem.position.x).toBe(20);
-        expect(elem.position.y).toBe(40);
+        expect(element.position.x).toBe(20);
+        expect(element.position.y).toBe(40);
         expect(onPositionChange).toHaveBeenCalledOnce();
     });
 
@@ -145,8 +143,8 @@ describe('Dragger', () => {
             clientY: 200
         }));
 
-        expect(elem.position.x).toBe(10);
-        expect(elem.position.y).toBe(20);
+        expect(element.position.x).toBe(10);
+        expect(element.position.y).toBe(20);
         expect(onPositionChange).not.toHaveBeenCalled();
     });
 
@@ -162,8 +160,8 @@ describe('Dragger', () => {
             clientY: 130
         }));
 
-        expect(elem.position.x).toBe(60);
-        expect(elem.position.y).toBe(50);
+        expect(element.position.x).toBe(60);
+        expect(element.position.y).toBe(50);
     });
 
     it('removes window listeners when destroyed', () => {
@@ -179,8 +177,8 @@ describe('Dragger', () => {
             clientY: 200
         }));
 
-        expect(elem.position.x).toBe(10);
-        expect(elem.position.y).toBe(20);
+        expect(element.position.x).toBe(10);
+        expect(element.position.y).toBe(20);
         expect(onPositionChange).not.toHaveBeenCalled();
         expect(dragger.dragActive).toBe(false);
     });

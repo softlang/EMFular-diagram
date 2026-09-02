@@ -1,8 +1,8 @@
-import {BoundingBox} from './bounding-box';
 import {Identifiable} from './identifiable';
+import {Point2D} from "./point2d";
 
 export interface Positionable {
-  position: BoundingBox
+  position: Point2D
 }
 
 export type Draggable = Positionable & Identifiable;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {BoundingBox} from "../models/bounding-box";
-import {PositionHelper} from "../utils/position-helper";
+import {BoundingBox} from "./models/bounding-box";
+import {PositionHelper} from "../svg-primitives/utils/position-helper";
 
 @Injectable({
   providedIn: 'root'

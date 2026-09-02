@@ -1,8 +1,6 @@
-import {Positionable} from '../models/positionable';
+import {Positionable} from '../shared/models/positionable';
 
 export class Dragger<T extends Positionable> {
-  elem: T;
-
   dragActive = false;
   wasReallyDragged = false;
   dragStartX: number = 0;
@@ -17,9 +15,10 @@ export class Dragger<T extends Positionable> {
   };
 
 
-  constructor(public element: T, private readonly onPositionChange: () => void = ()=>{}) {
-    this.elem = element;
-  }
+  constructor(
+      private readonly element: T,
+      private readonly onPositionChange: () => void = ()=>{}
+  ) {}
 
   startDrag(event: MouseEvent) {
     this.dragStartX = event.clientX;
@@ -36,10 +35,10 @@ export class Dragger<T extends Positionable> {
       this.wasReallyDragged = true;
       event.preventDefault();
       const dragX = event.clientX;
-      this.elem.position.x+= (dragX - this.dragStartX);
+      this.element.position.x+= (dragX - this.dragStartX);
       this.dragStartX = dragX;
       const dragY = event.clientY;
-      this.elem.position.y+= (dragY - this.dragStartY);
+      this.element.position.y+= (dragY - this.dragStartY);
       this.dragStartY = dragY;
       this.onPositionChange();
       return true;

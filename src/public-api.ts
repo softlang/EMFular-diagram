@@ -2,29 +2,30 @@
  * Public API Surface of arrows
  */
 
-export * from './lib/utils/dragger'
-export * from './lib/utils/single-vs-double-click'
-export * from './lib/components/draggable/draggable.component';
-export * from './lib/components/input-draggable/input-draggable.component';
+export type {Identifiable} from './lib/shared/models/identifiable'; //gId: string - soft connection to Referencable
+export type {Positionable, Draggable} from './lib/shared/models/positionable';
+export type {Point2D} from './lib/shared/models/point2d';
+export type {BoundingBox} from './lib/shared/models/bounding-box';
+export type {SvgTextStyle} from './lib/shared/style-configs/svg-text-style'
+export type {ArrowStyleConfiguration} from './lib/arrows/arrow-style-configuration';
 
-export * from './lib/components/svg-canvas/svg-canvas.component';
-export * from './lib/components/arrows/arrow-between-elems/arrow-between-elems.component';
-export * from './lib/components/arrows/arrow-between-boxes/arrow-between-boxes.component';
-export * from './lib/components/arrows/arrow-between-points/arrow-between-points.component';
-export * from './lib/components/text-area-svg/text-area-svg.component';
-export * from './lib/components/rectangle-with-text/rectangle-with-text.component';
-export * from './lib/components/rectangle/rectangle.component';
-export * from './lib/components/triangle/triangle.component';
-export * from './lib/services/arrow-style-configuration.service';
-export * from './lib/services/svg-access.service';
-export * from './lib/utils/position-helper';
-export * from './lib/utils/path-layouter';
-export * from './lib/utils/text-distributor';
+export * from './lib/shared/svg-canvas/svg-canvas.component';
+export * from './lib/shared/svg-access.service';
 
-export * from './lib/models/point2d'
-export type {BoundingBox} from './lib/models/bounding-box';
-export type {ArrowStyleConfiguration} from './lib/models/arrow-style-configuration';
-export type {Identifiable} from './lib/models/identifiable'; //gId: string - soft connection to Referencable
-export type {Positionable, Draggable} from './lib/models/positionable';
-export type {SvgTextStyle} from './lib/models/svg-text-style'
+export * from './lib/arrows/arrow-between-elems/arrow-between-elems.component';
+export * from './lib/arrows/arrow-between-boxes/arrow-between-boxes.component';
+export * from './lib/arrows/arrow-between-points/arrow-between-points.component';
+export * from './lib/arrows/arrow-style-configuration.service';
+
+export * from './lib/mouse-events/dragger'
+export * from './lib/mouse-events/single-vs-double-click'
+export * from './lib/mouse-events/draggable/draggable.component';
+
+export * from './lib/svg-primitives/text-area-svg/text-area-svg.component';
+export * from './lib/svg-primitives/rectangle-with-text/rectangle-with-text.component';
+export * from './lib/svg-primitives/rectangle/rectangle.component';
+export * from './lib/svg-primitives/triangle/triangle.component';
+export * from './lib/svg-primitives/utils/position-helper';
+export * from './lib/svg-primitives/utils/path-layouter';
+export * from './lib/svg-primitives/utils/text-distributor';
 

@@ -2,7 +2,7 @@ export const draggableInterface = `
 export type Draggable = Positionable & Identifiable;
 
 export interface Positionable {
-  position: BoundingBox
+  position: Point2D
 }
 
 export interface Identifiable {
@@ -13,10 +13,10 @@ export interface Identifiable {
 export const dragDropComponent = `
 @Component({
   imports: [],
-  selector: '[input-draggable]',
-  templateUrl: './input-draggable.component.svg'
+  selector: '[draggable]',
+  templateUrl: './draggable.component.svg'
 })
-export abstract class InputDraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
+export abstract class DraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input()  elem!: T;
   @Output() elemReallyClicked = new EventEmitter<T>();
@@ -95,7 +95,7 @@ export interface MyPositionable {
   templateUrl: './rect-draggable.component.svg',
   styleUrl: './rect-draggable.component.css'
 })
-export class RectDraggableComponent extends InputDraggableComponent<MyPositionable> {
+export class RectDraggableComponent extends DraggableComponent<MyPositionable> {
 
   override onClick() {
     this.elem.color = this.randomColor()

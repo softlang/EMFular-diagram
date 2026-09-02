@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Point2D} from "../../models/point2d";
+import {Point2D} from "../../shared/models/point2d";
 
 @Component({
   selector: '[triangleG]',

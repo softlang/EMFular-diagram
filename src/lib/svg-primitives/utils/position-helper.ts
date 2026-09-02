@@ -1,5 +1,5 @@
 import {Point} from "@angular/cdk/drag-drop";
-import {BoundingBox} from "../models/bounding-box";
+import {BoundingBox} from "../../shared/models/bounding-box";
 
 export class PositionHelper {
 
