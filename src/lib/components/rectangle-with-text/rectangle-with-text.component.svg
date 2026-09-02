@@ -3,12 +3,14 @@
        [position]="position"
        [color]="color">
     </g>
-    <!-- class name -->
     <g text-area-svg
+       [singleEdit]="true"
        [(text)]="text"
+       (textChange)="onTextChange($event)"
        [x]="position.x"
        [y]="position.y"
        [w]="position.w"
-       [h]="position.h">
+       [h]="position.h"
+       [textStyle]="textStyle">
     </g>
 </svg:g>

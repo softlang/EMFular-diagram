@@ -1,10 +1,10 @@
-<h2>Mouse event handling</h2>
+<h1>Mouse event handling</h1>
 
 <p>Angular has no built in drag and drop for svg elements - instead, we must use mouse down to discover the selection of an element, then move it while the mouse moves and finally stop the drag when the mouse moves up again.
 However, we need to make sure that we can also detect a click and a double-click and that these events do neither interfere with each other nor with drag and drop.
 Hence, this section is concerned with all types of mouse events.</p>
 
-<h3>Drag and Drop</h3>
+<h2>Drag and Drop</h2>
 
 <p>There is an explicit input-draggable svg component, that expects to receive some `Draggable` element as input.
     We strongly suggest to extend that instead of using the dragger directly.
@@ -29,7 +29,7 @@ Hence, this section is concerned with all types of mouse events.</p>
 </p>
 <demo-highlighted-code [code]="exampleDragRect"></demo-highlighted-code>
 
-<h4>Manual binding between copies</h4>
+<h3>Manual binding between copies</h3>
 <p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically between the actual element provided to our demo component and the form.
     We hence need to bind the two models manually.
     You will need this process only if you also deal with several data copies for drag and drop updates.
@@ -48,7 +48,7 @@ Hence, this section is concerned with all types of mouse events.</p>
     </svg:g>
 </demo-simple-playground>
 
-<h3>Click vs Double Click</h3>
+<h2>Click vs Double Click</h2>
 
 <p>
     When using the Angular DOM events click and dblClick directly, you will see that each double click also triggers two single clicks - which is usually not intended.

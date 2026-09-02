@@ -8,6 +8,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import {TextDistributor} from "../../utils/text-distributor";
+import {SvgTextStyle} from "../../models/svg-text-style";
 
 @Component({
     selector: '[text-area-svg]',
@@ -21,13 +22,14 @@ export class TextAreaSvgComponent implements OnChanges {
    */
 
   @Input() text!: string
+  //only useful with singleEdit since that opens an overlay where one can change the text in place
+  @Output() textChange = new EventEmitter<string>();
   @Input() x!: number
   @Input() y!: number
   @Input() w!: number
   @Input() h!: number
   @Input() singleEdit: boolean = false
-  @Output() textChange = new EventEmitter<string>();
-  //only with singleEdit since that opens an overlay where one can change the text in place
+  @Input() textStyle: SvgTextStyle = {}
 
   distributedText: string[] = []
   isActive: boolean = false;

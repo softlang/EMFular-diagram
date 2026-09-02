@@ -3,5 +3,4 @@ export interface BoundingBox {
   y: number;
   w: number;
   h: number;
-
 }

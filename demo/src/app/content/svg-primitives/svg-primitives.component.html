@@ -1,0 +1,138 @@
+<h1>Provided SVG-Primitives</h1>
+
+<p>
+    Our SVG components are built around two concepts, a Point2D and a BoundingBox.
+</p>
+<demo-highlighted-code [code]="boundingBox"></demo-highlighted-code>
+
+<p>
+    There are also style models that you should use instead of css styling, so that your styling becomes real svg content that is exported.
+    Apart from the etxtStyle below, we also offer arrow styles (see <a routerLink="arrows" routerLinkActive="active">arrows</a>).
+</p>
+
+<demo-highlighted-code [code]="styles"></demo-highlighted-code>
+
+<p>
+    We want to offer some basic functionality for those who only require basic building blocks like rectangles, triangles and text.
+    <a routerLink="arrows" routerLinkActive="active">Arrows</a> can be seen as further primitives, however, their complex structure justifies that we handle them separately.
+    Defining an own SVG-component is simple, just refer to a normal SVG guide to create your template.
+</p>
+
+<h2>Triangles</h2>
+
+<p>
+    Triangles are defined over three input Point2Ds, A, B, C, and a color string.
+    For any other free position shapes, you can just generalize this model.
+</p>
+<demo-simple-playground
+        [form]="form0"
+        [codeTemplate]="triangle0"
+>
+    <svg:g  demo-preview>
+        <g triangleG
+           [A]="{x:5, y:50}"
+           [B]="{x:20, y:80}"
+           [C]="{x: form0.controls.Cx.value, y: form0.controls.Cy.value}"
+           [color]="form0.value.color"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
+<h2>Rectangles</h2>
+
+<p>The rectangle component guarantees orthogonality.
+    If not rotated, it has sides parallel to the axes, just like a bounding box, that it consumes as input.
+    The second input is to define a color (otherwise black).
+    This color becomes an inner svg property and is hence exported on svg download.
+    You can also rotate the example rectangle, but we control the rotation by external style, hence exporting it to an svg would not transport the rotation.
+</p>
+<demo-simple-playground
+        [form]="form1"
+        [codeTemplate]="rotate0"
+>
+    <svg:g  demo-preview>
+        <g rectangleG
+           [position]="{x: 50,y: 50,w: 40,h:20}"
+           [color]="form1.value.color"
+           [attr.transform]="'rotate('+form1.value.rotate+',70,60)'"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
+<h2>Text Display and Input</h2>
+
+<p>
+    The TextAreaSvgComponent displays text inside a fixed-size SVG area.
+    The text is automatically distributed across multiple lines and shortened with
+    <code>...</code> if it does not fit.
+</p>
+
+<p>
+    Set the position and size with <code>x</code>, <code>y</code>, <code>w</code> and <code>h</code>, and provide the
+    displayed text through <code>text</code>.
+</p>
+
+<p>
+    By default, the text is read-only. Set
+    <code>singleEdit="true"</code> to allow the user to click the text and edit it
+    directly via an HTML input.
+    Like usually, this is done via a foreign element, that holds the HTML input.
+    However, such foreign elements are not exported on svg download, hence, we need the backup svg native representation of the text to ensure export.
+    When editing finishes (click somewhere else!), the changed text is emitted through <code>textChange</code>.
+</p>
+
+<demo-simple-playground
+        [form]="form2"
+        [codeTemplate]="text0"
+>
+    <svg:g  demo-preview>
+        <g text-area-svg
+           [(text)]="form2Text"
+           [singleEdit]="form2.controls.singleEdit.value"
+           [x]="form2.controls.x.value"
+           [y]="form2.controls.y.value"
+           [w]="form2.controls.w.value"
+           [h]="form2.controls.h.value"
+           [textStyle]="{
+            fill: form2.controls.fill.value,
+            'font-family': form2.controls['font-family'].value,
+            'font-size': form2.controls['font-size'].value
+            }"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
+
+<h2>Combining a Rectangle with Text</h2>
+
+<p>
+    We also offer a compound component that displays a text area on top of a rectangle,
+    using the same position and size for both.
+</p>
+
+<p>
+    The <code>position</code>, <code>color</code>, <code>text</code>, and
+    <code>textStyle</code> inputs configure the two underlying components.
+    Changes to the text are emitted through <code>textChange</code>, so that double-binding works.
+</p>
+
+<demo-simple-playground
+[form]="form3"
+[codeTemplate]="textRect">
+    <svg:g demo-preview>
+        <g rectangle-with-text
+           [id]="'form3rectWithText'"
+           [color]="form3.controls.color.value"
+           [(text)]="form3Text"
+           [position]="{x: form3.value.x, y: form3.value.y, w: form3.value.w, h: form3.value.h}"
+           [textStyle]="{
+            fill: form3.controls.fill.value,
+            'font-family': form3.controls['font-family'].value,
+            'font-size': form3.controls['font-size'].value
+            }"
+        >
+        </g>
+    </svg:g>
+</demo-simple-playground>
