@@ -17,7 +17,7 @@ Hence, this section is concerned with all types of mouse events.</p>
     It provides an output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
     If additional work must be done before the click event really fires, users who override the base component can override the onClick hook.
     Please note that drag and click are both detected as DOM events, so it is important that any extending component wires the bindings in on their own template.
-    FOr reference, the base component provides an example SVG template with the required mouse-event bindings.
+    For reference, the base component provides an example SVG template with the required mouse-event bindings.
     It has no visual representation of its own; applications extend it with a component containing their own SVG template.
 </p>
 
@@ -26,11 +26,12 @@ Hence, this section is concerned with all types of mouse events.</p>
 <p>
     Our extending component shows a small rectangle that we can drag.
     Clicks trigger a color change for the rectangle.
+    Please note that the example actually provides more than just a Point2D: it uses a bounding box, but since that also offers x and y, it is structurally fine.
 </p>
 <demo-highlighted-code [code]="exampleDragRect"></demo-highlighted-code>
 
 <h3>Manual binding between copies</h3>
-<p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically between the actual element provided to our demo component and the form.
+<p>Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically between the actual element provided to our demo component and the form.
     We hence need to bind the two models manually.
     You will need this process only if you also deal with several data copies for drag and drop updates.
 </p>
