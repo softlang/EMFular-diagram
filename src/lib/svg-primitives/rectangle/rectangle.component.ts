@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {BoundingBox} from "../../models/bounding-box";
+import {BoundingBox} from "../../shared/models/bounding-box";
 
 @Component({
   selector: '[rectangleG]',

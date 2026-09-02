@@ -1,4 +1,4 @@
-import {Positionable} from '../models/positionable';
+import {Positionable} from './positionable';
 
 export class Dragger<T extends Positionable> {
   elem: T;

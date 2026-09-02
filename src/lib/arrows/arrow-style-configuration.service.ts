@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ArrowStyleConfiguration} from "../models/arrow-style-configuration";
+import {ArrowStyleConfiguration} from "./arrow-style-configuration";
 
 /*****
  default implementation

@@ -9,9 +9,9 @@ import {
   Output,
   SimpleChanges
 } from '@angular/core';
-import {SVGAccessService} from '../../services/svg-access.service';
-import { Draggable } from '../../models/positionable';
-import {Dragger} from "../../utils/dragger";
+import {SVGAccessService} from '../../shared/svg-access.service';
+import { Draggable } from '../positionable';
+import {Dragger} from "../dragger";
 
 @Component({
   imports: [],

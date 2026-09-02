@@ -1,4 +1,4 @@
-import {BoundingBox} from './bounding-box';
+import {BoundingBox} from '../shared/models/bounding-box';
 import {Identifiable} from './identifiable';
 
 export interface Positionable {

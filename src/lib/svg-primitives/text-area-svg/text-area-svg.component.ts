@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
-import {TextDistributor} from "../../utils/text-distributor";
-import {SvgTextStyle} from "../../models/svg-text-style";
+import {TextDistributor} from "../utils/text-distributor";
+import {SvgTextStyle} from "../../shared/style-configs/svg-text-style";
 
 @Component({
     selector: '[text-area-svg]',
