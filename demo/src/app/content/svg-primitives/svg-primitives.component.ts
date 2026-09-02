@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
-import {pointAndBB, rotate0, styles, text0, triangle0} from "./svg-primitives.component.code";
+import {pointAndBB, rotate0, styles, text0, textRect, triangle0} from "./svg-primitives.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {
     RectangleComponent,
@@ -83,4 +83,5 @@ export class SvgPrimitivesComponent {
     protected readonly triangle0 = triangle0;
     protected readonly text0 = text0;
     protected readonly styles = styles;
+    protected readonly textRect = textRect;
 }

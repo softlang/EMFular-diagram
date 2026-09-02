@@ -54,3 +54,16 @@ export const text0 =
     set form2Text(value){
         this.form2.patchValue({text: value})
     }`
+
+export const textRect = `<svg:g rectangle-with-text
+           [id]="'form3rectWithText'"
+           [color]="form3.controls.color.value"
+           [(text)]="form3Text"
+           [position]="{x: form3.value.x, y: form3.value.y, w: form3.value.w, h: form3.value.h}"
+           [textStyle]="{
+            fill: form3.controls.fill.value,
+            'font-family': form3.controls['font-family'].value,
+            'font-size': form3.controls['font-size'].value
+            }"
+        >
+        </svg:g>`
