@@ -6,14 +6,14 @@ Hence, this section is concerned with all types of mouse events.</p>
 
 <h2>Drag and Drop</h2>
 
-<p>There is an explicit input-draggable svg component, that expects to receive some `Draggable` element as input.
+<p>There is an explicit draggable svg component, that expects to receive some `Draggable` element as input.
     We strongly suggest to extend that instead of using the dragger directly.
     Only if you cannot provide an id (`$gId`) and hence only want to provide a `Positionable`, a direct usage might make sense.
 </p>
 <demo-highlighted-code [code]="draggableInterface"></demo-highlighted-code>
 
 <p>
-    The input-draggable component makes sure that drag events are correctly reported to the SVGAccessService (that communicates position changes) and that drags and clicks are distinguished.
+    The draggable component makes sure that drag events are correctly reported to the SVGAccessService (that communicates position changes) and that drags and clicks are distinguished.
     It provides an output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
     If additional work must be done before the click event really fires, users who override the base component can override the onClick hook.
     Please note that drag and click are both detected as DOM events, so it is important that any extending component wires the bindings in on their own template.

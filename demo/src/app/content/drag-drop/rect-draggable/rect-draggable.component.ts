@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BoundingBox, InputDraggableComponent, RectangleComponent} from "ngx-emfular-diagram";
+import {BoundingBox, DraggableComponent, RectangleComponent} from "ngx-emfular-diagram";
 
 export interface MyPositionable {
   $gId: string;
@@ -13,7 +13,7 @@ export interface MyPositionable {
   templateUrl: './rect-draggable.component.svg',
   styleUrl: './rect-draggable.component.css'
 })
-export class RectDraggableComponent extends InputDraggableComponent<MyPositionable> {
+export class RectDraggableComponent extends DraggableComponent<MyPositionable> {
 
   override onClick() {
     this.elem.color = this.randomColor()

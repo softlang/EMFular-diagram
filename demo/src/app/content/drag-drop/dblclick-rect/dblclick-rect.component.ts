@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
-import {InputDraggableComponent, RectangleComponent, SingleVsDblClick} from "ngx-emfular-diagram";
+import {DraggableComponent, RectangleComponent, SingleVsDblClick} from "ngx-emfular-diagram";
 import {MyPositionable} from "../rect-draggable/rect-draggable.component";
 import {Subscription} from "rxjs";
 
@@ -9,7 +9,7 @@ import {Subscription} from "rxjs";
   templateUrl: './dblclick-rect.component.svg',
   styleUrl: './dblclick-rect.component.css'
 })
-export class DblclickRectComponent extends InputDraggableComponent<MyPositionable> implements OnChanges, OnDestroy {
+export class DblclickRectComponent extends DraggableComponent<MyPositionable> implements OnChanges, OnDestroy {
 
   @Input() timeout = 250
   @Output() singleClicked = new EventEmitter<MyPositionable>()

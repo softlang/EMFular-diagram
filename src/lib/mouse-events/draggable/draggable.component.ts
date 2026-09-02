@@ -14,8 +14,8 @@ import {Dragger} from "../dragger";
 
 @Component({
   imports: [],
-  selector: '[input-draggable]',
-  templateUrl: './input-draggable.component.svg'
+  selector: '[draggable]',
+  templateUrl: './draggable.component.svg'
 })
 export abstract class DraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
 

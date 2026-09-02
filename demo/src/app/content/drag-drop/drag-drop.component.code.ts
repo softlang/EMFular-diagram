@@ -2,7 +2,7 @@ export const draggableInterface = `
 export type Draggable = Positionable & Identifiable;
 
 export interface Positionable {
-  position: BoundingBox
+  position: Point2D
 }
 
 export interface Identifiable {
