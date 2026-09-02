@@ -19,7 +19,7 @@ export * from './lib/arrows/arrow-style-configuration.service';
 
 export * from './lib/mouse-events/dragger'
 export * from './lib/mouse-events/single-vs-double-click'
-export * from './lib/mouse-events/input-draggable/input-draggable.component';
+export * from './lib/mouse-events/draggable/draggable.component';
 
 export * from './lib/svg-primitives/text-area-svg/text-area-svg.component';
 export * from './lib/svg-primitives/rectangle-with-text/rectangle-with-text.component';

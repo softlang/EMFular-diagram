@@ -5,7 +5,6 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Output,
   SimpleChanges
 } from '@angular/core';
@@ -18,7 +17,7 @@ import {Dragger} from "../dragger";
   selector: '[input-draggable]',
   templateUrl: './input-draggable.component.svg'
 })
-export abstract class InputDraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
+export abstract class DraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input()  elem!: T;
   @Output() elemReallyClicked = new EventEmitter<T>();
