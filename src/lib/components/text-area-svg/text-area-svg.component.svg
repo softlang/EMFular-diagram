@@ -8,7 +8,7 @@
   <tspan dy="1.2em" [attr.x]="x" *ngFor="let line of distributedText">{{line}}</tspan>
 </svg:text>
 <svg:foreignObject  *ngIf="isActive" [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h">
-  <textarea id="text-area" [(ngModel)]="this.text" (focusout)="leaveTextInput()"
+  <textarea class="html-text-area" [(ngModel)]="this.text" (focusout)="leaveTextInput()"
          [style.font-family]="textStyle['font-family']"
          [style.font-size]="textStyle['font-size']"
          [style.font-weight]="textStyle['font-weight']"
