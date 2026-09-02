@@ -10,6 +10,15 @@ export interface BoundingBox {
   h: number;
 }`
 
+export const styles = `export interface SvgTextStyle {
+    'fill'?: string;
+    'font-family'?: string;
+    'font-size'?: string | number;
+    'font-weight'?: string | number;
+    'font-style'?: string;
+    'text-anchor'?: 'start' | 'middle' | 'end';
+}`
+
 export const triangle0 =
 `<svg:g triangleG
       [A]="{x:5, y:50}"

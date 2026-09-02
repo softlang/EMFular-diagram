@@ -79,7 +79,7 @@ export const arrowBetweenElemsCode = `<svg:g>
         </g>
     </svg:g>`
 
-export const arrowStyleConfig = `export interface LineStyleConfiguration {
+export const arrowStyleConfig = `export interface ArrowStyle {
   color: string; //= stroke
   dashed: string; //=dashArray e.g. '1 2 4'
   startPointer?: string; //marker-Id

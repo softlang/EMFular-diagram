@@ -6,6 +6,13 @@
 <demo-highlighted-code [code]="boundingBox"></demo-highlighted-code>
 
 <p>
+    There are also style models that you should use instead of css styling, so that your styling becomes real svg content that is exported.
+    Apart from the etxtStyle below, we also offer arrow styles (see <a routerLink="arrows" routerLinkActive="active">arrows</a>).
+</p>
+
+<demo-highlighted-code [code]="styles"></demo-highlighted-code>
+
+<p>
     We want to offer some basic functionality for those who only require basic building blocks like rectangles, triangles and text.
     <a routerLink="arrows" routerLinkActive="active">Arrows</a> can be seen as further primitives, however, their complex structure justifies that we handle them separately.
     Defining an own SVG-component is simple, just refer to a normal SVG guide to create your template.
