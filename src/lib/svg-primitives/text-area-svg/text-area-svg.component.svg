@@ -1,10 +1,8 @@
-<svg:text [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h" dy="0" (click)="handleClick()"
-          [attr.fill]="textStyle.fill"
-          [attr.font-family]="textStyle['font-family']"
-          [attr.font-size]="textStyle['font-size']"
-          [attr.font-weight]="textStyle['font-weight']"
-          [attr.font-style]="textStyle['font-style']"
-          [attr.text-anchor]="textStyle['text-anchor']">
+<svg:text text-style
+    [textStyle]="textStyle"
+    [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h"
+    dy="0" (click)="handleClick()"
+>
   <tspan dy="1.2em" [attr.x]="x" *ngFor="let line of distributedText">{{line}}</tspan>
 </svg:text>
 <svg:foreignObject  *ngIf="isActive" [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h">
