@@ -5,8 +5,7 @@ import {BoundingBox} from "../../shared/models/bounding-box";
 import {PathLayouter} from "../utils/path-layouter";
 import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
 import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style-configuration";
-import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
-import {DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
+import {SvgTextPathStyle, DEFAULT_TEXTPATH_STYLE} from "../../shared/style-configs/svg-text-style";
 
 @Component({
     selector: '[arrow-between-boxes]',
@@ -29,7 +28,7 @@ export class ArrowBetweenBoxesComponent implements AfterViewInit {
   @Input() arrowStyle: ArrowStyle = DEFAULT_ARROW_STYLE;
 
   @Input() text?: string;
-  @Input() textStyle: SvgTextPathStyle = DEFAULT_TEXT_STYLE;
+  @Input() textStyle: SvgTextPathStyle = DEFAULT_TEXTPATH_STYLE;
 
   x1: number = 0;
   y1: number = 0;
