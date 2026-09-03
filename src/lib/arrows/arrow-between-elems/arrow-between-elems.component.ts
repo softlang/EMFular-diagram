@@ -42,7 +42,6 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   start?: BoundingBox;
   end?: BoundingBox;
 
-  positioned= false;
   @ViewChild('arrow') node!: ElementRef<SVGGraphicsElement>;
 
   changeNotifier: Observable<string>;
@@ -71,7 +70,6 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   }
 
   ngAfterViewInit() {
-    this.positioned = true;
     this.computePositionsByIds()
     this.cdr.detectChanges()
   }
