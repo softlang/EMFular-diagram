@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input,} from '@angular/core';
+import { Component, Input,} from '@angular/core';
 import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {PathLayouter} from "../utils/path-layouter";
@@ -12,18 +12,18 @@ import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-t
     templateUrl: './arrow-between-boxes.component.svg',
     imports: [ArrowBetweenPointsComponent]
 })
-export class ArrowBetweenBoxesComponent implements AfterViewInit {
+export class ArrowBetweenBoxesComponent  {
   @Input() id = uuidv4();
   private _start!: BoundingBox;
   @Input() set start(bb: BoundingBox) {
     this._start = bb;
-    if (this.positioned) this.computePositions();
+    if (this._end) this.computePositions();
   }
 
   private _end!: BoundingBox;
   @Input() set end(bb: BoundingBox) {
     this._end = bb;
-    if (this.positioned) this.computePositions();
+    if (this._start) this.computePositions();
   }
 
   @Input() arrowStyle: ArrowStyle = DEFAULT_ARROW_STYLE;
@@ -37,17 +37,6 @@ export class ArrowBetweenBoxesComponent implements AfterViewInit {
   x2: number = 5;
   y2: number = 5;
 
-  private positioned= false;
-
-  constructor(
-    private cdr: ChangeDetectorRef,
-    ) {}
-
-  ngAfterViewInit() {
-    this.computePositions()
-    this.positioned = true;
-    this.cdr.detectChanges();
-  }
 
   private computePositions() {
     const res = PathLayouter.bestPoints(this._start, this._end);
