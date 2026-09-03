@@ -1,5 +1,4 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input,} from '@angular/core';
-import { Point } from "@angular/cdk/drag-drop";
 import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {PathLayouter} from "../utils/path-layouter";
@@ -38,7 +37,7 @@ export class ArrowBetweenBoxesComponent implements AfterViewInit {
   x2: number = 5;
   y2: number = 5;
 
-  positioned= false;
+  private positioned= false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -52,10 +51,6 @@ export class ArrowBetweenBoxesComponent implements AfterViewInit {
 
   private computePositions() {
     const res = PathLayouter.bestPoints(this._start, this._end);
-    this.applyBestPoints(res);
-  }
-
-  private applyBestPoints(res: Point[]) {
     this.x1 = res[0].x;
     this.y1 = res[0].y;
     this.x2 = res[1].x;
