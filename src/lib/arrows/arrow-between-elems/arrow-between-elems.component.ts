@@ -16,7 +16,6 @@ import {ArrowStyleConfiguration, ArrowStyle} from "../arrow-style-configuration"
 @Component({
     selector: '[arrowElems]',
     templateUrl: './arrow-between-elems.component.svg',
-    styleUrl: './arrow-between-elems.component.css',
     imports: [NgIf, ArrowBetweenBoxesComponent]
 })
 export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {

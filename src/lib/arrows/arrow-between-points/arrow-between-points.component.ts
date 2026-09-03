@@ -6,11 +6,8 @@ import {v4 as uuidv4} from "uuid";
 
 @Component({
   selector: '[arrow-between-points]',
-  imports: [
-    NgIf
-  ],
+  imports: [NgIf],
   templateUrl: './arrow-between-points.component.svg',
-  styleUrl: './arrow-between-points.component.css'
 })
 export class ArrowBetweenPointsComponent implements OnChanges {
 
