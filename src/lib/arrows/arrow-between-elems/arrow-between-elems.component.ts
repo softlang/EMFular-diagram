@@ -11,7 +11,9 @@ import { NgIf } from '@angular/common';
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
 import {SVGAccessService} from "../../shared/svg-access.service";
-import {ArrowStyle} from "../arrow-style-configuration";
+import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style-configuration";
+import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
+import {DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 
 @Component({
     selector: '[arrowElems]',
@@ -25,11 +27,10 @@ export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChan
   @Input() endGID!: string;
   @Input() endSuffix!: string;
 
-  @Input() arrowStyle?: ArrowStyle;
+  @Input() arrowStyle: ArrowStyle = DEFAULT_ARROW_STYLE;
 
   @Input() text?: string;
-  @Input() textStyle: string | Record<string, string>  = '';
-  @Input() textPathStyle: string | Record<string, string>  = '';
+  @Input() textStyle: SvgTextPathStyle = DEFAULT_TEXT_STYLE;
 
   startId!: string;
   endId!: string;

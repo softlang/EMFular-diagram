@@ -4,7 +4,9 @@ import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {PathLayouter} from "../utils/path-layouter";
 import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
-import {ArrowStyle} from "../arrow-style-configuration";
+import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style-configuration";
+import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
+import {DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 
 @Component({
     selector: '[arrow-between-boxes]',
@@ -23,19 +25,11 @@ export class ArrowBetweenBoxesComponent implements AfterViewInit {
     this._end = bb;
     if (this.positioned) this.computePositions();
   }
-  /**
-   * @deprecated: use arrowStyle.style
-   */
-  @Input() style?: string;
-  @Input() arrowStyle?: ArrowStyle;
-  /**
-   * @deprecated: use own enum to ArrowStyleConfiguration mapping
-   */
-  @Input() arrowType?: string;
+
+  @Input() arrowStyle: ArrowStyle = DEFAULT_ARROW_STYLE;
 
   @Input() text?: string;
-  @Input() textStyle: string | Record<string, string>  = '';
-  @Input() textPathStyle: string | Record<string, string>  = '';
+  @Input() textStyle: SvgTextPathStyle = DEFAULT_TEXT_STYLE;
 
   x1: number = 0;
   y1: number = 0;

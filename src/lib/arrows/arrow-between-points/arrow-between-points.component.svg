@@ -8,8 +8,23 @@
           [style.marker-end]='"url(#"+arrowStyle.endPointer+")"'
     >
     </path>
-    <text *ngIf="text" [style]="textStyle">
-        <textPath [attr.href]="'#'+id+'-path'" [style]="textPathStyle">
+    <text *ngIf="text"
+          [attr.fill]="textStyle['fill']"
+          [attr.font-family]="textStyle['font-family']"
+          [attr.font-size]="textStyle['font-size']"
+          [attr.font-weight]="textStyle['font-weight']"
+          [attr.font-style]="textStyle['font-style']"
+          [attr.text-anchor]="textStyle['text-anchor']"
+    >
+        <textPath
+            [attr.href]="'#'+id+'-path'"
+            [attr.startOffset]="textStyle['startOffset']"
+            [attr.method]="textStyle['method']"
+            [attr.spacing]="textStyle['spacing']"
+            [attr.side]="textStyle['side']"
+            [attr.lengthAdjust]="textStyle['lengthAdjust']"
+            [attr.textLength]="textStyle['textLength']"
+        >
             {{text}}
         </textPath>
     </text>

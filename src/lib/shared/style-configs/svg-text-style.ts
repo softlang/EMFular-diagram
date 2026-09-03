@@ -6,3 +6,7 @@ export interface SvgTextStyle {
     'font-style'?: string;
     'text-anchor'?: 'start' | 'middle' | 'end';
 }
+
+export const DEFAULT_TEXT_STYLE: SvgTextStyle = {
+    'fill': 'black'
+}
