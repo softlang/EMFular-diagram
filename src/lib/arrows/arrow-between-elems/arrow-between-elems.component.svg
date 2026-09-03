@@ -5,6 +5,7 @@
        [text]="text"
        [arrowStyle]="arrowStyle"
        [textStyle]="textStyle"
+       [textPathStyle]="textPathStyle"
   >
   </g>
 ></svg:g>

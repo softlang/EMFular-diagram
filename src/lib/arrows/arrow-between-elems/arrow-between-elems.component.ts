@@ -12,7 +12,9 @@ import {BoundingBox} from "../../shared/models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
 import {SVGAccessService} from "../../shared/svg-access.service";
 import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
-import {SvgTextPathStyle, DEFAULT_TEXTPATH_STYLE} from "../../shared/style-configs/svg-text-style";
+import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
+import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
+
 
 @Component({
     selector: '[arrowElems]',
@@ -29,7 +31,8 @@ export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChan
   @Input() arrowStyle: ArrowStyle = DEFAULT_ARROW_STYLE;
 
   @Input() text?: string;
-  @Input() textStyle: SvgTextPathStyle = DEFAULT_TEXTPATH_STYLE;
+  @Input() textStyle: SvgTextStyle = DEFAULT_TEXT_STYLE;
+  @Input() textPathStyle: SvgTextPathStyle = {};
 
   startId!: string;
   endId!: string;

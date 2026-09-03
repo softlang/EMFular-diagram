@@ -7,14 +7,9 @@
     <text *ngIf="text" text-style
         [textStyle]="textStyle"
     >
-        <textPath
+        <textPath text-path-style
+            [textPathStyle]="textPathStyle"
             [attr.href]="'#'+id+'-path'"
-            [attr.startOffset]="textStyle['startOffset']"
-            [attr.method]="textStyle['method']"
-            [attr.spacing]="textStyle['spacing']"
-            [attr.side]="textStyle['side']"
-            [attr.lengthAdjust]="textStyle['lengthAdjust']"
-            [attr.textLength]="textStyle['textLength']"
         >
             {{text}}
         </textPath>
