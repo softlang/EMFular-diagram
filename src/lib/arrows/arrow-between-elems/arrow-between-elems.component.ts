@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef,
   Component, ElementRef,
   Input, OnChanges, OnDestroy,
-  OnInit, SimpleChanges,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {Observable, Subscription} from "rxjs";
@@ -23,7 +23,7 @@ import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
     templateUrl: './arrow-between-elems.component.svg',
     imports: [NgIf, ArrowBetweenBoxesComponent]
 })
-export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() id = uuidv4();
   @Input() startGID!: string;
   @Input() startSuffix!: string;
@@ -61,11 +61,6 @@ export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChan
         }, 0)
       }
     })
-  }
-
-  ngOnInit() {
-    this.startId = this.startGID+this.startSuffix;
-    this.endId = this.endGID+this.endSuffix;
   }
 
   ngOnChanges(_: SimpleChanges) {
