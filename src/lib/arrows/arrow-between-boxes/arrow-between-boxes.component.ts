@@ -14,6 +14,7 @@ import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-t
     imports: [ArrowBetweenPointsComponent]
 })
 export class ArrowBetweenBoxesComponent implements AfterViewInit {
+  @Input() id = uuidv4();
   private _start!: BoundingBox;
   @Input() set start(bb: BoundingBox) {
     this._start = bb;
@@ -36,8 +37,6 @@ export class ArrowBetweenBoxesComponent implements AfterViewInit {
   y1: number = 0;
   x2: number = 5;
   y2: number = 5;
-
-  id = uuidv4();
 
   positioned= false;
 

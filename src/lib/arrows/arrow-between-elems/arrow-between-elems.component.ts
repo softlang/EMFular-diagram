@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import { NgIf } from '@angular/common';
+import {v4 as uuidv4} from "uuid";
+
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
 import {SVGAccessService} from "../../shared/svg-access.service";
@@ -22,7 +24,7 @@ import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
     imports: [NgIf, ArrowBetweenBoxesComponent]
 })
 export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
-
+  @Input() id = uuidv4();
   @Input() startGID!: string;
   @Input() startSuffix!: string;
   @Input() endGID!: string;

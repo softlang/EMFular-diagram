@@ -14,7 +14,7 @@ import {ArrowStyleDirective} from "../arrow-style.directive";
   templateUrl: './arrow-between-points.component.svg',
 })
 export class ArrowBetweenPointsComponent {
-
+  @Input() id = uuidv4();
   @Input() startX!: number;
   @Input() startY!: number;
   @Input() endX!: number;
@@ -25,6 +25,4 @@ export class ArrowBetweenPointsComponent {
   @Input() text?: string;
   @Input() textStyle: SvgTextStyle = DEFAULT_TEXT_STYLE;
   @Input() textPathStyle: SvgTextPathStyle = {};
-
-  id = uuidv4();
 }

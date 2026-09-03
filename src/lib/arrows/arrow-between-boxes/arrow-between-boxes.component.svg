@@ -1,5 +1,5 @@
-<svg:g>
-  <g arrow-between-points
+<svg:g arrow-between-points
+     [id]="id"
      [startX]="x1"
      [startY]="y1"
      [endX]="x2"
@@ -9,5 +9,4 @@
      [textStyle]="textStyle"
      [textPathStyle]="textPathStyle"
   >
-  </g>
 </svg:g>
