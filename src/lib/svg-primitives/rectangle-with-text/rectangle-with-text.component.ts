@@ -11,7 +11,6 @@ import {SvgTextStyle} from "../../shared/style-configs/svg-text-style";
     RectangleComponent
   ],
   templateUrl: './rectangle-with-text.component.svg',
-  styleUrl: './rectangle-with-text.component.css'
 })
 export class RectangleWithTextComponent {
   @Input() position!: BoundingBox

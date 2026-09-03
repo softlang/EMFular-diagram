@@ -5,7 +5,6 @@ import {Point2D} from "../../shared/models/point2d";
   selector: '[triangleG]',
   imports: [],
   templateUrl: './triangle.component.svg',
-  styleUrl: './triangle.component.css'
 })
 export class TriangleComponent {
   @Input() A!: Point2D;
