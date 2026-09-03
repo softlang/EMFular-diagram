@@ -6,7 +6,7 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import { NgIf } from '@angular/common';
 import {v4 as uuidv4} from "uuid";
 
@@ -36,9 +36,6 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   @Input() textStyle: SvgTextStyle = DEFAULT_TEXT_STYLE;
   @Input() textPathStyle: SvgTextPathStyle = {};
 
-  startId!: string;
-  endId!: string;
-
   start?: BoundingBox;
   end?: BoundingBox;
 
@@ -61,8 +58,6 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   }
 
   ngOnChanges(_: SimpleChanges) {
-    this.startId = this.startGID+this.startSuffix;
-    this.endId = this.endGID+this.endSuffix;
     this.computePositionsByIds()
   }
 
@@ -74,11 +69,11 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   private computePositionsByIds() {
     if (this.node?.nativeElement){
       let rel = this.node.nativeElement as SVGGraphicsElement
-      let startOpt = this.svgAccessService.getRelativePosition(this.startId, rel)
+      let startOpt = this.svgAccessService.getRelativePosition( this.startGID+this.startSuffix, rel)
       if (startOpt) {
         this.start = startOpt
       }
-      let endOpt = this.svgAccessService.getRelativePosition(this.endId, rel)
+      let endOpt = this.svgAccessService.getRelativePosition(this.endGID+this.endSuffix, rel)
       if (endOpt) {
         this.end = endOpt
       }
