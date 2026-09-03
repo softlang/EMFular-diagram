@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component, ElementRef,
   Input, OnChanges, OnDestroy,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {Subscription} from "rxjs";
@@ -57,7 +56,7 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
     })
   }
 
-  ngOnChanges(_: SimpleChanges) {
+  ngOnChanges() {
     this.computePositionsByIds()
   }
 
