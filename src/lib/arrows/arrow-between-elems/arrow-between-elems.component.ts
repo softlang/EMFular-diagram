@@ -44,15 +44,13 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
 
   @ViewChild('arrow') node!: ElementRef<SVGGraphicsElement>;
 
-  changeNotifier: Observable<string>;
   changeSubscription: Subscription;
 
   //idea: compute the two input positions as relative to the current elem
   constructor(
     private svgAccessService: SVGAccessService,
     private cdr: ChangeDetectorRef) {
-    this.changeNotifier = this.svgAccessService.listenToPositionChange()
-    this.changeSubscription = this.changeNotifier.subscribe(nextString => {
+    this.changeSubscription = this.svgAccessService.listenToPositionChange().subscribe(nextString => {
       if (nextString == this.startGID || nextString == this.endGID) {
         setTimeout(() => {
           this.computePositionsByIds()
@@ -66,7 +64,6 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
     this.startId = this.startGID+this.startSuffix;
     this.endId = this.endGID+this.endSuffix;
     this.computePositionsByIds()
-    this.cdr.detectChanges()
   }
 
   ngAfterViewInit() {
