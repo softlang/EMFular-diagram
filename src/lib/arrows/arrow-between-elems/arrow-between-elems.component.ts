@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
 import {SVGAccessService} from "../../shared/svg-access.service";
-import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style-configuration";
+import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {SvgTextPathStyle, DEFAULT_TEXTPATH_STYLE} from "../../shared/style-configs/svg-text-style";
 
 @Component({

@@ -4,7 +4,7 @@ import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {PathLayouter} from "../utils/path-layouter";
 import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
-import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style-configuration";
+import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {SvgTextPathStyle, DEFAULT_TEXTPATH_STYLE} from "../../shared/style-configs/svg-text-style";
 
 @Component({

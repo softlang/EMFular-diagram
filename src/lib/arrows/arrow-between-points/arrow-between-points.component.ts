@@ -1,13 +1,14 @@
 import {Component, Input} from '@angular/core';
 import {NgIf} from "@angular/common";
-import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style-configuration";
+import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {v4 as uuidv4} from "uuid";
 import {SvgTextPathStyle, DEFAULT_TEXTPATH_STYLE} from "../../shared/style-configs/svg-text-style";
 import {TextStyleDirective} from "../../shared/style-configs/svg-text-style.directive";
+import {ArrowStyleDirective} from "../arrow-style.directive";
 
 @Component({
   selector: '[arrow-between-points]',
-  imports: [NgIf, TextStyleDirective],
+  imports: [NgIf, TextStyleDirective, ArrowStyleDirective],
   templateUrl: './arrow-between-points.component.svg',
 })
 export class ArrowBetweenPointsComponent {
