@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, Input,} from '@angular/cor
 import { Point } from "@angular/cdk/drag-drop";
 import {v4 as uuidv4} from "uuid";
 import {BoundingBox} from "../../shared/models/bounding-box";
-import {PathLayouter} from "../../svg-primitives/utils/path-layouter";
+import {PathLayouter} from "../utils/path-layouter";
 import {ArrowBetweenPointsComponent} from "../arrow-between-points/arrow-between-points.component";
 import {ArrowStyle} from "../arrow-style-configuration";
 

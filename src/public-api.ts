@@ -25,7 +25,7 @@ export * from './lib/svg-primitives/text-area-svg/text-area-svg.component';
 export * from './lib/svg-primitives/rectangle-with-text/rectangle-with-text.component';
 export * from './lib/svg-primitives/rectangle/rectangle.component';
 export * from './lib/svg-primitives/triangle/triangle.component';
-export * from './lib/svg-primitives/utils/position-helper';
-export * from './lib/svg-primitives/utils/path-layouter';
+export * from './lib/shared/utils/position-helper';
+export * from './lib/arrows/utils/path-layouter';
 export * from './lib/svg-primitives/utils/text-distributor';
 
