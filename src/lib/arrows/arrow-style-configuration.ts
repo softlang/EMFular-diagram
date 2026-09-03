@@ -1,15 +1,9 @@
-export interface ArrowStyleConfiguration {
-  color: string;
-  dashed: number[];
-  startPointer?: string;
-  endPointer?: string;
-  style?: Record<string, string>|string;
-}
-
 export interface ArrowStyle {
   color: string; //= stroke
-  dashed: string; //=dashArray e.g. '1 2 4'
+  strokeDashArray: string; //=dashArray e.g. '1 2 4'
+  strokeWidth?: number; //thickness of the arrow line
   startPointer?: string; //marker-Id
   endPointer?: string; //marker-Id
-  style?: Record<string, string>|string; //additional styles, no overwrite of other attributes
 }
+
+export const DEFAULT_ARROW_STYLE: ArrowStyle = {color: 'black', strokeDashArray: '0'};

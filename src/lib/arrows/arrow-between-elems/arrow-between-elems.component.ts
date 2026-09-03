@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
 import {SVGAccessService} from "../../shared/svg-access.service";
-import {ArrowStyleConfiguration, ArrowStyle} from "../arrow-style-configuration";
+import {ArrowStyle} from "../arrow-style-configuration";
 
 @Component({
     selector: '[arrowElems]',
@@ -24,15 +24,8 @@ export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChan
   @Input() startSuffix!: string;
   @Input() endGID!: string;
   @Input() endSuffix!: string;
-  /**
-   * @deprecated: use arrowStyle.style
-   */
-  @Input() style?: string;
+
   @Input() arrowStyle?: ArrowStyle;
-  /**
-   * @deprecated: use own enum to ArrowStyleConfiguration mapping
-   */
-  @Input() arrowType?: string;
 
   @Input() text?: string;
   @Input() textStyle: string | Record<string, string>  = '';
@@ -94,7 +87,7 @@ export class ArrowBetweenElemsComponent implements OnInit, AfterViewInit, OnChan
       if (endOpt) {
         this.end = endOpt
       }
-    } else console.log('No native element yet')
+    }
   }
 
   ngOnDestroy() {

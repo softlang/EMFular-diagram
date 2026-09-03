@@ -7,7 +7,7 @@ export type {Positionable, Draggable} from './lib/shared/models/positionable';
 export type {Point2D} from './lib/shared/models/point2d';
 export type {BoundingBox} from './lib/shared/models/bounding-box';
 export type {SvgTextStyle} from './lib/shared/style-configs/svg-text-style'
-export type {ArrowStyleConfiguration} from './lib/arrows/arrow-style-configuration';
+export * from './lib/arrows/arrow-style-configuration';
 
 export * from './lib/shared/svg-canvas/svg-canvas.component';
 export * from './lib/shared/svg-access.service';
@@ -15,7 +15,6 @@ export * from './lib/shared/svg-access.service';
 export * from './lib/arrows/arrow-between-elems/arrow-between-elems.component';
 export * from './lib/arrows/arrow-between-boxes/arrow-between-boxes.component';
 export * from './lib/arrows/arrow-between-points/arrow-between-points.component';
-export * from './lib/arrows/arrow-style-configuration.service';
 
 export * from './lib/mouse-events/dragger'
 export * from './lib/mouse-events/single-vs-double-click'

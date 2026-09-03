@@ -2,9 +2,10 @@
   <g arrow-between-boxes *ngIf="start && end"
        [start]="start"
        [end]="end"
-       [arrowType]="arrowType"
        [text]="text"
-       [style]="style"
-       [arrowStyle]="arrowStyle">
+       [arrowStyle]="arrowStyle"
+       [textStyle]="textStyle"
+       [textPathStyle]="textPathStyle"
+  >
   </g>
 ></svg:g>

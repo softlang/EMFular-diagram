@@ -1,11 +1,11 @@
 <svg:g>
     <path [attr.id]="id+'-path'"
           [attr.d]="'M '+startX+','+startY+' L '+endX+','+endY"
-          [style]="arrowStyleConfiguration.style? arrowStyleConfiguration.style: style"
-          [style.stroke]="arrowStyleConfiguration.color"
-          [style.stroke-dasharray]="arrowStyleConfiguration.dashed"
-          [style.marker-start]='"url(#"+arrowStyleConfiguration.startPointer+")"'
-          [style.marker-end]='"url(#"+arrowStyleConfiguration.endPointer+")"'
+          [style.stroke]="arrowStyle.color"
+          [style.stroke-dasharray]="arrowStyle.strokeDashArray"
+          [style.stroke-width]="arrowStyle.strokeWidth"
+          [style.marker-start]='"url(#"+arrowStyle.startPointer+")"'
+          [style.marker-end]='"url(#"+arrowStyle.endPointer+")"'
     >
     </path>
     <text *ngIf="text" [style]="textStyle">
