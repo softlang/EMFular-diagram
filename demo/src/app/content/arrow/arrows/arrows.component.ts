@@ -122,6 +122,7 @@ export class ArrowsComponent {
             textAnchor: new FormControl("start")
         }),
         textPathStyle: new FormGroup({
+            startOffset: new FormControl("50%"),
             method: new FormControl("stretch"),
             spacing: new FormControl("auto"),
             side: new FormControl("right"),
@@ -130,6 +131,11 @@ export class ArrowsComponent {
     })
 
     form4_radioOptions = {
+        textAnchor: [
+            { value: 'start', label: 'start' },
+            { value: 'middle', label: 'middle' },
+            { value: 'end', label: 'end' },
+        ],
         method: [
             { value: 'align', label: 'align' },
             { value: 'stretch', label: 'stretch' },
