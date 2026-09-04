@@ -120,6 +120,9 @@ export const markerStyleConfig =
 </svg:g>`
 
 
+export const textAndStylesCode = `
+`
+
 export const textAndStyles = `<svg:g>
         <g arrow-points
            id="arrowtext0"

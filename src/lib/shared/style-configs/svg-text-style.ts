@@ -1,12 +1,12 @@
 export interface SvgTextStyle {
-    'fill'?: string;
-    'font-family'?: string;
-    'font-size'?: string | number;
-    'font-weight'?: string | number;
-    'font-style'?: string;
-    'text-anchor'?: 'start' | 'middle' | 'end';
+    color?: string; //fill
+    fontFamily?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    fontStyle?: string;
+    textAnchor?: string;
 }
 
 export const DEFAULT_TEXT_STYLE: SvgTextStyle = {
-    'fill': 'black'
+    color: 'black'
 }

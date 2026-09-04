@@ -8,32 +8,32 @@ export class TextStyleDirective {
     @Input() textStyle!: SvgTextStyle;
 
     @HostBinding('attr.fill')
-    get fill() {
-        return this.textStyle?.fill;
+    get color() {
+        return this.textStyle?.color;
     }
 
     @HostBinding('attr.font-family')
     get fontFamily() {
-        return this.textStyle?.['font-family'];
+        return this.textStyle?.fontFamily;
     }
 
     @HostBinding('attr.font-size')
     get fontSize() {
-        return this.textStyle?.['font-size'];
+        return this.textStyle?.fontSize;
     }
 
     @HostBinding('attr.font-weight')
     get fontWeight() {
-        return this.textStyle?.['font-weight'];
+        return this.textStyle?.fontWeight;
     }
 
     @HostBinding('attr.font-style')
     get fontStyle() {
-        return this.textStyle?.['font-style'];
+        return this.textStyle?.fontStyle;
     }
 
     @HostBinding('attr.text-anchor')
     get textAnchor() {
-        return this.textStyle?.['text-anchor'];
+        return this.textStyle?.textAnchor;
     }
 }
