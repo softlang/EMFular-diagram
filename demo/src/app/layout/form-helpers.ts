@@ -1,5 +1,9 @@
 export enum InputType {
-    'number', 'text', 'checkbox', 'radio'
+    'number',
+    'text',
+    'checkbox',
+    'radio',
+    'group',
 }
 
 export interface RadioOption {

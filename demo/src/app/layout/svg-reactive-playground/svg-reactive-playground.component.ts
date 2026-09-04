@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, Input} from '@angular/core';
+import {AfterContentInit, Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {SvgCanvasComponent} from "ngx-emfular-diagram";
 import {HighlightedCodeComponent} from "../highlighted-code/highlighted-code.component";
@@ -17,14 +17,14 @@ import {RadioOptions} from "../form-helpers";
   templateUrl: './svg-reactive-playground.component.html',
   styleUrl: './svg-reactive-playground.component.scss'
 })
-export class SvgReactivePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements AfterContentInit {
+export class SvgReactivePlaygroundComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements OnInit {
   @Input() form!: FormGroup<TInputs>;
   @Input() codeTemplate!: string;
   @Input() radioOptions: RadioOptions = {};
 
   initialValue!: ReturnType<FormGroup<TInputs>['getRawValue']>
 
-  async ngAfterContentInit() {
+  async ngOnInit() {
     this.initialValue = this.form.getRawValue();
   }
 

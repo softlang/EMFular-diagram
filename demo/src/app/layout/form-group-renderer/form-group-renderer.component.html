@@ -7,6 +7,14 @@
 
         @switch (inputTypes[entry[0]]) {
 
+            @case (InputType.group) {
+                <demo-form-group-renderer
+                        [form]="getFormGroup(entry[1])"
+                        [radioOptions]="radioOptions"
+                        [idPrefix]="idPrefix+'_'+entry[0]"
+                />
+            }
+
             @case (InputType.radio) {
                 <div class="playground__radio-options">
                     @for (option of radioOptions[entry[0]]; track option.value) {

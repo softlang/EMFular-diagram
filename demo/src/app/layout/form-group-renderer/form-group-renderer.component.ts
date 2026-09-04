@@ -10,11 +10,10 @@ import {InputType, RadioOptions} from "../form-helpers";
   styleUrl: './form-group-renderer.component.scss'
 })
 export class FormGroupRendererComponent<TInputs extends{ [K in keyof TInputs]: AbstractControl<any, any>}> implements AfterContentInit {
-
+  @Input() idPrefix=`playground-${crypto.randomUUID()}`
   @Input() form!: FormGroup<TInputs>;
   @Input() radioOptions: RadioOptions = {};
 
-  idPrefix = `playground-${crypto.randomUUID()}`;
 
   inputTypes: Record<string, InputType> = {};
 
@@ -29,8 +28,10 @@ export class FormGroupRendererComponent<TInputs extends{ [K in keyof TInputs]: A
   }
 
   private detectInputType(control: AbstractControl): InputType {
+    if (control instanceof FormGroup) {
+      return InputType.group;
+    }
     const value = control.value;
-
     switch (typeof value) {
       case 'number': return InputType.number;
       case 'boolean': return InputType.checkbox;
@@ -40,6 +41,10 @@ export class FormGroupRendererComponent<TInputs extends{ [K in keyof TInputs]: A
 
   get formControls() {
     return Object.entries(this.form.controls);
+  }
+
+  getFormGroup(control: AbstractControl): FormGroup {
+    return control as FormGroup;
   }
 
   protected readonly InputType = InputType;
