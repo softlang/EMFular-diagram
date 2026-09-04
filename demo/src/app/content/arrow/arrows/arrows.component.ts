@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    RadioOptions,
-    SvgReactivePlaygroundComponent
-} from "../../../layout/svg-reactive-playground/svg-reactive-playground.component";
+import {SvgReactivePlaygroundComponent} from "../../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {
     ArrowBetweenPointsComponent,
     ArrowBetweenBoxesComponent,
@@ -20,6 +17,7 @@ import {
 import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
 import {MyPositionable} from "../../drag-drop/rect-draggable/rect-draggable.component";
 import {DblclickRectComponent} from "../../drag-drop/dblclick-rect/dblclick-rect.component";
+import {RadioOptions} from "../../../layout/form-helpers";
 
 @Component({
   selector: 'demo-arrows',
