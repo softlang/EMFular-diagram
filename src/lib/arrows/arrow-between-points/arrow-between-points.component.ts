@@ -9,7 +9,7 @@ import {SvgTextPathStyleDirective} from "../../shared/style-configs/svg-text-pat
 import {ArrowStyleDirective} from "../arrow-style.directive";
 
 @Component({
-  selector: '[arrow-between-points]',
+  selector: '[arrow-points]',
   imports: [NgIf, TextStyleDirective, ArrowStyleDirective, SvgTextPathStyleDirective],
   templateUrl: './arrow-between-points.component.svg',
 })

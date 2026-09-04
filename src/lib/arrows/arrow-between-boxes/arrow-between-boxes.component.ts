@@ -8,7 +8,7 @@ import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
 import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 
 @Component({
-    selector: '[arrow-between-boxes]',
+    selector: '[arrow-boxes]',
     templateUrl: './arrow-between-boxes.component.svg',
     imports: [ArrowBetweenPointsComponent]
 })

@@ -1,5 +1,5 @@
 export const arrowBetweenPointsCode = `<svg:g
-   arrow-between-points
+   arrow-points
    [startX]="form0.value.startX"
    [startY]="form0.value.startY"
    [endX]="form0.value.endX"
@@ -17,7 +17,7 @@ export const arrowBetweenBoxesCode = `<svg:g>
             }"
            color="red">
         </g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            [start]="{
                 x: form1.value.box1X,
                 y: form1.value.box1Y,
@@ -70,7 +70,7 @@ export const arrowBetweenElemsCode = `<svg:g>
            [position]="{x: 140,y: 100,w: 20,h: 20}"
            color="red">
         </g>
-        <g arrowElems
+        <g arrow-elements
            [startGID]="form2.value.startID"
            [endGID]="form2.value.endID"
         >
@@ -101,7 +101,7 @@ export const markerStyleConfig =
       <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
    </marker>
  </svg:defs>
- <g arrow-between-points
+ <g arrow-points
   [startX]="10"
   [startY]="10"
   [endX]="190"
@@ -116,7 +116,7 @@ export const markerStyleConfig =
 
 
 export const textAndStyles = `<svg:g>
-        <g arrow-between-points
+        <g arrow-points
            id="arrowtext0"
            [startX]="10"
            [startY]="10"
@@ -138,7 +138,7 @@ export const arrowDrag = `
            [elem]="drag1"
            (dblClicked)="onDoubleClick(drag1.$gId)"
         ></g>
-        <g arrowElems
+        <g arrow-elements
            id="arrowdrag0"
             [startGID]="dragID0"
            [endGID]="dragID1"
@@ -165,7 +165,7 @@ export const arrowBoxesDrag = `
            (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
            (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
         ></g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            id="arrowdrag0"
            [start]="dragBlue.position"
            [end]="dragRed.position"

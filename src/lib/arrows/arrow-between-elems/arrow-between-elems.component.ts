@@ -18,7 +18,7 @@ import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
 
 
 @Component({
-    selector: '[arrowElems]',
+    selector: '[arrow-elements]',
     templateUrl: './arrow-between-elems.component.svg',
     imports: [NgIf, ArrowBetweenBoxesComponent]
 })
