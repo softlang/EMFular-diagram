@@ -10,6 +10,7 @@ import {
     TriangleComponent
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup} from "@angular/forms";
+import {textAndStylesCode} from "../arrow/arrows/arrows.component.code";
 
 @Component({
   selector: 'demo-svg-primitives',
@@ -47,27 +48,39 @@ export class SvgPrimitivesComponent {
     }
 
     form2 = new FormGroup({
+        position: new FormGroup({
+            x: new FormControl(5),
+            y: new FormControl(5),
+            w: new FormControl(200),
+            h: new FormControl(50)
+        }),
         text: new FormControl("Example text, very long text, try to expand"),
         singleEdit: new FormControl(true, {nonNullable: true}),
-        x: new FormControl(5, {nonNullable: true}),
-        y: new FormControl(5, {nonNullable: true}),
-        w: new FormControl(200, {nonNullable: true}),
-        h: new FormControl(50, {nonNullable: true}),
-        'font-family': new FormControl('sans-serif', { nonNullable: true }),
-        'font-size': new FormControl('16px', { nonNullable: true }),
-        fill: new FormControl('#999999', { nonNullable: true }),
+        textStyle: new FormGroup({
+            color: new FormControl("red"),
+            fontFamily: new FormControl("sans-serif"),
+            fontSize: new FormControl("12pt"),
+            fontWeight: new FormControl("bold"),
+            textAnchor: new FormControl("start")
+        }),
     })
 
     form3 = new FormGroup({
         color: new FormControl("#000000",),
         text: new FormControl("Example text, very long text, try to expand"),
-        x: new FormControl(5, {nonNullable: true}),
-        y: new FormControl(5, {nonNullable: true}),
-        w: new FormControl(200, {nonNullable: true}),
-        h: new FormControl(50, {nonNullable: true}),
-        'font-family': new FormControl('sans-serif', { nonNullable: true }),
-        'font-size': new FormControl('16px', { nonNullable: true }),
-        fill: new FormControl('#999999', { nonNullable: true }),
+        position: new FormGroup({
+            x: new FormControl(5),
+            y: new FormControl(5),
+            w: new FormControl(200),
+            h: new FormControl(50)
+        }),
+        textStyle: new FormGroup({
+            color: new FormControl("red"),
+            fontFamily: new FormControl("sans-serif"),
+            fontSize: new FormControl("12pt"),
+            fontWeight: new FormControl("bold"),
+            textAnchor: new FormControl("start")
+        }),
     })
 
     get form3Text(){
@@ -84,4 +97,5 @@ export class SvgPrimitivesComponent {
     protected readonly text0 = text0;
     protected readonly styles = styles;
     protected readonly textRect = textRect;
+    protected readonly textAndStylesCode = textAndStylesCode;
 }

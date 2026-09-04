@@ -7,10 +7,11 @@
 
 <p>
     There are also style models that you should use instead of css styling, so that your styling becomes real svg content that is exported.
-    Apart from the etxtStyle below, we also offer arrow styles (see <a routerLink="arrows" routerLinkActive="active">arrows</a>).
+    Each such style comes with an own directive to apply it to an element with correct attribute bindings for svg.
+    Apart from the textStyle and textPathStyle below, we also offer arrow styles (see <a routerLink="arrows" routerLinkActive="active">arrows</a>).
 </p>
 
-<demo-highlighted-code [code]="styles"></demo-highlighted-code>
+<demo-highlighted-code [code]="textAndStylesCode"></demo-highlighted-code>
 
 <p>
     We want to offer some basic functionality for those who only require basic building blocks like rectangles, triangles and text.
@@ -91,15 +92,11 @@
         <g text-area-svg
            [(text)]="form2Text"
            [singleEdit]="form2.controls.singleEdit.value"
-           [x]="form2.controls.x.value"
-           [y]="form2.controls.y.value"
-           [w]="form2.controls.w.value"
-           [h]="form2.controls.h.value"
-           [textStyle]="{
-            fill: form2.controls.fill.value,
-            'font-family': form2.controls['font-family'].value,
-            'font-size': form2.controls['font-size'].value
-            }"
+           [x]="form2.controls.position.controls.x.value"
+           [y]="form2.controls.position.controls.y.value"
+           [w]="form2.controls.position.controls.w.value"
+           [h]="form2.controls.position.controls.h.value"
+           [textStyle]="form2.value.textStyle"
         >
         </g>
     </svg:g>
@@ -126,12 +123,8 @@
            [id]="'form3rectWithText'"
            [color]="form3.controls.color.value"
            [(text)]="form3Text"
-           [position]="{x: form3.value.x, y: form3.value.y, w: form3.value.w, h: form3.value.h}"
-           [textStyle]="{
-            fill: form3.controls.fill.value,
-            'font-family': form3.controls['font-family'].value,
-            'font-size': form3.controls['font-size'].value
-            }"
+           [position]="form3.value.position"
+           [textStyle]="form3.value.textStyle"
         >
         </g>
     </svg:g>

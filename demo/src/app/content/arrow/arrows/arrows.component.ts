@@ -117,7 +117,7 @@ export class ArrowsComponent {
         text: new FormControl("This text is far too long. See where it gets truncated"),
         textStyle: new FormGroup({
             color: new FormControl("red"),
-            fontFamily: new FormControl("arial"),
+            fontFamily: new FormControl("sans-serif"),
             fontSize: new FormControl("12pt"),
             fontWeight: new FormControl("bold"),
             textAnchor: new FormControl("start")
