@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {BoundingBox} from "./models/bounding-box";
 import {PositionHelper} from "./utils/position-helper";
 
@@ -8,7 +8,7 @@ import {PositionHelper} from "./utils/position-helper";
 })
 export class SVGAccessService {
 
-  positionChange: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  positionChange: Subject<string> = new Subject<string>();
 
   constructor() { }
 
