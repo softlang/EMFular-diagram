@@ -126,7 +126,7 @@ export const textAndStylesCode = `export interface SvgTextStyle {
     fontSize?: string;
     fontWeight?: string;
     fontStyle?: string;
-    textAnchor?: string;
+    textAnchor?: 'start' | 'middle' | 'end';
 }
 
 export const DEFAULT_TEXT_STYLE: SvgTextStyle = {
@@ -135,11 +135,6 @@ export const DEFAULT_TEXT_STYLE: SvgTextStyle = {
 
 export interface SvgTextPathStyle {
     startOffset?: string;
-    method?: 'align' | 'stretch';
-    spacing?: 'auto' | 'exact';
-    side?: 'left' | 'right';
-    lengthAdjust?: 'spacing' | 'spacingAndGlyphs';
-    textLength?: string;
 }`
 
 export const textAndStyles = `<svg:g>

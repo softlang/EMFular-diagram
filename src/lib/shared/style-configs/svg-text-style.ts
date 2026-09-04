@@ -4,7 +4,7 @@ export interface SvgTextStyle {
     fontSize?: string;
     fontWeight?: string;
     fontStyle?: string;
-    textAnchor?: string;
+    textAnchor?: 'start' | 'middle' | 'end';
 }
 
 export const DEFAULT_TEXT_STYLE: SvgTextStyle = {

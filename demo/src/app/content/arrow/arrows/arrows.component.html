@@ -167,7 +167,7 @@ The styles are bound ass attr-bindings, making them native svg, so that they are
            [endX]="190"
            [endY]="100"
            [id]="'arrowstyle0'"
-           [arrowStyle]="{color: form3.value.color, strokeDashArray: form3.value.dashed, strokeWidth: form3.value.strokeWidth,  startPointer: form3.value.startMarker, endPointer: form3.value.endMarker}"
+           [arrowStyle]="form3"
         ></g>
     </svg:g>
 </demo-simple-playground>
@@ -179,6 +179,11 @@ The styles are bound ass attr-bindings, making them native svg, so that they are
 <demo-highlighted-code
 [code]="textAndStylesCode">
 </demo-highlighted-code>
+
+<p>
+    There are more attributes, that you can manually bind via attr-binding, but we only used those we considered broadly relevant for our interfaces and the corresponding directives.
+    Especially, the interplay of textAnchor and startOffset might help on arranging text.
+</p>
 
 <demo-simple-playground
         [form]="form4"

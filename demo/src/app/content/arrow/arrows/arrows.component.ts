@@ -117,16 +117,13 @@ export class ArrowsComponent {
         text: new FormControl("This text is far too long. See where it gets truncated"),
         textStyle: new FormGroup({
             color: new FormControl("red"),
+            fontFamily: new FormControl("arial"),
             fontSize: new FormControl("12pt"),
             fontWeight: new FormControl("bold"),
             textAnchor: new FormControl("start")
         }),
         textPathStyle: new FormGroup({
             startOffset: new FormControl("50%"),
-            method: new FormControl("stretch"),
-            spacing: new FormControl("auto"),
-            side: new FormControl("right"),
-            lengthAdjust: new FormControl("spacing"),
         })
     })
 
@@ -135,22 +132,6 @@ export class ArrowsComponent {
             { value: 'start', label: 'start' },
             { value: 'middle', label: 'middle' },
             { value: 'end', label: 'end' },
-        ],
-        method: [
-            { value: 'align', label: 'align' },
-            { value: 'stretch', label: 'stretch' },
-        ],
-        spacing: [
-            { value: 'auto', label: 'auto' },
-            { value: 'exact', label: 'exact' },
-        ],
-        side: [
-            { value: 'left', label: 'left' },
-            { value: 'right', label: 'right' },
-        ],
-        lengthAdjust: [
-            { value: 'spacing', label: 'spacing' },
-            { value: 'spacingAndGlyphs', label: 'spacingAndGlyphs' },
         ]
     }
 
