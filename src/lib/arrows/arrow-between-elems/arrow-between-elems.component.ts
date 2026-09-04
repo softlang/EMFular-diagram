@@ -25,9 +25,7 @@ import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
 export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() id = uuidv4();
   @Input() startGID!: string;
-  @Input() startSuffix!: string;
   @Input() endGID!: string;
-  @Input() endSuffix!: string;
 
   @Input() arrowStyle: ArrowStyle = DEFAULT_ARROW_STYLE;
 
@@ -68,11 +66,11 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   private computePositionsByIds() {
     if (this.node?.nativeElement){
       let rel = this.node.nativeElement as SVGGraphicsElement
-      let startOpt = this.svgAccessService.getRelativePosition( this.startGID+this.startSuffix, rel)
+      let startOpt = this.svgAccessService.getRelativePosition(this.startGID, rel)
       if (startOpt) {
         this.start = startOpt
       }
-      let endOpt = this.svgAccessService.getRelativePosition(this.endGID+this.endSuffix, rel)
+      let endOpt = this.svgAccessService.getRelativePosition(this.endGID, rel)
       if (endOpt) {
         this.end = endOpt
       }

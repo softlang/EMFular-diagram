@@ -72,9 +72,7 @@ export const arrowBetweenElemsCode = `<svg:g>
         </g>
         <g arrowElems
            [startGID]="form2.value.startID"
-           startSuffix=""
            [endGID]="form2.value.endID"
-           endSuffix=""
         >
         </g>
     </svg:g>`
@@ -143,9 +141,7 @@ export const arrowDrag = `
         <g arrowElems
            id="arrowdrag0"
             [startGID]="dragID0"
-           [startSuffix]="''"
            [endGID]="dragID1"
-           [endSuffix]="''"
         ></g>
     </svg:g>
 
