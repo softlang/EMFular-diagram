@@ -90,7 +90,8 @@ export class ArrowsComponent {
 
     form3 = new FormGroup({
         color: new FormControl("red"),
-        dashed: new FormControl([1,2,1]),
+        dashed: new FormControl('1 2 1'),
+        strokeWidth: new FormControl(1),
         startMarker: new FormControl("B"),
         endMarker: new FormControl("A"),
     })
