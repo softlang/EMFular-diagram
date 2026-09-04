@@ -12,7 +12,7 @@ import {
     arrowBetweenBoxesCode,
     arrowBetweenElemsCode,
     arrowBetweenPointsCode, arrowBoxesDrag, arrowDrag,
-    arrowStyleConfig, markerStyleConfig, textAndStyles
+    arrowStyleConfig, markerStyleConfig, textAndStyles, textAndStylesCode
 } from "./arrows.component.code";
 import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
 import {MyPositionable} from "../../drag-drop/rect-draggable/rect-draggable.component";
@@ -115,8 +115,38 @@ export class ArrowsComponent {
 
     form4 = new FormGroup({
         text: new FormControl("This text is far too long. See where it gets truncated"),
-        textStyle: new FormControl("fill: red; font-size: 12px;"),
+        textStyle: new FormGroup({
+            color: new FormControl("red"),
+            fontSize: new FormControl("12pt"),
+            fontWeight: new FormControl("bold"),
+            textAnchor: new FormControl("start")
+        }),
+        textPathStyle: new FormGroup({
+            method: new FormControl("stretch"),
+            spacing: new FormControl("auto"),
+            side: new FormControl("right"),
+            lengthAdjust: new FormControl("spacing"),
+        })
     })
+
+    form4_radioOptions = {
+        method: [
+            { value: 'align', label: 'align' },
+            { value: 'stretch', label: 'stretch' },
+        ],
+        spacing: [
+            { value: 'auto', label: 'auto' },
+            { value: 'exact', label: 'exact' },
+        ],
+        side: [
+            { value: 'left', label: 'left' },
+            { value: 'right', label: 'right' },
+        ],
+        lengthAdjust: [
+            { value: 'spacing', label: 'spacing' },
+            { value: 'spacingAndGlyphs', label: 'spacingAndGlyphs' },
+        ]
+    }
 
     dragID0="dragArrow0"
     dragID1="dragArrow1"
@@ -175,4 +205,5 @@ export class ArrowsComponent {
     protected readonly textAndStyles = textAndStyles;
     protected readonly arrowDrag = arrowDrag;
     protected readonly arrowBoxesDrag = arrowBoxesDrag;
+    protected readonly textAndStylesCode = textAndStylesCode;
 }

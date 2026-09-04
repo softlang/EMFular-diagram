@@ -174,10 +174,15 @@ The styles are bound ass attr-bindings, making them native svg, so that they are
 
 <h3>Adding Text</h3>
 <p>You may also add text to an arrow, by using the optional text attribute. Be ware, text that is longer than the arrow line, will not be visible.
-    You can control text style attributes via two optional inputs, textStyle and textPathStyle. For more details on available attributes, please consider the official style guides, e.g. MDN.</p>
+    You can control text style attributes via two optional inputs, textStyle and textPathStyle.
+</p>
+<demo-highlighted-code
+[code]="textAndStylesCode">
+</demo-highlighted-code>
 
 <demo-simple-playground
         [form]="form4"
+        [radioOptions]="form4_radioOptions"
         [codeTemplate]="textAndStyles"
 >
     <svg:g demo-preview>
@@ -190,7 +195,7 @@ The styles are bound ass attr-bindings, making them native svg, so that they are
            [arrowStyle]="{color: 'blue', dashed: '1 2'}"
            [text]="form4.value.text"
            [textStyle]="form4.value.textStyle"
-           [textPathStyle]=""
+           [textPathStyle]="form4.value.textPathStyle"
         ></g>
     </svg:g>
 </demo-simple-playground>

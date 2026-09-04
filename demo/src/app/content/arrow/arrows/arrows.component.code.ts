@@ -120,8 +120,27 @@ export const markerStyleConfig =
 </svg:g>`
 
 
-export const textAndStylesCode = `
-`
+export const textAndStylesCode = `export interface SvgTextStyle {
+    color?: string; //fill
+    fontFamily?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    fontStyle?: string;
+    textAnchor?: string;
+}
+
+export const DEFAULT_TEXT_STYLE: SvgTextStyle = {
+    color: 'black'
+}
+
+export interface SvgTextPathStyle {
+    startOffset?: string;
+    method?: 'align' | 'stretch';
+    spacing?: 'auto' | 'exact';
+    side?: 'left' | 'right';
+    lengthAdjust?: 'spacing' | 'spacingAndGlyphs';
+    textLength?: string;
+}`
 
 export const textAndStyles = `<svg:g>
         <g arrow-points
