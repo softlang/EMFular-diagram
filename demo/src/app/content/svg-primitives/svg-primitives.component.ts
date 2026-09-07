@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
-import {pointAndBB, rotate0, styles, text0, textRect, triangle0} from "./svg-primitives.component.code";
+import {pointAndBB, rotate0, styles, text0, triangle0} from "./svg-primitives.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {
     RectangleComponent,
-    RectangleWithTextComponent,
     TextAreaSvgComponent,
     TriangleComponent
 } from "ngx-emfular-diagram";
@@ -22,7 +21,6 @@ import {textAndStylesCode} from "../arrow/arrows/arrows.component.code";
         RectangleComponent,
         TriangleComponent,
         TextAreaSvgComponent,
-        RectangleWithTextComponent
     ],
   templateUrl: './svg-primitives.component.html',
   styleUrl: './svg-primitives.component.css'
@@ -96,6 +94,5 @@ export class SvgPrimitivesComponent {
     protected readonly triangle0 = triangle0;
     protected readonly text0 = text0;
     protected readonly styles = styles;
-    protected readonly textRect = textRect;
     protected readonly textAndStylesCode = textAndStylesCode;
 }

@@ -81,7 +81,7 @@
     directly via an HTML input.
     Like usually, this is done via a foreign element, that holds the HTML input.
     However, such foreign elements are not exported on svg download, hence, we need the backup svg native representation of the text to ensure export.
-    When editing finishes (click somewhere else!), the changed text is emitted through <code>textChange</code>.
+    When editing finishes (click somewhere else!), the changed text is emitted through <code>textChange</code>, allowing double-bindings to text.
 </p>
 
 <demo-simple-playground
@@ -89,6 +89,10 @@
         [codeTemplate]="text0"
 >
     <svg:g  demo-preview>
+        <g rectangleG
+           [position]="form2.value.position"
+           color="yellow"
+        ></g>
         <g text-area-svg
            [(text)]="form2Text"
            [singleEdit]="form2.controls.singleEdit.value"
@@ -97,34 +101,6 @@
            [w]="form2.controls.position.controls.w.value"
            [h]="form2.controls.position.controls.h.value"
            [textStyle]="form2.value.textStyle"
-        >
-        </g>
-    </svg:g>
-</demo-simple-playground>
-
-<h2>Combining a Rectangle with Text</h2>
-
-<p>
-    We also offer a compound component that displays a text area on top of a rectangle,
-    using the same position and size for both.
-</p>
-
-<p>
-    The <code>position</code>, <code>color</code>, <code>text</code>, and
-    <code>textPathStyle</code> inputs configure the two underlying components.
-    Changes to the text are emitted through <code>textChange</code>, so that double-binding works.
-</p>
-
-<demo-simple-playground
-[form]="form3"
-[codeTemplate]="textRect">
-    <svg:g demo-preview>
-        <g rectangle-with-text
-           [id]="'form3rectWithText'"
-           [color]="form3.controls.color.value"
-           [(text)]="form3Text"
-           [position]="form3.value.position"
-           [textStyle]="form3.value.textStyle"
         >
         </g>
     </svg:g>

@@ -23,7 +23,6 @@ export * from './lib/mouse-events/single-vs-double-click'
 export * from './lib/mouse-events/draggable/draggable.component';
 
 export * from './lib/svg-primitives/text-area-svg/text-area-svg.component';
-export * from './lib/svg-primitives/rectangle-with-text/rectangle-with-text.component';
 export * from './lib/svg-primitives/rectangle/rectangle.component';
 export * from './lib/svg-primitives/triangle/triangle.component';
 export * from './lib/shared/utils/position-helper';
