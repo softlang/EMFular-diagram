@@ -9,44 +9,45 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {SVGAccessService} from '../../shared/svg-access.service';
-import { Draggable } from '../../shared/models/positionable';
 import {Dragger} from "../dragger";
+import {Point2D} from "../../shared/models/point2d";
 
 @Component({
   imports: [],
   selector: '[draggable]',
   templateUrl: './draggable.component.svg'
 })
-export abstract class DraggableComponent<T extends Draggable> implements AfterViewInit, OnChanges, OnDestroy {
+export abstract class DraggableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
-  @Input()  elem!: T;
-  @Output() elemReallyClicked = new EventEmitter<T>();
-  @Output() positionChanged = new EventEmitter<T>();
+  @Input()  position!: Point2D;
+  @Input() gId!: string
+  @Output() elemReallyClicked = new EventEmitter<MouseEvent>();
+  @Output() positionChanged = new EventEmitter<Point2D>();
 
-  elemDragger!: Dragger<T>;
+  elemDragger!: Dragger;
 
   constructor(
     protected svgAccessService: SVGAccessService
   ) {}
 
   // dragger that notifies access service about dragging
-  protected createDragger(elem: T): Dragger<T> {
-    return new Dragger<T>(elem, ()=> this.notifyPositionChange(elem));
+  protected createDragger(pos: Point2D): Dragger {
+    return new Dragger(pos, ()=> this.notifyPositionChange(pos));
   }
 
-  protected notifyPositionChange(elem: T): void {
-    this.positionChanged.emit(elem);
-    this.svgAccessService.notifyPositionChange(elem.$gId)
+  protected notifyPositionChange(pos: Point2D): void {
+    this.positionChanged.emit(pos);
+    this.svgAccessService.notifyPositionChange(this.gId)
   }
 
   ngAfterViewInit() {
-    this.svgAccessService.notifyPositionChange(this.elem.$gId)
+    this.svgAccessService.notifyPositionChange(this.gId)
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['elem']) {
+    if (changes['position']) {
       this.elemDragger?.destroy()
-      this.elemDragger = this.createDragger(this.elem);
+      this.elemDragger = this.createDragger(this.position);
     }
   }
 
@@ -57,20 +58,11 @@ export abstract class DraggableComponent<T extends Draggable> implements AfterVi
   /**
    * call this on your template's click binding:
    * just forward click to dragger and only react, if that fires
-   * You can add reactions prior to emit via the onClick hook
    */
   clickElem(event: MouseEvent) {
     if (this.elemDragger.clickElem(event)) {
-      this.onClick();
-      this.elemReallyClicked.emit(this.elem);
+      this.elemReallyClicked.emit(event);
     }
-  }
-
-  /**
-   * @protected
-   * Only adapt this to add a prior reaction to really detected clicks
-   */
-  protected onClick() {
   }
 
   ngOnDestroy() {

@@ -1,6 +1,7 @@
 import {Positionable} from '../shared/models/positionable';
+import {Point2D} from "../shared/models/point2d";
 
-export class Dragger<T extends Positionable> {
+export class Dragger {
   dragActive = false;
   wasReallyDragged = false;
   dragStartX: number = 0;
@@ -16,8 +17,8 @@ export class Dragger<T extends Positionable> {
 
 
   constructor(
-      private readonly element: T,
-      private readonly onPositionChange: () => void = ()=>{}
+      private readonly position: Point2D,
+      private readonly onPositionChange: (pos: Point2D) => void = ()=>{}
   ) {}
 
   startDrag(event: MouseEvent) {
@@ -35,12 +36,12 @@ export class Dragger<T extends Positionable> {
       this.wasReallyDragged = true;
       event.preventDefault();
       const dragX = event.clientX;
-      this.element.position.x+= (dragX - this.dragStartX);
+      this.position.x+= (dragX - this.dragStartX);
       this.dragStartX = dragX;
       const dragY = event.clientY;
-      this.element.position.y+= (dragY - this.dragStartY);
+      this.position.y+= (dragY - this.dragStartY);
       this.dragStartY = dragY;
-      this.onPositionChange();
+      this.onPositionChange(this.position);
       return true;
     }
     return false;

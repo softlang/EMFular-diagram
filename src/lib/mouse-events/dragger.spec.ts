@@ -1,12 +1,13 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { Dragger } from './dragger';
 import { Positionable } from '../shared/models/positionable';
+import {Point2D} from "../shared/models/point2d";
 
 describe('Dragger', () => {
 
     let element: Positionable;
-    let onPositionChange: ReturnType<typeof vi.fn>;
-    let dragger: Dragger<Positionable>;
+    let onPositionChange: (pos: Point2D) => void;
+    let dragger: Dragger;
 
     beforeEach(() => {
         element = {
@@ -17,7 +18,7 @@ describe('Dragger', () => {
         };
 
         onPositionChange = vi.fn();
-        dragger = new Dragger(element, onPositionChange);
+        dragger = new Dragger(element.position, onPositionChange);
     });
 
     afterEach(() => {

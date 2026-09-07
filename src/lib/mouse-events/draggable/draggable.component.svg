@@ -1,5 +1,5 @@
 <svg:g>
-  <g [attr.id]="elem.$gId"
+  <g [attr.id]="'testID'"
      (mousedown)="startDrag($event)"
      (click)="clickElem($event)">
   </g>
