@@ -1,4 +1,4 @@
-import {Point2D} from "../shared/models/point2d";
+import {Point2D} from "../../shared/models/point2d";
 
 export class Dragger {
   dragActive = false;

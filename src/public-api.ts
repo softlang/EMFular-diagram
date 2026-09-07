@@ -16,8 +16,8 @@ export * from './lib/arrows/arrow-between-elems/arrow-between-elems.component';
 export * from './lib/arrows/arrow-between-boxes/arrow-between-boxes.component';
 export * from './lib/arrows/arrow-between-points/arrow-between-points.component';
 
-export * from './lib/mouse-events/dragger'
-export * from './lib/mouse-events/single-vs-double-click'
+export * from './lib/mouse-events/dragger/dragger'
+export * from './lib/mouse-events/single-vs-double-click/single-vs-double-click'
 export * from './lib/mouse-events/draggable/draggable.directive';
 
 export * from './lib/svg-primitives/text-area-svg/text-area-svg.component';

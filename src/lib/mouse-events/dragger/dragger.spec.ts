@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { Dragger } from './dragger';
-import {Point2D} from "../shared/models/point2d";
+import {Point2D} from "../../shared/models/point2d";
 
 interface Positionable {
     position: Point2D

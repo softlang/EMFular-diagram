@@ -9,7 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {SVGAccessService} from '../../shared/svg-access.service';
-import {Dragger} from "../dragger";
+import {Dragger} from "../dragger/dragger";
 import {Point2D} from "../../shared/models/point2d";
 
 @Directive({
