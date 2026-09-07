@@ -1,10 +1,12 @@
 <svg:g #arrow>
-  <g arrow-between-boxes *ngIf="start && end"
-       [start]="start"
-       [end]="end"
-       [arrowType]="arrowType"
-       [text]="text"
-       [style]="style"
-       [arrowStyle]="arrowStyle">
+  <g arrow-boxes *ngIf="start && end"
+     [id]="id"
+     [start]="start"
+     [end]="end"
+     [arrowStyle]="arrowStyle"
+     [text]="text"
+     [textStyle]="textStyle"
+     [textPathStyle]="textPathStyle"
+  >
   </g>
 ></svg:g>

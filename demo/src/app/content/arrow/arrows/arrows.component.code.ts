@@ -1,5 +1,5 @@
 export const arrowBetweenPointsCode = `<svg:g
-   arrow-between-points
+   arrow-points
    [startX]="form0.value.startX"
    [startY]="form0.value.startY"
    [endX]="form0.value.endX"
@@ -17,7 +17,7 @@ export const arrowBetweenBoxesCode = `<svg:g>
             }"
            color="red">
         </g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            [start]="{
                 x: form1.value.box1X,
                 y: form1.value.box1Y,
@@ -70,22 +70,22 @@ export const arrowBetweenElemsCode = `<svg:g>
            [position]="{x: 140,y: 100,w: 20,h: 20}"
            color="red">
         </g>
-        <g arrowElems
+        <g arrow-elements
            [startGID]="form2.value.startID"
-           startSuffix=""
            [endGID]="form2.value.endID"
-           endSuffix=""
         >
         </g>
     </svg:g>`
 
 export const arrowStyleConfig = `export interface ArrowStyle {
   color: string; //= stroke
-  dashed: string; //=dashArray e.g. '1 2 4'
+  strokeDashArray: string; //=dashArray e.g. '1 2 4'
+  strokeWidth?: number; //thickness of the arrow line
   startPointer?: string; //marker-Id
   endPointer?: string; //marker-Id
-  style?: Record<string, string>|string; //additional styles, no overwrite of other attributes
-}`
+}
+
+export const DEFAULT_ARROW_STYLE: ArrowStyle = {color: 'black', strokeDashArray: '0'};`
 
 export const markerStyleConfig =
 `<svg:g>
@@ -103,22 +103,42 @@ export const markerStyleConfig =
       <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
    </marker>
  </svg:defs>
- <g arrow-between-points
+ <g arrow-points
   [startX]="10"
   [startY]="10"
   [endX]="190"
   [endY]="100"
   [id]="'arrowstyle0'"
-  [arrowStyle]="{color: form3.value.color,
-   dashed: form3.value.dashed,
+  [arrowStyle]="{
+    color: form3.value.color,
+    strokeDashArray: form3.value.dashed,
+    strokeWidth: form3.value.strokeWidth,
     startPointer: form3.value.startMarker,
-     endPointer: form3.value.endMarker}"
+    endPointer: form3.value.endMarker
+    }"
  ></g>
 </svg:g>`
 
 
+export const textAndStylesCode = `export interface SvgTextStyle {
+    color?: string; //fill
+    fontFamily?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    fontStyle?: string;
+    textAnchor?: 'start' | 'middle' | 'end';
+}
+
+export const DEFAULT_TEXT_STYLE: SvgTextStyle = {
+    color: 'black'
+}
+
+export interface SvgTextPathStyle {
+    startOffset?: string;
+}`
+
 export const textAndStyles = `<svg:g>
-        <g arrow-between-points
+        <g arrow-points
            id="arrowtext0"
            [startX]="10"
            [startY]="10"
@@ -140,12 +160,10 @@ export const arrowDrag = `
            [elem]="drag1"
            (dblClicked)="onDoubleClick(drag1.$gId)"
         ></g>
-        <g arrowElems
+        <g arrow-elements
            id="arrowdrag0"
             [startGID]="dragID0"
-           [startSuffix]="''"
            [endGID]="dragID1"
-           [endSuffix]="''"
         ></g>
     </svg:g>
 
@@ -169,7 +187,7 @@ export const arrowBoxesDrag = `
            (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
            (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
         ></g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            id="arrowdrag0"
            [start]="dragBlue.position"
            [end]="dragRed.position"

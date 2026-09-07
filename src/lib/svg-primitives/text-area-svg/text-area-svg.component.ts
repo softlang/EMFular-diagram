@@ -9,12 +9,13 @@ import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import {TextDistributor} from "../utils/text-distributor";
 import {SvgTextStyle} from "../../shared/style-configs/svg-text-style";
+import {TextStyleDirective} from "../../shared/style-configs/svg-text-style.directive";
 
 @Component({
     selector: '[text-area-svg]',
     templateUrl: './text-area-svg.component.svg',
     styleUrl: './text-area-svg.component.css',
-    imports: [NgFor, NgIf, FormsModule]
+    imports: [NgFor, NgIf, FormsModule, TextStyleDirective]
 })
 export class TextAreaSvgComponent implements OnChanges {
   /*

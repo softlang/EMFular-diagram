@@ -134,19 +134,3 @@
   flex-direction: column;
   gap: 0.35rem;
 }
-
-.playground__radio-options > div {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.playground__radio-options input[type="radio"] {
-  width: auto;
-  margin: 0;
-}
-
-.playground__radio-options label {
-  color: inherit;
-  cursor: pointer;
-}

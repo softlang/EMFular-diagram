@@ -11,7 +11,7 @@ Depending on how you want to specify these points, you can choose between these 
  [form]="form0"
  [codeTemplate]="arrowBetweenPointsCode">
     <svg:g demo-preview
-       arrow-between-points
+       arrow-points
        [startX]="form0.value.startX"
        [startY]="form0.value.startY"
        [endX]="form0.value.endX"
@@ -39,7 +39,7 @@ Depending on how you want to specify these points, you can choose between these 
            color="red"
         >
         </g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            [start]="{
                 x: form1.value.box1X,
                 y: form1.value.box1Y,
@@ -106,11 +106,9 @@ Depending on how you want to specify these points, you can choose between these 
            [position]="{x: 140,y: 100,w: 20,h: 20}"
            color="red">
         </g>
-        <g arrowElems
+        <g arrow-elements
            [startGID]="form2.value.startID"
-           startSuffix=""
            [endGID]="form2.value.endID"
-           endSuffix=""
         >
         </g>
     </svg:g>
@@ -118,13 +116,14 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrow Styling</h2>
 
-<p>Arrow styling is mainly driven by the following interface:</p>
+<p>Arrow styling is mainly driven by three interfaces, one for the main arrow (shown below) and two more to control text styles and text path if a text is given.
+Each style is accompanied by a directive so that lib users can easily apply a style to their own components.
+The styles are bound ass attr-bindings, making them native svg, so that they are exported with the svg.</p>
 <demo-highlighted-code [code]="arrowStyleConfig"></demo-highlighted-code>
 
-<p>Color is any string you could put into the corresponding style attribute,
-    and dashed corresponds to the stroke-dasharray that many svgs support, e.g. '4 1 2' - but please specify [4,1,2] for the array.
-    You can add arbitrary inline styles via the extra style-Attribute. For details on allowed attributes, consider <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/line">MDN</a>.
-    We ensured that the explicit style configuration has precedence, if you specify it.
+<p>Color is any string you could put into the corresponding style attribute (fill),
+    and strokeDashArray corresponds to the stroke-dasharray that many svgs support, e.g. '4 1 2'.
+    For details on allowed attributes, consider <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/line">MDN</a>.
     Please do NEVER use external css to control svg behaviour, since it will not be exported with the SVG.
 </p>
 
@@ -162,27 +161,37 @@ Depending on how you want to specify these points, you can choose between these 
                 <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
             </marker>
         </svg:defs>
-        <g arrow-between-points
+        <g arrow-points
            [startX]="10"
            [startY]="10"
            [endX]="190"
            [endY]="100"
            [id]="'arrowstyle0'"
-           [arrowStyle]="{color: form3.value.color, dashed: form3.value.dashed, startPointer: form3.value.startMarker, endPointer: form3.value.endMarker}"
+           [arrowStyle]="form3"
         ></g>
     </svg:g>
 </demo-simple-playground>
 
 <h3>Adding Text</h3>
 <p>You may also add text to an arrow, by using the optional text attribute. Be ware, text that is longer than the arrow line, will not be visible.
-    You can control text style attributes via two optional inputs, textStyle and textPathStyle. For more details on available attributes, please consider the official style guides, e.g. MDN.</p>
+    You can control text style attributes via two optional inputs, textStyle and textPathStyle.
+</p>
+<demo-highlighted-code
+[code]="textAndStylesCode">
+</demo-highlighted-code>
+
+<p>
+    There are more attributes, that you can manually bind via attr-binding, but we only used those we considered broadly relevant for our interfaces and the corresponding directives.
+    Especially, the interplay of textAnchor and startOffset might help on arranging text.
+</p>
 
 <demo-simple-playground
         [form]="form4"
+        [radioOptions]="form4_radioOptions"
         [codeTemplate]="textAndStyles"
 >
     <svg:g demo-preview>
-        <g arrow-between-points
+        <g arrow-points
            id="arrowtext0"
            [startX]="10"
            [startY]="10"
@@ -191,6 +200,7 @@ Depending on how you want to specify these points, you can choose between these 
            [arrowStyle]="{color: 'blue', dashed: '1 2'}"
            [text]="form4.value.text"
            [textStyle]="form4.value.textStyle"
+           [textPathStyle]="form4.value.textPathStyle"
         ></g>
     </svg:g>
 </demo-simple-playground>
@@ -221,12 +231,10 @@ Depending on how you want to specify these points, you can choose between these 
            [elem]="drag1"
            (dblClicked)="onDoubleClick(drag1.$gId)"
         ></g>
-        <g arrowElems
+        <g arrow-elements
            id="arrowdrag0"
            [startGID]="dragID0"
-           [startSuffix]="''"
            [endGID]="dragID1"
-           [endSuffix]="''"
         ></g>
     </svg:g>
 </demo-simple-playground>
@@ -260,7 +268,7 @@ Depending on how you want to specify these points, you can choose between these 
            (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
            (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
         ></g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            id="arrowdrag0"
            [start]="dragBlue.position"
            [end]="dragRed.position"

@@ -1,15 +1,16 @@
 <svg:g>
-    <path [attr.id]="id+'-path'"
-          [attr.d]="'M '+startX+','+startY+' L '+endX+','+endY"
-          [style]="arrowStyleConfiguration.style? arrowStyleConfiguration.style: style"
-          [style.stroke]="arrowStyleConfiguration.color"
-          [style.stroke-dasharray]="arrowStyleConfiguration.dashed"
-          [style.marker-start]='"url(#"+arrowStyleConfiguration.startPointer+")"'
-          [style.marker-end]='"url(#"+arrowStyleConfiguration.endPointer+")"'
+    <path arrow-style [arrowStyle]="arrowStyle"
+        [attr.id]="id+'-path'"
+        [attr.d]="'M '+startX+','+startY+' L '+endX+','+endY"
     >
     </path>
-    <text *ngIf="text" [style]="textStyle">
-        <textPath [attr.href]="'#'+id+'-path'" [style]="textPathStyle">
+    <text *ngIf="text" text-style
+        [textStyle]="textStyle"
+    >
+        <textPath text-path-style
+            [textPathStyle]="textPathStyle"
+            [attr.href]="'#'+id+'-path'"
+        >
             {{text}}
         </textPath>
     </text>

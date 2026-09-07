@@ -1,16 +1,16 @@
 import {BoundingBox} from "../../shared/models/bounding-box";
-import {Point} from "@angular/cdk/drag-drop";
+import {Point2D} from "../../shared/models/point2d";
 
 export class PathLayouter {
 
-  static bestPoints(p1: BoundingBox, p2: BoundingBox) {
+  static bestPoints(p1: BoundingBox, p2: BoundingBox): Point2D[] {
     //assumption is that both boxes do not intersect
     //since we only deal with bounding boxes, all relevant lines are parallel/orthogonal
 
     let xPoints = this.getPointsInOneDimension(p1.x, p1.w, p2.x, p2.w)
     let yPoints = this.getPointsInOneDimension(p1.y, p1.h, p2.y, p2.h)
-    let result1: Point = {x: xPoints[0], y: yPoints[0]}
-    let result2: Point = {x: xPoints[1], y: yPoints[1]}
+    let result1: Point2D = {x: xPoints[0], y: yPoints[0]}
+    let result2: Point2D = {x: xPoints[1], y: yPoints[1]}
     return [result1, result2];
   }
 
