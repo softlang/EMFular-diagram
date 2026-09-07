@@ -1,26 +1,26 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
-import {DraggableComponent, RectangleComponent, SingleVsDblClick} from "ngx-emfular-diagram";
+import {DraggableDirective, RectangleComponent, SingleVsDblClick} from "ngx-emfular-diagram";
 import {MyPositionable} from "../rect-draggable/rect-draggable.component";
 import {Subscription} from "rxjs";
 
 @Component({
   selector: '[demo-dblclick-rect]',
-  imports: [RectangleComponent],
+  imports: [RectangleComponent, DraggableDirective],
   templateUrl: './dblclick-rect.component.svg',
   styleUrl: './dblclick-rect.component.css'
 })
-export class DblclickRectComponent extends DraggableComponent<MyPositionable> implements OnChanges, OnDestroy {
+export class DblclickRectComponent implements OnChanges, OnDestroy {
 
+  @Input() elem!: MyPositionable
   @Input() timeout = 250
   @Output() singleClicked = new EventEmitter<MyPositionable>()
   @Output() dblClicked = new EventEmitter<MyPositionable>()
 
   whichClick!: SingleVsDblClick
-  protected singleClickSubscription?: Subscription;
-  protected doubleClickSubscription?: Subscription;
+  private singleClickSubscription?: Subscription;
+  private doubleClickSubscription?: Subscription;
 
-  override ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
+  ngOnChanges(changes: SimpleChanges) {
     if (changes['elem']||changes['timeout']) {
       this.cleanup()
       this.whichClick = new SingleVsDblClick(this.timeout)
@@ -29,7 +29,7 @@ export class DblclickRectComponent extends DraggableComponent<MyPositionable> im
     }
   }
 
-  override onClick() {
+  onClick() {
     this.whichClick.click()
   }
 
@@ -53,13 +53,12 @@ export class DblclickRectComponent extends DraggableComponent<MyPositionable> im
     this.elem.position.h = w
   }
 
-  protected cleanup() {
+  private cleanup() {
     this.singleClickSubscription?.unsubscribe()
     this.doubleClickSubscription?.unsubscribe()
   }
 
-  override ngOnDestroy() {
-    super.ngOnDestroy();
+  ngOnDestroy() {
     this.cleanup()
   }
 
