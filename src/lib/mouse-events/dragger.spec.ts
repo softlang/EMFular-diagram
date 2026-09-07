@@ -1,7 +1,10 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { Dragger } from './dragger';
-import { Positionable } from '../shared/models/positionable';
 import {Point2D} from "../shared/models/point2d";
+
+interface Positionable {
+    position: Point2D
+}
 
 describe('Dragger', () => {
 

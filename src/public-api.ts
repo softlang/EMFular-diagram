@@ -2,8 +2,6 @@
  * Public API Surface of arrows
  */
 
-export type {Identifiable} from './lib/shared/models/identifiable'; //gId: string - soft connection to Referencable
-export type {Positionable, Draggable} from './lib/shared/models/positionable';
 export type {Point2D} from './lib/shared/models/point2d';
 export type {BoundingBox} from './lib/shared/models/bounding-box';
 export * from './lib/shared/style-configs/svg-text-style'
