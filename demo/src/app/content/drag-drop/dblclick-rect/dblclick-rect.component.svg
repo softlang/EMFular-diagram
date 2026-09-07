@@ -1,4 +1,5 @@
 <svg:g rectangleG
+       [position]="elem.position"
        [dragPosition]="elem.position"
        [color]="elem.color"
        [attr.id]="elem.$gId"
