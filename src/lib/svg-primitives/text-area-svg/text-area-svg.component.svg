@@ -7,10 +7,10 @@
 </svg:text>
 <svg:foreignObject  *ngIf="isActive" [attr.x]="x" [attr.y]="y" [attr.width]="w" [attr.height]="h">
   <textarea class="html-text-area" [(ngModel)]="this.text" (focusout)="leaveTextInput()"
-         [style.font-family]="textStyle['font-family']"
-         [style.font-size]="textStyle['font-size']"
-         [style.font-weight]="textStyle['font-weight']"
-         [style.font-style]="textStyle['font-style']"
-         [style.color]="textStyle.fill"
+         [style.font-family]="textStyle.fontFamily"
+         [style.font-size]="textStyle.fontSize"
+         [style.font-weight]="textStyle.fontWeight"
+         [style.font-style]="textStyle.fontStyle"
+         [style.color]="textStyle.color"
   ></textarea>
 </svg:foreignObject>
