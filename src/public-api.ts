@@ -20,7 +20,7 @@ export * from './lib/arrows/arrow-between-points/arrow-between-points.component'
 
 export * from './lib/mouse-events/dragger'
 export * from './lib/mouse-events/single-vs-double-click'
-export * from './lib/mouse-events/draggable/draggable.component';
+export * from './lib/mouse-events/draggable/draggable.directive';
 
 export * from './lib/svg-primitives/text-area-svg/text-area-svg.component';
 export * from './lib/svg-primitives/rectangle/rectangle.component';
