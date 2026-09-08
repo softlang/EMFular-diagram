@@ -1,9 +1,9 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { Dragger } from './dragger';
-import {Point2D} from "../../shared/models/point2d";
+import { Point2D } from '../../shared/models/point2d';
 
 interface Positionable {
-    position: Point2D
+    position: Point2D;
 }
 
 describe('Dragger', () => {
@@ -21,7 +21,7 @@ describe('Dragger', () => {
         };
 
         onPositionChange = vi.fn();
-        dragger = new Dragger(element.position, onPositionChange);
+        dragger = new Dragger(() => element.position, onPositionChange);
     });
 
     afterEach(() => {
@@ -64,6 +64,7 @@ describe('Dragger', () => {
         expect(element.position.y).toBe(185);
         expect(dragger.wasReallyDragged).toBe(true);
         expect(onPositionChange).toHaveBeenCalledOnce();
+        expect(onPositionChange).toHaveBeenCalledWith(element.position);
     });
 
     it('uses incremental movement when dragging', () => {
@@ -85,6 +86,29 @@ describe('Dragger', () => {
         expect(element.position.x).toBe(25);
         expect(element.position.y).toBe(35);
         expect(onPositionChange).toHaveBeenCalledTimes(2);
+    });
+
+    it('uses a newly assigned position', () => {
+        dragger.startDrag(new MouseEvent('mousedown', {
+            clientX: 100,
+            clientY: 100
+        }));
+
+        const newPosition = {
+            x: 50,
+            y: 60
+        };
+        element.position = newPosition;
+
+        dragger.drag(new MouseEvent('mousemove', {
+            clientX: 110,
+            clientY: 120
+        }));
+
+        expect(element.position).toBe(newPosition);
+        expect(element.position.x).toBe(60);
+        expect(element.position.y).toBe(80);
+        expect(onPositionChange).toHaveBeenCalledWith(newPosition);
     });
 
     it('does not drag while inactive', () => {
@@ -203,8 +227,9 @@ describe('Dragger', () => {
             clientX: 100,
             clientY: 200
         }));
-        expect(dragger.dragActive).toBe(true)
+        expect(dragger.dragActive).toBe(true);
         expect(dragger.wasReallyDragged).toBe(false);
+
         dragger.drag(new MouseEvent('mousemove', {
             clientX: 110,
             clientY: 210
@@ -213,7 +238,7 @@ describe('Dragger', () => {
         expect(dragger.wasReallyDragged).toBe(true);
 
         expect(dragger.clickElem(new MouseEvent('click'))).toBe(false);
-        expect(dragger.dragActive).toBe(false)
+        expect(dragger.dragActive).toBe(false);
         expect(dragger.wasReallyDragged).toBe(false);
     });
 
