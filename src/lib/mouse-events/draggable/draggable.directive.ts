@@ -27,14 +27,6 @@ export class DraggableDirective implements OnInit, AfterViewInit, OnDestroy {
     private readonly elementRef: ElementRef<SVGElement>
   ) {}
 
-  // dragger that notifies access service about dragging
-  private createDragger(): Dragger {
-    return new Dragger(
-        () => this.dragPosition,
-        position => this.notifyPositionChange(position)
-    );
-  }
-
   private notifyPositionChange(pos: Point2D): void {
     this.positionChanged.emit(pos);
     this.svgAccessService.notifyPositionChange(
@@ -43,7 +35,10 @@ export class DraggableDirective implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.elemDragger = this.createDragger()
+    this.elemDragger = new Dragger(
+        () => this.dragPosition,
+        position => this.notifyPositionChange(position)
+    );
   }
 
   //originally to notify arrows of successful placement
