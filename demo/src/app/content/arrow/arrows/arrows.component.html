@@ -116,9 +116,10 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrow Styling</h2>
 
-<p>Arrow styling is mainly driven by three interfaces, one for the main arrow (shown below) and two more to control text styles and text path if a text is given.
+<p>Arrow styling is mainly driven by three interfaces, one for the main arrow (shown below) and two more that we explain when discussing text on arrows, since the control text styles and text path.
 Each style is accompanied by a directive so that lib users can easily apply a style to their own components.
-The styles are bound ass attr-bindings, making them native svg, so that they are exported with the svg.</p>
+The styles are bound as attr-bindings, making them native svg, so that they are exported with the svg.</p>
+
 <demo-highlighted-code [code]="arrowStyleConfig"></demo-highlighted-code>
 
 <p>Color is any string you could put into the corresponding style attribute (fill),
@@ -181,7 +182,7 @@ The styles are bound ass attr-bindings, making them native svg, so that they are
 </demo-highlighted-code>
 
 <p>
-    There are more attributes, that you can manually bind via attr-binding, but we only used those we considered broadly relevant for our interfaces and the corresponding directives.
+    There are more attributes that you can manually bind via attr-binding, but we only used those we considered broadly relevant for our interfaces and the corresponding directives.
     Especially, the interplay of textAnchor and startOffset might help on arranging text.
 </p>
 
