@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
-import {DraggableDirective, RectangleComponent, SingleVsDblClick} from "ngx-emfular-diagram";
+import {DraggableDirective, Point2D, RectangleComponent, SingleVsDblClick} from "ngx-emfular-diagram";
 import {MyPositionable} from "../rect-draggable/rect-draggable.component";
 import {Subscription} from "rxjs";
 
@@ -15,6 +15,7 @@ export class DblclickRectComponent implements OnChanges, OnDestroy {
   @Input() timeout = 250
   @Output() singleClicked = new EventEmitter<MyPositionable>()
   @Output() dblClicked = new EventEmitter<MyPositionable>()
+  @Output() positionChanged = new EventEmitter<Point2D>()
 
   whichClick!: SingleVsDblClick
   private singleClickSubscription?: Subscription;
@@ -27,6 +28,10 @@ export class DblclickRectComponent implements OnChanges, OnDestroy {
       this.singleClickSubscription = this.whichClick.singleClick$.subscribe(() => this.onSingleClick())
       this.doubleClickSubscription = this.whichClick.doubleClick$.subscribe(() => this.onDoubleClick())
     }
+  }
+
+  onPositionChange(pos: Point2D) {
+    this.positionChanged.emit(pos)
   }
 
   onClick() {

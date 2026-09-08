@@ -3,5 +3,6 @@
        [dragPosition]="elem.position"
        [color]="elem.color"
        [attr.id]="elem.$gId"
-       (elemReallyClicked)="onClick()">
+       (elemReallyClicked)="onClick()"
+       (positionChanged)="onPositionChange($event)">
 </svg:g>
