@@ -181,6 +181,29 @@ describe('DraggableDirective', () => {
         });
     });
 
+    it('continues dragging when the position input is replaced during a drag, using the new position as basis', () => {
+        const element = getElement();
+
+        element.dispatchEvent(new MouseEvent('mousedown', {
+            clientX: 100,
+            clientY: 100
+        }));
+
+        const newPosition: Point2D = {x: 50, y: 60};
+        host.position = newPosition;
+        fixture.detectChanges();
+
+        window.dispatchEvent(new MouseEvent('mousemove', {
+            clientX: 110,
+            clientY: 120
+        }));
+
+        expect(newPosition).toEqual({
+            x: 60,
+            y: 80
+        });
+    });
+
     it('cleans up the dragger when destroyed', () => {
         const element = getElement();
 
