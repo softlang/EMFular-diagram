@@ -15,7 +15,9 @@ import {Point2D} from '../../shared/models/point2d';
         id="test-element"
         [dragPosition]="position"
         (positionChanged)="positionChanged($event)"
-        (elemReallyClicked)="elemReallyClicked($event)">
+        (elemReallyClicked)="elemReallyClicked($event)"
+        (click)="preventDefault($event)"
+      >
       </g>
     </svg>
   `
@@ -25,6 +27,10 @@ class TestHostComponent {
 
     positionChanged = vi.fn<(position: Point2D) => void>();
     elemReallyClicked = vi.fn<($event: MouseEvent) => void>();
+
+    preventDefault(event: MouseEvent) {
+        event.preventDefault();
+    }
 }
 
 describe('DraggableDirective', () => {
@@ -89,12 +95,13 @@ describe('DraggableDirective', () => {
         });
     });
 
-    it('emits a real click', () => {
+    it('emits a real click - even though another click handler prevents the default action', () => {
         const element = getElement();
-        const event = new MouseEvent('click');
+        const event = new MouseEvent('click', {cancelable: true});
 
         element.dispatchEvent(event);
 
+        expect(event.defaultPrevented).toBe(true);
         expect(host.elemReallyClicked).toHaveBeenCalledWith(event);
     });
 
