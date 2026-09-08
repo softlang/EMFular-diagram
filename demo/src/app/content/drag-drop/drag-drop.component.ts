@@ -98,7 +98,6 @@ export class DragDropComponent {
     this.formDblClick0.patchValue({ w: this.valueDblCl.position.w, h: this.valueDblCl.position.h})
   }
 
-  protected readonly inputDraggableTemplate = inputDraggableTemplate;
   protected readonly BindingsForDrag = BindingsForDrag;
   protected readonly exampleDragRect = exampleDragRect;
   protected readonly dblClick0 = dblClick0;
