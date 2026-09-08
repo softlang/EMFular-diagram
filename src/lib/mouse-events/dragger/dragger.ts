@@ -14,9 +14,8 @@ export class Dragger {
     this.endDrag(event);
   };
 
-
   constructor(
-      private position: Point2D,
+      private readonly getPosition: () => Point2D,
       private readonly onPositionChange: (pos: Point2D) => void = ()=>{}
   ) {}
 
@@ -29,22 +28,19 @@ export class Dragger {
     window.addEventListener('mouseup', this.boundEndDrag);
   }
 
-  public setPosition(position: Point2D) {
-    this.position = position;
-  }
-
   // returns true in the case of a real drag event, false otherwise
   drag(event: MouseEvent): boolean {
     if (this.dragActive) {
       this.wasReallyDragged = true;
       event.preventDefault();
+      const position = this.getPosition();
       const dragX = event.clientX;
-      this.position.x+= (dragX - this.dragStartX);
+      position.x+= (dragX - this.dragStartX);
       this.dragStartX = dragX;
       const dragY = event.clientY;
-      this.position.y+= (dragY - this.dragStartY);
+      position.y+= (dragY - this.dragStartY);
       this.dragStartY = dragY;
-      this.onPositionChange(this.position);
+      this.onPositionChange(position);
       return true;
     }
     return false;

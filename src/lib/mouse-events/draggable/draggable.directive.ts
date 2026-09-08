@@ -3,7 +3,6 @@ import {
   Directive, ElementRef,
   EventEmitter, HostListener,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -15,7 +14,7 @@ import {Point2D} from "../../shared/models/point2d";
 @Directive({
   selector: '[dragPosition]',
 })
-export class DraggableDirective implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class DraggableDirective implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() dragPosition!: Point2D;
   @Output() elemReallyClicked = new EventEmitter<MouseEvent>();
@@ -29,8 +28,11 @@ export class DraggableDirective implements OnInit, AfterViewInit, OnChanges, OnD
   ) {}
 
   // dragger that notifies access service about dragging
-  private createDragger(pos: Point2D): Dragger {
-    return new Dragger(pos, position => this.notifyPositionChange(position));
+  private createDragger(): Dragger {
+    return new Dragger(
+        () => this.dragPosition,
+        position => this.notifyPositionChange(position)
+    );
   }
 
   private notifyPositionChange(pos: Point2D): void {
@@ -41,7 +43,7 @@ export class DraggableDirective implements OnInit, AfterViewInit, OnChanges, OnD
   }
 
   ngOnInit() {
-    this.elemDragger = this.createDragger(this.dragPosition)
+    this.elemDragger = this.createDragger()
   }
 
   //originally to notify arrows of successful placement
@@ -49,11 +51,6 @@ export class DraggableDirective implements OnInit, AfterViewInit, OnChanges, OnD
     this.svgAccessService.notifyPositionChange(
         this.elementRef.nativeElement.id
     )
-  }
-
-  //respect external position changes, but keep drag active
-  ngOnChanges() {
-    this.elemDragger?.setPosition(this.dragPosition);
   }
 
   @HostListener('mousedown', ['$event'])
