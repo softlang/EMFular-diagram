@@ -104,19 +104,13 @@ export const markerStyleConfig =
    </marker>
  </svg:defs>
  <g arrow-points
-  [startX]="10"
-  [startY]="10"
-  [endX]="190"
-  [endY]="100"
-  [id]="'arrowstyle0'"
-  [arrowStyle]="{
-    color: form3.value.color,
-    strokeDashArray: form3.value.dashed,
-    strokeWidth: form3.value.strokeWidth,
-    startPointer: form3.value.startMarker,
-    endPointer: form3.value.endMarker
-    }"
- ></g>
+           [startX]="10"
+           [startY]="10"
+           [endX]="190"
+           [endY]="100"
+           [id]="'arrowstyle0'"
+           [arrowStyle]="form3.value"
+        ></g>
 </svg:g>`
 
 
@@ -144,7 +138,7 @@ export const textAndStyles = `<svg:g>
            [startY]="10"
            [endX]="190"
            [endY]="100"
-           [arrowStyle]="{color: 'blue', dashed: '1 2'}"
+           [arrowStyle]="{color: 'blue', strokeDashArray: '1'}"
            [text]="form4.value.text"
            [textStyle]="form4.value.textStyle"
         ></g>
@@ -176,6 +170,15 @@ export const arrowDrag = `
 `
 
 export const arrowBoxesDrag = `
+    //with :
+    onPosChangeArBetwBoxes(elem: MyPositionable, isActive: boolean) {
+        if(isActive) {
+            elem.position = {
+                ...elem.position
+            };
+        }
+    }
+    
 <svg:g demo-preview>
         <g demo-dblclick-rect
            [elem]="dragBlue"
@@ -192,13 +195,4 @@ export const arrowBoxesDrag = `
            [start]="dragBlue.position"
            [end]="dragRed.position"
         ></g>
-    </svg:g>
-
-//with :
-onPosChangeArBetwBoxes(elem: MyPositionable, isActive: boolean) {
-        if(isActive) {
-            elem.position = {
-                ...elem.position
-            };
-        }
-    }`
+    </svg:g>`
