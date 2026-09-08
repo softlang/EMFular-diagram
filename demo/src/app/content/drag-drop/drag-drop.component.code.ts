@@ -82,8 +82,7 @@ export const inputDraggableTemplate = `
 </svg:g>
 `
 
-export const exampleDragRect = `
-export interface MyPositionable {
+export const exampleDragRect = `export interface MyPositionable {
   $gId: string;
   position: BoundingBox;
   color: string;
@@ -91,17 +90,19 @@ export interface MyPositionable {
 
 @Component({
   selector: '[demo-rect]',
-  imports: [RectangleComponent],
+  imports: [RectangleComponent, DraggableDirective],
   templateUrl: './rect-draggable.component.svg',
   styleUrl: './rect-draggable.component.css'
 })
-export class RectDraggableComponent extends DraggableComponent<MyPositionable> {
+export class RectDraggableComponent {
 
-  override onClick() {
+  @Input() elem!: MyPositionable;
+
+  onRealClick() {
     this.elem.color = this.randomColor()
   }
 
-  randomColor() {
+  private randomColor() {
     return'#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
   }
 
@@ -109,12 +110,12 @@ export class RectDraggableComponent extends DraggableComponent<MyPositionable> {
 // template:
 <svg:g rectangleG
        [position]="elem.position"
+       [dragPosition]="elem.position"
        [color]="elem.color"
-        [attr.id]="elem.$gId"
-       (mousedown)="startDrag($event)"
-       (click)="clickElem($event)">
-</svg:g>
-`
+       [attr.id]="elem.$gId"
+       (elemReallyClicked)="onRealClick()"
+>
+</svg:g>`
 
 export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
 
@@ -156,7 +157,7 @@ export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
       <svg:g>
         <g demo-rect
            [elem]="valueDrag0"
-           (elemReallyClicked)="onClickFormDrag0()"
+           (click)="onClickFormDrag0()"
        >
         </g>
     </svg:g>
