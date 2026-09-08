@@ -16,7 +16,7 @@ export class Dragger {
 
 
   constructor(
-      private readonly position: Point2D,
+      private position: Point2D,
       private readonly onPositionChange: (pos: Point2D) => void = ()=>{}
   ) {}
 
@@ -27,6 +27,10 @@ export class Dragger {
     this.wasReallyDragged = false;
     window.addEventListener('mousemove', this.boundDrag);
     window.addEventListener('mouseup', this.boundEndDrag);
+  }
+
+  public setPosition(position: Point2D) {
+    this.position = position;
   }
 
   // returns true in the case of a real drag event, false otherwise

@@ -5,8 +5,8 @@ import {
   Input,
   OnChanges,
   OnDestroy,
+  OnInit,
   Output,
-  SimpleChanges
 } from '@angular/core';
 import {SVGAccessService} from '../../shared/svg-access.service';
 import {Dragger} from "../dragger/dragger";
@@ -15,7 +15,7 @@ import {Point2D} from "../../shared/models/point2d";
 @Directive({
   selector: '[dragPosition]',
 })
-export class DraggableDirective implements AfterViewInit, OnChanges, OnDestroy {
+export class DraggableDirective implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
   @Input() dragPosition!: Point2D;
   @Output() elemReallyClicked = new EventEmitter<MouseEvent>();
@@ -25,12 +25,12 @@ export class DraggableDirective implements AfterViewInit, OnChanges, OnDestroy {
 
   constructor(
     private readonly svgAccessService: SVGAccessService,
-    private elementRef: ElementRef<SVGElement>
+    private readonly elementRef: ElementRef<SVGElement>
   ) {}
 
   // dragger that notifies access service about dragging
   private createDragger(pos: Point2D): Dragger {
-    return new Dragger(pos, ()=> this.notifyPositionChange(pos));
+    return new Dragger(pos, position => this.notifyPositionChange(position));
   }
 
   private notifyPositionChange(pos: Point2D): void {
@@ -40,6 +40,10 @@ export class DraggableDirective implements AfterViewInit, OnChanges, OnDestroy {
     )
   }
 
+  ngOnInit() {
+    this.elemDragger = this.createDragger(this.dragPosition)
+  }
+
   //originally to notify arrows of successful placement
   ngAfterViewInit() {
     this.svgAccessService.notifyPositionChange(
@@ -47,9 +51,9 @@ export class DraggableDirective implements AfterViewInit, OnChanges, OnDestroy {
     )
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.elemDragger?.destroy()
-    this.elemDragger = this.createDragger(this.dragPosition);
+  //respect external position changes, but keep drag active
+  ngOnChanges() {
+    this.elemDragger?.setPosition(this.dragPosition);
   }
 
   @HostListener('mousedown', ['$event'])
