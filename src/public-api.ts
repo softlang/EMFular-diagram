@@ -3,7 +3,7 @@
  */
 
 export type {Point2D} from './lib/shared/models/point2d';
-export type {BoundingBox} from './lib/shared/models/bounding-box';
+export * from './lib/shared/models/bounding-box';
 export * from './lib/shared/style-configs/svg-text-style'
 export * from './lib/shared/style-configs/svg-text-style.directive';
 export * from './lib/arrows/arrow-style';

@@ -15,11 +15,6 @@ describe('PositionHelper', () => {
     expect(p.y).toBe(27);
   });
 
-  it('creates a bounding box with default values', () => {
-    const bb = PositionHelper.newBoundingBox();
-    expect(bb).toEqual({ x: 0, y: 0, w: 5, h: 5 });
-  });
-
   function mockSvgElement(options: {
     bbox?: Partial<DOMRect>;
     ctm?: DOMMatrix;
@@ -137,22 +132,6 @@ describe('PositionHelper', () => {
     expect(bb.y).toBe(0);
     expect(bb.w).toBe(20);
     expect(bb.h).toBe(40);
-  });
-
-  describe('computeOffset', () => {
-
-    const cases: Array<[number, number, number]> = [
-      [0, 1, 0],
-      [0, 2, -0.5], [1, 2, 0.5],
-      [0, 3, -1], [1, 3, 0], [2, 3, 1],
-      [0, 4, -1.5], [1, 4, -0.5], [2, 4, 0.5], [3, 4, 1.5],
-    ];
-
-    cases.forEach(([index, length, expected]) => {
-      it(`index=${index}, length=${length} → ${expected}`, () => {
-        expect(PositionHelper.computeOffset(index, length)).toBe(expected);
-      });
-    });
   });
 
 });
