@@ -61,8 +61,9 @@ export const arrowBetweenElemsCode = `<svg:g>
         </g>
         <g rectangleG
            id="rectangle_0"
-           [position]="{x: 80,y: 80,w: 20,h: 20}"
+           [position]="{x: 80,y: 80,w: 30,h: 20}"
            color="blue"
+           transform="rotate(25 95 90) scale(1.1)"
         >
         </g>
         <g rectangleG
@@ -164,7 +165,7 @@ export const arrowDrag = `
 //and change is:
     onDoubleClick(id: string) {
         if(this.form5.value.notifyAutomatically) {
-            this.svgAccessService.notifyPositionChange(id)
+            this.svgPositionChangeService.notifyPositionChange(id)
         }
     }
 `

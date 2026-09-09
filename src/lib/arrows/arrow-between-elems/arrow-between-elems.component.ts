@@ -11,10 +11,11 @@ import {v4 as uuidv4} from "uuid";
 
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
-import {SVGAccessService} from "../../shared/svg-access.service";
+import {SvgPositionChangeService} from "../../shared/svg-position-change.service";
 import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
+import {BoundingBoxTransformer} from "../utils/bounding-box-transformer";
 
 
 @Component({
@@ -33,19 +34,20 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   @Input() textStyle: SvgTextStyle = DEFAULT_TEXT_STYLE;
   @Input() textPathStyle: SvgTextPathStyle = {};
 
-  start?: BoundingBox;
-  end?: BoundingBox;
+  startBox?: BoundingBox;
+  endBox?: BoundingBox;
 
-  @ViewChild('arrow') node!: ElementRef<SVGGraphicsElement>;
+  @ViewChild('arrow') arrowSvgElem!: ElementRef<SVGGraphicsElement>;
 
   changeSubscription: Subscription;
 
   //idea: compute the two input positions as relative to the current elem
   constructor(
-    private svgAccessService: SVGAccessService,
-    private cdr: ChangeDetectorRef) {
-    this.changeSubscription = this.svgAccessService.listenToPositionChange().subscribe(nextString => {
-      if (nextString == this.startGID || nextString == this.endGID) {
+    private svgPositionChangeService: SvgPositionChangeService,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.changeSubscription = this.svgPositionChangeService.positionChange.subscribe(nextString => {
+      if (nextString === this.startGID || nextString === this.endGID) {
         setTimeout(() => {
           this.computePositionsByIds()
           this.cdr.detectChanges()
@@ -64,17 +66,22 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   }
 
   private computePositionsByIds() {
-    if (this.node?.nativeElement){
-      let rel = this.node.nativeElement as SVGGraphicsElement
-      let startOpt = this.svgAccessService.getRelativePosition(this.startGID, rel)
-      if (startOpt) {
-        this.start = startOpt
+    if (this.arrowSvgElem?.nativeElement) {
+      const arrow = this.arrowSvgElem.nativeElement;
+      const startElem = this.getElemById(this.startGID);
+      if (startElem) {
+        this.startBox = BoundingBoxTransformer.getRelativeBBox(startElem, arrow);
       }
-      let endOpt = this.svgAccessService.getRelativePosition(this.endGID, rel)
-      if (endOpt) {
-        this.end = endOpt
+      const endElem = this.getElemById(this.endGID);
+      if (endElem) {
+        this.endBox = BoundingBoxTransformer.getRelativeBBox(endElem, arrow);
       }
     }
+  }
+
+  private getElemById(id: string): SVGGraphicsElement | undefined {
+    const elem = document.getElementById(id)
+    return elem as unknown as SVGGraphicsElement
   }
 
   ngOnDestroy() {

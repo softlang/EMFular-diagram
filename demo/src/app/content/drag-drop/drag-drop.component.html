@@ -8,8 +8,8 @@ Our library offers classes and a drag directive, specifically for this purpose.<
 
 <p>Our library exports a dragger, that handles a small state machine to distinguish drag from drop and updates its input position.
     It also reports any position change over a given callback.
-    The draggable directive maintains one dragger internally, and makes sure that drag events are correctly reported to the SVGAccessService (that communicates position changes), based on the attr.id of the directive host.
-    It provides two outputs, positionChanged for immediate reactions without listening to the svgAccessService and the output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
+    The draggable directive maintains one dragger internally, and makes sure that drag events are correctly reported to the SvgPositionChangeService based on the attr.id of the directive host.
+    It provides two outputs, positionChanged for immediate reactions without listening to the SvgPositionChangeService and the output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
     We strongly suggest to use the draggable directive instead of using the dragger directly.
 </p>
 

@@ -78,7 +78,7 @@ Depending on how you want to specify these points, you can choose between these 
 
 <p>It is also possible to define an arrow as a connector between two elements, given by their IDs (that is the id attribute of the svg element).
    The component will then compute bounding boxes for both elements and then find best points to connect them.</p>
-<p>Be aware that the computed arrow attachment happens on the bounding box, so it might look strange if your shape is far from that box (see triangles below for examples).</p>
+<p>Be aware that the computed arrow attachment happens on the bounding box - you can see this on the scaled and rotated rectangle and when connecting both triangles.</p>
 
 <demo-simple-playground
         [form]="form2"
@@ -104,9 +104,9 @@ Depending on how you want to specify these points, you can choose between these 
         </g>
         <g rectangleG
            id="rectangle_blue"
-           [position]="{x: 80,y: 80,w: 20,h: 20}"
+           [position]="{x: 80,y: 80,w: 30,h: 20}"
            color="blue"
-        >
+           transform="rotate(25 95 90) scale(1.1)">
         </g>
         <g rectangleG
            id="rectangle_red"
@@ -223,7 +223,7 @@ The styles are bound as attr-bindings, making them native svg, so that they are 
 
 <h3>Arrow Notification on Arrows Between Elements</h3>
 <p>
-    Arrows between elements listen to the `svgAccessService`, to see changes of one of the relevant ids for start and end.
+    Arrows between elements listen to the `svgPositionChangeService`, to see changes of one of the relevant ids for start and end.
     So make sure that any component that you control notifies the service about movements, and that every component that needs to adapt, subscribes to its notifications and filters on relevant elements.
     Our drag directive already communicates its position changes (both to the service and locally via an output), but we have no control over your self-written components.
 </p>
@@ -232,7 +232,7 @@ The styles are bound as attr-bindings, making them native svg, so that they are 
 <p>
     In the example below you can see that all drag events are indeed correctly seen but that the double click event that changes the position of the box is not captured, unless we notify the service manually.
     You can activate this notification in the control and will see it afterwards on every double click induced position change.
-    If you have any methods that could change an object's position, notify the svgAccessService of these changes for the arrow to see the change.
+    If you have any methods that could change an object's position, notify the svgPositionChangeService of these changes for the arrow to see the change.
 </p>
 
 <demo-simple-playground

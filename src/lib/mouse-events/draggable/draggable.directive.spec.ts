@@ -4,7 +4,7 @@ import {By} from '@angular/platform-browser';
 import {describe, expect, it, vi, beforeEach, afterEach} from 'vitest';
 
 import {DraggableDirective} from './draggable.directive';
-import {SVGAccessService} from '../../shared/svg-access.service';
+import {SvgPositionChangeService} from '../../shared/svg-position-change.service';
 import {Point2D} from '../../shared/models/point2d';
 
 @Component({
@@ -50,7 +50,7 @@ describe('DraggableDirective', () => {
             imports: [TestHostComponent],
             providers: [
                 {
-                    provide: SVGAccessService,
+                    provide: SvgPositionChangeService,
                     useValue: svgAccessService
                 }
             ]

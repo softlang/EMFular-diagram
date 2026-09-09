@@ -6,7 +6,7 @@ import {
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {RectDraggableComponent} from "./rect-draggable/rect-draggable.component";
 import {FormControl, FormGroup} from "@angular/forms";
-import {SVGAccessService} from "ngx-emfular-diagram";
+import {SvgPositionChangeService} from "ngx-emfular-diagram";
 import {DblclickRectComponent} from "./dblclick-rect/dblclick-rect.component";
 
 @Component({
@@ -25,8 +25,8 @@ export class DragDropComponent {
   demo0id = 'demo-rect-drag'
   demo1id = 'dblclick0'
 
-  constructor(svgAccessService: SVGAccessService) {
-    svgAccessService.positionChange.subscribe(position => {
+  constructor(svgPositionChangeService: SvgPositionChangeService) {
+    svgPositionChangeService.positionChange.subscribe(position => {
       if(position == this.demo0id) {
         this.onPositionChangeFormDrag0()
       } else if(position == this.demo1id) {

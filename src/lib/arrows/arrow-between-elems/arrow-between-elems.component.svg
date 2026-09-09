@@ -1,8 +1,8 @@
 <svg:g #arrow>
-  <g arrow-boxes *ngIf="start && end"
+  <g arrow-boxes *ngIf="startBox && endBox"
      [id]="id"
-     [start]="start"
-     [end]="end"
+     [start]="startBox"
+     [end]="endBox"
      [arrowStyle]="arrowStyle"
      [text]="text"
      [textStyle]="textStyle"

@@ -5,7 +5,7 @@ import {
     ArrowBetweenPointsComponent,
     RectangleComponent,
     TriangleComponent,
-    ArrowBetweenElemsComponent, SVGAccessService
+    ArrowBetweenElemsComponent, SvgPositionChangeService
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
@@ -36,7 +36,7 @@ import {RadioOptions} from "../../../layout/form-helpers";
 })
 export class ArrowsComponent {
 
-    constructor(public svgAccessService: SVGAccessService) {
+    constructor(public svgPositionChangeService: SvgPositionChangeService) {
     }
 
   form0: FormGroup<{
@@ -69,8 +69,8 @@ export class ArrowsComponent {
   })
 
     form2 = new FormGroup({
-        startID: new FormControl("rectangle_blue"),
-        endID: new FormControl("triangle_green"),
+        startID: new FormControl("triangle_black"),
+        endID: new FormControl("rectangle_red"),
     })
 
     form2_radioOptions: RadioOptions = {
@@ -154,7 +154,7 @@ export class ArrowsComponent {
 
     onDoubleClick(id: string) {
         if(this.form5.value.notifyAutomatically) {
-            this.svgAccessService.notifyPositionChange(id)
+            this.svgPositionChangeService.notifyPositionChange(id)
         }
     }
 
