@@ -70,11 +70,11 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
       const arrow = this.arrowSvgElem.nativeElement;
       const startElem = this.getElemById(this.startGID);
       if (startElem) {
-        this.startBox = PositionHelper.getSvgBBPosition(startElem, arrow);
+        this.startBox = PositionHelper.getRelativeBBox(startElem, arrow);
       }
       const endElem = this.getElemById(this.endGID);
       if (endElem) {
-        this.endBox = PositionHelper.getSvgBBPosition(endElem, arrow);
+        this.endBox = PositionHelper.getRelativeBBox(endElem, arrow);
       }
     }
   }

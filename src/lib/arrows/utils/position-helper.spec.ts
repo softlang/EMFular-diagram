@@ -41,7 +41,7 @@ describe('PositionHelper', () => {
       screenCtm: new DOMMatrix()
     });
 
-    const bb = PositionHelper.absolutePosition(elem);
+    const bb = PositionHelper.absoluteBBox(elem);
 
     expect(bb).toEqual({ x: 10, y: 20, w: 100, h: 50 });
   });
@@ -53,7 +53,7 @@ describe('PositionHelper', () => {
       screenCtm: new DOMMatrix()
     });
 
-    const bb = PositionHelper.absolutePosition(elem);
+    const bb = PositionHelper.absoluteBBox(elem);
 
     expect(bb.x).toBe(20);
     expect(bb.y).toBe(40);
@@ -69,7 +69,7 @@ describe('PositionHelper', () => {
       screenCtm: new DOMMatrix()
     });
 
-    PositionHelper.makeRelativeToElem(p, elem);
+    PositionHelper.makePointRelativeToElem(p, elem);
 
     expect(p.x).toBe(90);
     expect(p.y).toBe(30);
@@ -87,7 +87,7 @@ describe('PositionHelper', () => {
       screenCtm: new DOMMatrix()
     });
 
-    const bb = PositionHelper.getSvgBBPosition(elem, node);
+    const bb = PositionHelper.getRelativeBBox(elem, node);
 
     expect(bb.x).toBe(40);
     expect(bb.y).toBe(40);
@@ -101,7 +101,7 @@ describe('PositionHelper', () => {
       ctm: new DOMMatrix([2, 0, 0, 1, 0, 0]),
       screenCtm: new DOMMatrix()
     });
-    const bb = PositionHelper.absolutePosition(elem);
+    const bb = PositionHelper.absoluteBBox(elem);
     expect(bb.x).toBe(0);
     expect(bb.y).toBe(0);
     expect(bb.w).toBe(20);
@@ -114,7 +114,7 @@ describe('PositionHelper', () => {
       ctm: new DOMMatrix([1, 0, 0, 3, 0, 0]),
       screenCtm: new DOMMatrix()
     });
-    const bb = PositionHelper.absolutePosition(elem);
+    const bb = PositionHelper.absoluteBBox(elem);
     expect(bb.x).toBe(0);
     expect(bb.y).toBe(0);
     expect(bb.w).toBe(10);
@@ -127,7 +127,7 @@ describe('PositionHelper', () => {
       ctm: new DOMMatrix([2, 0, 0, 2, 0, 0]),
       screenCtm: new DOMMatrix()
     });
-    const bb = PositionHelper.absolutePosition(elem);
+    const bb = PositionHelper.absoluteBBox(elem);
     expect(bb.x).toBe(0);
     expect(bb.y).toBe(0);
     expect(bb.w).toBe(20);
