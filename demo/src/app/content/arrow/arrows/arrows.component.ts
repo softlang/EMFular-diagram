@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import {SvgReactivePlaygroundComponent} from "../../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {
-    ArrowBetweenPointsComponent,
     ArrowBetweenBoxesComponent,
+    ArrowBetweenPointsComponent,
     RectangleComponent,
     TriangleComponent,
     ArrowBetweenElemsComponent, SVGAccessService
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
-    arrowBetweenBoxesCode,
-    arrowBetweenElemsCode,
+    arrowBetweenBoxesCode, arrowBetweenElemsCode,
     arrowBetweenPointsCode, arrowBoxesDrag, arrowDrag,
     arrowStyleConfig, markerStyleConfig, textAndStyles, textAndStylesCode
 } from "./arrows.component.code";
@@ -30,6 +29,7 @@ import {RadioOptions} from "../../../layout/form-helpers";
         TriangleComponent,
         HighlightedCodeComponent,
         DblclickRectComponent,
+        ArrowBetweenPointsComponent,
     ],
   templateUrl: './arrows.component.html',
   styleUrl: './arrows.component.css'
@@ -90,21 +90,21 @@ export class ArrowsComponent {
 
     form3 = new FormGroup({
         color: new FormControl("red"),
-        dashed: new FormControl('1 2 1'),
+        strokeDashArray: new FormControl('1 2 1'),
         strokeWidth: new FormControl(1),
-        startMarker: new FormControl("B"),
-        endMarker: new FormControl("A"),
+        startPointer: new FormControl("B"),
+        endPointer: new FormControl("A"),
     })
 
     form3_radioOptions: RadioOptions = {
-        startMarker: [
+        startPointer: [
             { value: 'A', label: 'Pointer' },
             { value: 'B', label: 'Circle' },
             { value: 'C', label: 'Red X' },
             { value: 'D', label: 'Green Lines' },
             { value: undefined, label: '-' },
         ],
-        endMarker: [
+        endPointer: [
             { value: 'A', label: 'Pointer' },
             { value: 'B', label: 'Circle' },
             { value: 'C', label: 'Red X' },
@@ -189,8 +189,8 @@ export class ArrowsComponent {
   protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
   protected readonly arrowStyleConfig = arrowStyleConfig;
     protected readonly markerStyleConfig = markerStyleConfig;
+    protected readonly textAndStylesCode = textAndStylesCode;
     protected readonly textAndStyles = textAndStyles;
     protected readonly arrowDrag = arrowDrag;
     protected readonly arrowBoxesDrag = arrowBoxesDrag;
-    protected readonly textAndStylesCode = textAndStylesCode;
 }

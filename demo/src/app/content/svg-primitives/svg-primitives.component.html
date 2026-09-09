@@ -22,8 +22,9 @@
 <h2>Triangles</h2>
 
 <p>
-    Triangles are defined over three input Point2Ds, A, B, C, and a color string.
-    For any other free position shapes, you can just generalize this model.
+    Triangles are defined over three input Point2Ds, A, B, C.
+    An additional input `color` defines a fill-color (otherwise black).
+    This color becomes an inner svg property and is hence exported on svg download.
 </p>
 <demo-simple-playground
         [form]="form0"
@@ -46,7 +47,7 @@
     If not rotated, it has sides parallel to the axes, just like a bounding box, that it consumes as input.
     The second input is to define a color (otherwise black).
     This color becomes an inner svg property and is hence exported on svg download.
-    You can also rotate the example rectangle, but we control the rotation by external style, hence exporting it to an svg would not transport the rotation.
+    You can also rotate the example rectangle, since we gave it a transform attribute.
 </p>
 <demo-simple-playground
         [form]="form1"

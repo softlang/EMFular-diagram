@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {
-  BindingsForDrag, dblClick0,
-  draggableInterface, exampleDragRect,
-  inputDraggableTemplate
+  BindingsForDrag, dblClick0, exampleDragRect,
 } from "./drag-drop.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {RectDraggableComponent} from "./rect-draggable/rect-draggable.component";
@@ -98,9 +96,7 @@ export class DragDropComponent {
     this.formDblClick0.patchValue({ w: this.valueDblCl.position.w, h: this.valueDblCl.position.h})
   }
 
-  protected readonly draggableInterface = draggableInterface;
   protected readonly BindingsForDrag = BindingsForDrag;
-  protected readonly inputDraggableTemplate = inputDraggableTemplate;
   protected readonly exampleDragRect = exampleDragRect;
   protected readonly dblClick0 = dblClick0;
 }
