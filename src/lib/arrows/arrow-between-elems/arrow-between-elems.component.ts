@@ -15,6 +15,7 @@ import {SVGAccessService} from "../../shared/svg-access.service";
 import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
+import {PositionHelper} from "../utils/position-helper";
 
 
 @Component({
@@ -66,15 +67,28 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   private computePositionsByIds() {
     if (this.node?.nativeElement){
       let rel = this.node.nativeElement as SVGGraphicsElement
-      let startOpt = this.svgAccessService.getRelativePosition(this.startGID, rel)
+      let startOpt = this.getRelativePosition(this.startGID, rel)
       if (startOpt) {
         this.start = startOpt
       }
-      let endOpt = this.svgAccessService.getRelativePosition(this.endGID, rel)
+      let endOpt = this.getRelativePosition(this.endGID, rel)
       if (endOpt) {
         this.end = endOpt
       }
     }
+  }
+
+  private getRelativePosition(id: string, node: SVGGraphicsElement) {
+    let elem = this.getElemById(id)
+    if (elem) {
+      return PositionHelper.getSvgBBPosition(elem, node)
+    }
+    return undefined
+  }
+
+  private getElemById(id: string): SVGGraphicsElement | undefined {
+    let elem = document.getElementById(id)
+    return elem as unknown as SVGGraphicsElement
   }
 
   ngOnDestroy() {

@@ -1,5 +1,5 @@
-import {BoundingBox} from "../models/bounding-box";
-import {Point2D} from "../models/point2d";
+import {BoundingBox} from "../../shared/models/bounding-box";
+import {Point2D} from "../../shared/models/point2d";
 
 export class PositionHelper {
 
