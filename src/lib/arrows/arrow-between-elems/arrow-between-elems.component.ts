@@ -45,7 +45,7 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   constructor(
     private svgPositionChangeService: SvgPositionChangeService,
     private cdr: ChangeDetectorRef) {
-    this.changeSubscription = this.svgPositionChangeService.listenToPositionChange().subscribe(nextString => {
+    this.changeSubscription = this.svgPositionChangeService.positionChange.subscribe(nextString => {
       if (nextString == this.startGID || nextString == this.endGID) {
         setTimeout(() => {
           this.computePositionsByIds()

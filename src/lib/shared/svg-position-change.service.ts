@@ -6,13 +6,8 @@ import {Observable, Subject} from "rxjs";
 })
 export class SvgPositionChangeService {
 
-  positionChange: Subject<string> = new Subject<string>();
-
-  constructor() { }
-
-  listenToPositionChange(): Observable<string> {
-    return this.positionChange.asObservable()
-  }
+  private readonly positionChangeSubject = new Subject<string>();
+  readonly positionChange: Observable<string> = this.positionChangeSubject.asObservable();
 
   /**
    * Notifies about the given component id and also about all child ids, since they might have moved as well.
@@ -21,9 +16,9 @@ export class SvgPositionChangeService {
   notifyPositionChange(id: string) {
     const elem = document.getElementById(id);
     if (elem) {
-      this.positionChange.next(id);
+      this.positionChangeSubject.next(id);
       elem.querySelectorAll('[id]').forEach(child => {
-        this.positionChange.next(child.id);
+        this.positionChangeSubject.next(child.id);
       });
     }
   }
@@ -34,7 +29,7 @@ export class SvgPositionChangeService {
    * @param id
    */
   notifyPositionChangeWithoutCascade(id: string) {
-    this.positionChange.next(id);
+    this.positionChangeSubject.next(id);
   }
 
 }
