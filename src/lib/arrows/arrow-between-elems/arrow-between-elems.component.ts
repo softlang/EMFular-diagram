@@ -34,19 +34,20 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   @Input() textStyle: SvgTextStyle = DEFAULT_TEXT_STYLE;
   @Input() textPathStyle: SvgTextPathStyle = {};
 
-  start?: BoundingBox;
-  end?: BoundingBox;
+  startBox?: BoundingBox;
+  endBox?: BoundingBox;
 
-  @ViewChild('arrow') node!: ElementRef<SVGGraphicsElement>;
+  @ViewChild('arrow') arrowSvgElem!: ElementRef<SVGGraphicsElement>;
 
   changeSubscription: Subscription;
 
   //idea: compute the two input positions as relative to the current elem
   constructor(
     private svgPositionChangeService: SvgPositionChangeService,
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef
+  ) {
     this.changeSubscription = this.svgPositionChangeService.positionChange.subscribe(nextString => {
-      if (nextString == this.startGID || nextString == this.endGID) {
+      if (nextString === this.startGID || nextString === this.endGID) {
         setTimeout(() => {
           this.computePositionsByIds()
           this.cdr.detectChanges()
@@ -65,21 +66,21 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   }
 
   private computePositionsByIds() {
-    if (this.node?.nativeElement) {
-      const node = this.node.nativeElement;
+    if (this.arrowSvgElem?.nativeElement) {
+      const arrow = this.arrowSvgElem.nativeElement;
       const startElem = this.getElemById(this.startGID);
       if (startElem) {
-        this.start = PositionHelper.getSvgBBPosition(startElem, node);
+        this.startBox = PositionHelper.getSvgBBPosition(startElem, arrow);
       }
       const endElem = this.getElemById(this.endGID);
       if (endElem) {
-        this.end = PositionHelper.getSvgBBPosition(endElem, node);
+        this.endBox = PositionHelper.getSvgBBPosition(endElem, arrow);
       }
     }
   }
 
   private getElemById(id: string): SVGGraphicsElement | undefined {
-    let elem = document.getElementById(id)
+    const elem = document.getElementById(id)
     return elem as unknown as SVGGraphicsElement
   }
 
