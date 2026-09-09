@@ -78,7 +78,7 @@ Depending on how you want to specify these points, you can choose between these 
 
 <p>It is also possible to define an arrow as a connector between two elements, given by their IDs (that is the id attribute of the svg element).
    The component will then compute bounding boxes for both elements and then find best points to connect them.</p>
-<p>Be aware that the computed arrow attachment happens on the bounding box, so it might look strange if your shape is far from that box (see triangles below for examples).</p>
+<p>Be aware that the computed arrow attachment happens on the bounding box - you can see this on the scaled and rotated rectangle and when connecting both triangles.</p>
 
 <demo-simple-playground
         [form]="form2"
@@ -104,9 +104,9 @@ Depending on how you want to specify these points, you can choose between these 
         </g>
         <g rectangleG
            id="rectangle_blue"
-           [position]="{x: 80,y: 80,w: 20,h: 20}"
+           [position]="{x: 80,y: 80,w: 30,h: 20}"
            color="blue"
-        >
+           transform="rotate(25 95 90) scale(1.1)">
         </g>
         <g rectangleG
            id="rectangle_red"

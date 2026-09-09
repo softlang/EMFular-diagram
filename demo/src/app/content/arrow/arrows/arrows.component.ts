@@ -69,8 +69,8 @@ export class ArrowsComponent {
   })
 
     form2 = new FormGroup({
-        startID: new FormControl("rectangle_blue"),
-        endID: new FormControl("triangle_green"),
+        startID: new FormControl("triangle_black"),
+        endID: new FormControl("rectangle_red"),
     })
 
     form2_radioOptions: RadioOptions = {

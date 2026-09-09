@@ -63,6 +63,7 @@ export const arrowBetweenElemsCode = `<svg:g>
            id="rectangle_0"
            [position]="{x: 80,y: 80,w: 20,h: 20}"
            color="blue"
+           transform="rotate(25 95 90) scale(1.1)"
         >
         </g>
         <g rectangleG
