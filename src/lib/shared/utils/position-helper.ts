@@ -1,5 +1,5 @@
-import {Point} from "@angular/cdk/drag-drop";
 import {BoundingBox} from "../models/bounding-box";
+import {Point2D} from "../models/point2d";
 
 export class PositionHelper {
 
@@ -22,7 +22,7 @@ export class PositionHelper {
     return {x: x_abs, y: y_abs, w: relativePosition.width*translationMatrix.a, h: relativePosition.height*translationMatrix.d};
   }
 
-  static makeRelativeToElem(p: Point, elem: SVGGraphicsElement): void {
+  static makeRelativeToElem(p: Point2D, elem: SVGGraphicsElement): void {
     const svg = elem.ownerSVGElement!;
     const fromSvg = svg.getScreenCTM()!;
     const fromScreen = elem.getCTM()!.inverse();
@@ -30,7 +30,7 @@ export class PositionHelper {
     this.matrixTransform(p, transformer);
   }
 
-  static matrixTransform(p: Point, translationMatrix: DOMMatrix): void {
+  static matrixTransform(p: Point2D, translationMatrix: DOMMatrix): void {
     let x = p.x;
     let y = p.y;
     let x_trans = translationMatrix.a*x+translationMatrix.c*y+translationMatrix.e;

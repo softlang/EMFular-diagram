@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {BoundingBox} from "./models/bounding-box";
 import {PositionHelper} from "./utils/position-helper";
 
