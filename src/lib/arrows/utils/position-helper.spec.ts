@@ -10,9 +10,9 @@ describe('PositionHelper', () => {
   it('applies a simple translation matrix', () => {
     const p = { x: 10, y: 20 };
     const m = new DOMMatrix([1, 0, 0, 1, 5, 7]); // translate by (5,7)
-    PositionHelper.matrixTransform(p, m);
-    expect(p.x).toBe(15);
-    expect(p.y).toBe(27);
+    const res = PositionHelper.matrixTransform(p, m);
+    expect(res.x).toBe(15);
+    expect(res.y).toBe(27);
   });
 
   function mockSvgElement(options: {
@@ -63,16 +63,13 @@ describe('PositionHelper', () => {
 
   it('makes a point relative to another element', () => {
     const p = { x: 100, y: 50 };
-
     const elem = mockSvgElement({
       ctm: new DOMMatrix([1,0,0,1,10,20]),
       screenCtm: new DOMMatrix()
     });
 
-    PositionHelper.makePointRelativeToElem(p, elem);
-
-    expect(p.x).toBe(90);
-    expect(p.y).toBe(30);
+    const res = PositionHelper.makePointRelativeToElem(p, elem);
+    expect(res).toEqual({x: 90, y: 30});
   });
 
   it('computes bounding box relative to another element', () => {

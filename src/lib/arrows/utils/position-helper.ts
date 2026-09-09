@@ -4,9 +4,11 @@ import {Point2D} from "../../shared/models/point2d";
 export class PositionHelper {
 
   static getRelativeBBox(elem: SVGGraphicsElement, relativeTo: SVGGraphicsElement): BoundingBox {
-    let absBox = PositionHelper.absoluteBBox(elem)
-    PositionHelper.makePointRelativeToElem(absBox, relativeTo)
-    return absBox;
+    const absBox = PositionHelper.absoluteBBox(elem)
+    return {
+      ...absBox,
+      ...PositionHelper.makePointRelativeToElem(absBox, relativeTo)
+    }
   }
 
   static absoluteBBox(elem: SVGGraphicsElement): BoundingBox {
@@ -22,20 +24,17 @@ export class PositionHelper {
     return {x: x_abs, y: y_abs, w: relativePosition.width*translationMatrix.a, h: relativePosition.height*translationMatrix.d};
   }
 
-  static makePointRelativeToElem(p: Point2D, elem: SVGGraphicsElement): void {
+  static makePointRelativeToElem(p: Point2D, elem: SVGGraphicsElement): Point2D {
     const svg = elem.ownerSVGElement!;
     const fromSvg = svg.getScreenCTM()!;
     const fromScreen = elem.getCTM()!.inverse();
     const transformer = fromScreen.multiply(fromSvg);
-    this.matrixTransform(p, transformer);
+    return this.matrixTransform(p, transformer);
   }
 
-  static matrixTransform(p: Point2D, translationMatrix: DOMMatrix): void {
-    let x = p.x;
-    let y = p.y;
-    let x_trans = translationMatrix.a*x+translationMatrix.c*y+translationMatrix.e;
-    let y_trans = translationMatrix.b*x+translationMatrix.d*y+translationMatrix.f;
-    p.x = x_trans
-    p.y = y_trans
+  static matrixTransform(p: Point2D, translationMatrix: DOMMatrix): Point2D {
+    const x_trans = translationMatrix.a*p.x+translationMatrix.c*p.y+translationMatrix.e;
+    const y_trans = translationMatrix.b*p.x+translationMatrix.d*p.y+translationMatrix.f;
+    return {x: x_trans, y: y_trans};
   }
 }
