@@ -1,40 +1,33 @@
-import {BoundingBox} from "../../shared/models/bounding-box";
+import {BoundingBox, newBoundingBox} from "../../shared/models/bounding-box";
 import {Point2D} from "../../shared/models/point2d";
 
 export class PositionHelper {
-
   static getRelativeBBox(elem: SVGGraphicsElement, relativeTo: SVGGraphicsElement): BoundingBox {
-    const absBox = PositionHelper.absoluteBBox(elem)
-    return {
-      ...absBox,
-      ...PositionHelper.makePointRelativeToElem(absBox, relativeTo)
-    }
+    const domRect = elem.getBBox();
+    const bbox = newBoundingBox(domRect.x, domRect.y, domRect.width, domRect.height);
+    const transformer = relativeTo.getCTM()!.inverse().multiply(elem.getCTM()!);
+    return PositionHelper.transformBBox(bbox, transformer);
   }
 
-  static absoluteBBox(elem: SVGGraphicsElement): BoundingBox {
-    const relativePosition: DOMRect = elem.getBBox();
-    const svg = elem.ownerSVGElement!;
-    const toSvg = svg.getScreenCTM()!.inverse();
-    const toScreen = elem.getCTM()!
-    const translationMatrix: DOMMatrix = toSvg.multiply(toScreen);
-    const x = relativePosition.x;
-    const y = relativePosition.y;
-    const x_abs = translationMatrix.a*x+translationMatrix.c*y+translationMatrix.e;
-    const y_abs = translationMatrix.b*x+translationMatrix.d*y+translationMatrix.f;
-    return {x: x_abs, y: y_abs, w: relativePosition.width*translationMatrix.a, h: relativePosition.height*translationMatrix.d};
+  static transformBBox(box: BoundingBox, matrix: DOMMatrix): BoundingBox {
+    //transform all four corners:
+    const points = [
+      PositionHelper.matrixTransform({x: box.x, y: box.y}, matrix),
+      PositionHelper.matrixTransform({x: box.x + box.w, y: box.y}, matrix),
+      PositionHelper.matrixTransform({x: box.x, y: box.y + box.h}, matrix),
+      PositionHelper.matrixTransform({x: box.x + box.w, y: box.y + box.h}, matrix)
+    ];
+    //compute new min and max values:
+    const minX = Math.min(...points.map(p => p.x));
+    const maxX = Math.max(...points.map(p => p.x));
+    const minY = Math.min(...points.map(p => p.y));
+    const maxY = Math.max(...points.map(p => p.y));
+    return newBoundingBox(minX, minY, maxX - minX, maxY - minY);
   }
 
-  static makePointRelativeToElem(p: Point2D, elem: SVGGraphicsElement): Point2D {
-    const svg = elem.ownerSVGElement!;
-    const fromSvg = svg.getScreenCTM()!;
-    const fromScreen = elem.getCTM()!.inverse();
-    const transformer = fromScreen.multiply(fromSvg);
-    return this.matrixTransform(p, transformer);
-  }
-
-  static matrixTransform(p: Point2D, translationMatrix: DOMMatrix): Point2D {
-    const x_trans = translationMatrix.a*p.x+translationMatrix.c*p.y+translationMatrix.e;
-    const y_trans = translationMatrix.b*p.x+translationMatrix.d*p.y+translationMatrix.f;
-    return {x: x_trans, y: y_trans};
+  static matrixTransform(p: Point2D, matrix: DOMMatrix): Point2D {
+    const x = matrix.a * p.x + matrix.c * p.y + matrix.e;
+    const y = matrix.b * p.x + matrix.d * p.y + matrix.f;
+    return {x, y};
   }
 }

@@ -1,134 +1,92 @@
-import { describe, it, expect } from 'vitest';
-import { PositionHelper } from './position-helper';
+import {describe, it, expect} from 'vitest';
+import {PositionHelper} from './position-helper';
+import {BoundingBox, newBoundingBox} from '../../shared/models/bounding-box';
+;
 
 describe('PositionHelper', () => {
-
-  it('should create an instance', () => {
-    expect(new PositionHelper()).toBeTruthy();
-  });
-
-  it('applies a simple translation matrix', () => {
-    const p = { x: 10, y: 20 };
-    const m = new DOMMatrix([1, 0, 0, 1, 5, 7]); // translate by (5,7)
-    const res = PositionHelper.matrixTransform(p, m);
-    expect(res.x).toBe(15);
-    expect(res.y).toBe(27);
-  });
-
-  function mockSvgElement(options: {
-    bbox?: Partial<DOMRect>;
-    ctm?: DOMMatrix;
-    screenCtm?: DOMMatrix;
-  }): SVGGraphicsElement {
+  function mockSvgElement(
+      bbox: BoundingBox = newBoundingBox(),
+      ctm: DOMMatrix = new DOMMatrix()
+  ): SVGGraphicsElement {
     return {
       getBBox: () => ({
-        x: options.bbox?.x ?? 0,
-        y: options.bbox?.y ?? 0,
-        width: options.bbox?.width ?? 10,
-        height: options.bbox?.height ?? 10
+        x: bbox.x,
+        y: bbox.y,
+        width: bbox.w,
+        height: bbox.h
       } as DOMRect),
-      getCTM: () => options.ctm ?? new DOMMatrix(),
-      ownerSVGElement: {
-        getScreenCTM: () => options.screenCtm ?? new DOMMatrix()
-      } as any
+      getCTM: () => ctm
     } as any;
   }
 
-  it('computes absolute position with identity transforms', () => {
-    const elem = mockSvgElement({
-      bbox: { x: 10, y: 20, width: 100, height: 50 },
-      ctm: new DOMMatrix(),
-      screenCtm: new DOMMatrix()
+  describe('getRelativeBBox', () => {
+    it('returns the original bbox when both elements use the same coordinate system', () => {
+      const elem = mockSvgElement(
+        newBoundingBox(10, 20, 100, 50),
+      );
+      const relativeTo = mockSvgElement();
+
+      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      expect(result).toEqual(newBoundingBox(10, 20, 100, 50));
     });
 
-    const bb = PositionHelper.absoluteBBox(elem);
+    it('calculates the bbox relative to a translated element', () => {
+      const elem = mockSvgElement(
+          newBoundingBox(10, 10, 20, 30),
+          new DOMMatrix([1, 0, 0, 1, 50, 50])
+      );
+      const relativeTo = mockSvgElement(
+          newBoundingBox(),
+          new DOMMatrix([1, 0, 0, 1, 20, 20])
+      );
 
-    expect(bb).toEqual({ x: 10, y: 20, w: 100, h: 50 });
+      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      expect(result).toEqual(newBoundingBox(40, 40, 20, 30));
+    });
+
+    it('applies scaling to the bbox', () => {
+      const elem = mockSvgElement(
+          newBoundingBox(10, 20,100, 50),
+          new DOMMatrix([2, 0, 0, 2, 0, 0])
+      );
+      const relativeTo = mockSvgElement();
+
+      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      expect(result).toEqual(newBoundingBox(20, 40, 200, 100));
+    });
+
+    it('calculates the axis-aligned bbox after rotation', () => {
+      const elem = mockSvgElement(
+          newBoundingBox(10, 20, 100, 50),
+          new DOMMatrix([0, 1, -1, 0, 0, 0])
+      );
+      const relativeTo = mockSvgElement();
+
+      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      expect(result).toEqual(newBoundingBox(-70, 10, 50, 100));
+    });
+
+    it('handles negative scaling', () => {
+      const elem = mockSvgElement(
+          newBoundingBox(10, 20, 100, 50),
+          new DOMMatrix([-2, 0, 0, 3, 0, 0])
+      );
+      const relativeTo = mockSvgElement();
+
+      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      expect(result).toEqual(newBoundingBox(-220, 60, 200, 150));
+    });
   });
 
-  it('computes absolute position with scaling', () => {
-    const elem = mockSvgElement({
-      bbox: { x: 10, y: 20, width: 100, height: 50 },
-      ctm: new DOMMatrix([2,0,0,2,0,0]),
-      screenCtm: new DOMMatrix()
+  describe('matrixTransform', () => {
+    it('returns a transformed point using the given matrix but does not change the original point', () => {
+      let point = {x: 10, y: 20};
+      const matrix = new DOMMatrix([1, 0, 0, 1, 5, 7]);
+
+      const result = PositionHelper.matrixTransform(point, matrix);
+      expect(point).toEqual({x: 10, y: 20});
+      expect(result).toEqual({x: 15, y: 27});
     });
 
-    const bb = PositionHelper.absoluteBBox(elem);
-
-    expect(bb.x).toBe(20);
-    expect(bb.y).toBe(40);
-    expect(bb.w).toBe(200);
-    expect(bb.h).toBe(100);
   });
-
-  it('makes a point relative to another element', () => {
-    const p = { x: 100, y: 50 };
-    const elem = mockSvgElement({
-      ctm: new DOMMatrix([1,0,0,1,10,20]),
-      screenCtm: new DOMMatrix()
-    });
-
-    const res = PositionHelper.makePointRelativeToElem(p, elem);
-    expect(res).toEqual({x: 90, y: 30});
-  });
-
-  it('computes bounding box relative to another element', () => {
-    const elem = mockSvgElement({
-      bbox: { x: 10, y: 10, width: 20, height: 20 },
-      ctm: new DOMMatrix([1,0,0,1,50,50]),
-      screenCtm: new DOMMatrix()
-    });
-
-    const node = mockSvgElement({
-      ctm: new DOMMatrix([1,0,0,1,20,20]),
-      screenCtm: new DOMMatrix()
-    });
-
-    const bb = PositionHelper.getRelativeBBox(elem, node);
-
-    expect(bb.x).toBe(40);
-    expect(bb.y).toBe(40);
-    expect(bb.w).toBe(20);
-    expect(bb.h).toBe(20);
-  });
-
-  it('scales width correctly with scaleX only', () => {
-    const elem = mockSvgElement({
-      bbox: { x: 0, y: 0, width: 10, height: 20 },
-      ctm: new DOMMatrix([2, 0, 0, 1, 0, 0]),
-      screenCtm: new DOMMatrix()
-    });
-    const bb = PositionHelper.absoluteBBox(elem);
-    expect(bb.x).toBe(0);
-    expect(bb.y).toBe(0);
-    expect(bb.w).toBe(20);
-    expect(bb.h).toBe(20);
-  });
-
-  it('scales height correctly with scaleY only', () => {
-    const elem = mockSvgElement({
-      bbox: { x: 0, y: 0, width: 10, height: 20 },
-      ctm: new DOMMatrix([1, 0, 0, 3, 0, 0]),
-      screenCtm: new DOMMatrix()
-    });
-    const bb = PositionHelper.absoluteBBox(elem);
-    expect(bb.x).toBe(0);
-    expect(bb.y).toBe(0);
-    expect(bb.w).toBe(10);
-    expect(bb.h).toBe(60);
-  });
-
-  it('scales width and height correctly with uniform scale', () => {
-    const elem = mockSvgElement({
-      bbox: { x: 0, y: 0, width: 10, height: 20},
-      ctm: new DOMMatrix([2, 0, 0, 2, 0, 0]),
-      screenCtm: new DOMMatrix()
-    });
-    const bb = PositionHelper.absoluteBBox(elem);
-    expect(bb.x).toBe(0);
-    expect(bb.y).toBe(0);
-    expect(bb.w).toBe(20);
-    expect(bb.h).toBe(40);
-  });
-
 });
