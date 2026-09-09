@@ -65,25 +65,17 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   }
 
   private computePositionsByIds() {
-    if (this.node?.nativeElement){
-      let rel = this.node.nativeElement as SVGGraphicsElement
-      let startOpt = this.getRelativePosition(this.startGID, rel)
-      if (startOpt) {
-        this.start = startOpt
+    if (this.node?.nativeElement) {
+      const node = this.node.nativeElement;
+      const startElem = this.getElemById(this.startGID);
+      if (startElem) {
+        this.start = PositionHelper.getSvgBBPosition(startElem, node);
       }
-      let endOpt = this.getRelativePosition(this.endGID, rel)
-      if (endOpt) {
-        this.end = endOpt
+      const endElem = this.getElemById(this.endGID);
+      if (endElem) {
+        this.end = PositionHelper.getSvgBBPosition(endElem, node);
       }
     }
-  }
-
-  private getRelativePosition(id: string, node: SVGGraphicsElement) {
-    let elem = this.getElemById(id)
-    if (elem) {
-      return PositionHelper.getSvgBBPosition(elem, node)
-    }
-    return undefined
   }
 
   private getElemById(id: string): SVGGraphicsElement | undefined {
