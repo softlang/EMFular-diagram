@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest';
-import {PositionHelper} from './position-helper';
+import {BoundingBoxTransformer} from './bounding-box-transformer';
 import {BoundingBox, newBoundingBox} from '../../shared/models/bounding-box';
 ;
 
@@ -26,7 +26,7 @@ describe('PositionHelper', () => {
       );
       const relativeTo = mockSvgElement();
 
-      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      const result = BoundingBoxTransformer.getRelativeBBox(elem, relativeTo);
       expect(result).toEqual(newBoundingBox(10, 20, 100, 50));
     });
 
@@ -40,7 +40,7 @@ describe('PositionHelper', () => {
           new DOMMatrix([1, 0, 0, 1, 20, 20])
       );
 
-      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      const result = BoundingBoxTransformer.getRelativeBBox(elem, relativeTo);
       expect(result).toEqual(newBoundingBox(40, 40, 20, 30));
     });
 
@@ -51,7 +51,7 @@ describe('PositionHelper', () => {
       );
       const relativeTo = mockSvgElement();
 
-      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      const result = BoundingBoxTransformer.getRelativeBBox(elem, relativeTo);
       expect(result).toEqual(newBoundingBox(20, 40, 200, 100));
     });
 
@@ -62,7 +62,7 @@ describe('PositionHelper', () => {
       );
       const relativeTo = mockSvgElement();
 
-      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      const result = BoundingBoxTransformer.getRelativeBBox(elem, relativeTo);
       expect(result).toEqual(newBoundingBox(-70, 10, 50, 100));
     });
 
@@ -73,7 +73,7 @@ describe('PositionHelper', () => {
       );
       const relativeTo = mockSvgElement();
 
-      const result = PositionHelper.getRelativeBBox(elem, relativeTo);
+      const result = BoundingBoxTransformer.getRelativeBBox(elem, relativeTo);
       expect(result).toEqual(newBoundingBox(-220, 60, 200, 150));
     });
   });
@@ -83,7 +83,7 @@ describe('PositionHelper', () => {
       let point = {x: 10, y: 20};
       const matrix = new DOMMatrix([1, 0, 0, 1, 5, 7]);
 
-      const result = PositionHelper.matrixTransform(point, matrix);
+      const result = BoundingBoxTransformer.matrixTransform(point, matrix);
       expect(point).toEqual({x: 10, y: 20});
       expect(result).toEqual({x: 15, y: 27});
     });

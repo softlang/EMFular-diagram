@@ -15,7 +15,7 @@ import {SvgPositionChangeService} from "../../shared/svg-position-change.service
 import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
-import {PositionHelper} from "../utils/position-helper";
+import {BoundingBoxTransformer} from "../utils/bounding-box-transformer";
 
 
 @Component({
@@ -70,11 +70,11 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
       const arrow = this.arrowSvgElem.nativeElement;
       const startElem = this.getElemById(this.startGID);
       if (startElem) {
-        this.startBox = PositionHelper.getRelativeBBox(startElem, arrow);
+        this.startBox = BoundingBoxTransformer.getRelativeBBox(startElem, arrow);
       }
       const endElem = this.getElemById(this.endGID);
       if (endElem) {
-        this.endBox = PositionHelper.getRelativeBBox(endElem, arrow);
+        this.endBox = BoundingBoxTransformer.getRelativeBBox(endElem, arrow);
       }
     }
   }

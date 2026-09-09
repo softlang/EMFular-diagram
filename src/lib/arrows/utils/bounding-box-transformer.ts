@@ -1,21 +1,21 @@
 import {BoundingBox, newBoundingBox} from "../../shared/models/bounding-box";
 import {Point2D} from "../../shared/models/point2d";
 
-export class PositionHelper {
+export class BoundingBoxTransformer {
   static getRelativeBBox(elem: SVGGraphicsElement, relativeTo: SVGGraphicsElement): BoundingBox {
     const domRect = elem.getBBox();
     const bbox = newBoundingBox(domRect.x, domRect.y, domRect.width, domRect.height);
     const transformer = relativeTo.getCTM()!.inverse().multiply(elem.getCTM()!);
-    return PositionHelper.transformBBox(bbox, transformer);
+    return BoundingBoxTransformer.transformBBox(bbox, transformer);
   }
 
   static transformBBox(box: BoundingBox, matrix: DOMMatrix): BoundingBox {
     //transform all four corners:
     const points = [
-      PositionHelper.matrixTransform({x: box.x, y: box.y}, matrix),
-      PositionHelper.matrixTransform({x: box.x + box.w, y: box.y}, matrix),
-      PositionHelper.matrixTransform({x: box.x, y: box.y + box.h}, matrix),
-      PositionHelper.matrixTransform({x: box.x + box.w, y: box.y + box.h}, matrix)
+      BoundingBoxTransformer.matrixTransform({x: box.x, y: box.y}, matrix),
+      BoundingBoxTransformer.matrixTransform({x: box.x + box.w, y: box.y}, matrix),
+      BoundingBoxTransformer.matrixTransform({x: box.x, y: box.y + box.h}, matrix),
+      BoundingBoxTransformer.matrixTransform({x: box.x + box.w, y: box.y + box.h}, matrix)
     ];
     //compute new min and max values:
     const minX = Math.min(...points.map(p => p.x));

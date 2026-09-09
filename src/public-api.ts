@@ -15,7 +15,6 @@ export * from './lib/shared/svg-position-change.service';
 export * from './lib/arrows/arrow-between-elems/arrow-between-elems.component';
 export * from './lib/arrows/arrow-between-boxes/arrow-between-boxes.component';
 export * from './lib/arrows/arrow-between-points/arrow-between-points.component';
-export * from './lib/arrows/utils/position-helper';
 
 export * from './lib/mouse-events/dragger/dragger'
 export * from './lib/mouse-events/single-vs-double-click/single-vs-double-click'
