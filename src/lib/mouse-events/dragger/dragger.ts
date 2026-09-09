@@ -66,9 +66,6 @@ export class Dragger {
   }
 
   destroy() {
-    console.log('Dragger.destroy()', {
-      dragActive: this.dragActive
-    });
     window.removeEventListener('mousemove', this.boundDrag);
     window.removeEventListener('mouseup', this.boundEndDrag);
     this.dragActive = false;
