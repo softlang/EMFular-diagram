@@ -3,11 +3,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {pointAndBB, rotate0, styles, text0, triangle0} from "./svg-primitives.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
-import {
-    RectangleComponent,
-    TextAreaSvgComponent,
-    TriangleComponent
-} from "ngx-emfular-diagram";
+import { RectangleComponent, TextAreaSvgComponent, TriangleComponent} from "ngx-emfular-diagram";
 import {FormControl, FormGroup} from "@angular/forms";
 import {textAndStylesCode} from "../arrow/arrows/arrows.component.code";
 
@@ -62,32 +58,6 @@ export class SvgPrimitivesComponent {
             textAnchor: new FormControl("start")
         }),
     })
-
-    form3 = new FormGroup({
-        color: new FormControl("#000000",),
-        text: new FormControl("Example text, very long text, try to expand"),
-        position: new FormGroup({
-            x: new FormControl(5),
-            y: new FormControl(5),
-            w: new FormControl(200),
-            h: new FormControl(50)
-        }),
-        textStyle: new FormGroup({
-            color: new FormControl("red"),
-            fontFamily: new FormControl("sans-serif"),
-            fontSize: new FormControl("12pt"),
-            fontWeight: new FormControl("bold"),
-            textAnchor: new FormControl("start")
-        }),
-    })
-
-    get form3Text(){
-        return this.form3.value.text
-    }
-    set form3Text(value){
-        this.form3.patchValue({text: value})
-    }
-
 
     protected readonly boundingBox = pointAndBB;
     protected readonly rotate0 = rotate0;

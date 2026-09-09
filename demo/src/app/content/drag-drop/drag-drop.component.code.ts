@@ -1,23 +1,3 @@
-export const draggableInterface = `
-export type Draggable = Positionable & Identifiable;
-
-export interface Positionable {
-  position: Point2D
-}
-
-export interface Identifiable {
-  $gId: string;
-}`
-
-
-export const inputDraggableTemplate = `
-<svg:g>
-  <g [attr.id]="elem.$gId"
-     (mousedown)="startDrag($event)"
-     (click)="clickElem($event)">
-  </g>
-</svg:g>
-`
 
 export const exampleDragRect = `export interface MyPositionable {
   $gId: string;

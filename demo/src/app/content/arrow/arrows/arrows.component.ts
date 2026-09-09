@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import {SvgReactivePlaygroundComponent} from "../../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {
     ArrowBetweenBoxesComponent,
+    ArrowBetweenPointsComponent,
     RectangleComponent,
     TriangleComponent,
     ArrowBetweenElemsComponent, SVGAccessService
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
-    arrowBetweenBoxesCode,
-    arrowBetweenElemsCode,
+    arrowBetweenBoxesCode, arrowBetweenElemsCode,
     arrowBetweenPointsCode, arrowBoxesDrag, arrowDrag,
     arrowStyleConfig, markerStyleConfig, textAndStyles, textAndStylesCode
 } from "./arrows.component.code";
@@ -17,9 +17,6 @@ import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlig
 import {MyPositionable} from "../../drag-drop/rect-draggable/rect-draggable.component";
 import {DblclickRectComponent} from "../../drag-drop/dblclick-rect/dblclick-rect.component";
 import {RadioOptions} from "../../../layout/form-helpers";
-import {
-    ArrowBetweenPointsComponent
-} from "../../../../../../src/lib/arrows/arrow-between-points/arrow-between-points.component";
 
 @Component({
   selector: 'demo-arrows',

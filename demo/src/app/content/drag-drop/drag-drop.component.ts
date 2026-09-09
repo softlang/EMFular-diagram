@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {
-  BindingsForDrag, dblClick0,
-  draggableInterface, exampleDragRect,
-  inputDraggableTemplate
+  BindingsForDrag, dblClick0, exampleDragRect,
 } from "./drag-drop.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {RectDraggableComponent} from "./rect-draggable/rect-draggable.component";
