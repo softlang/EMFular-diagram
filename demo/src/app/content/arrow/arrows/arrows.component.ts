@@ -5,7 +5,7 @@ import {
     ArrowBetweenPointsComponent,
     RectangleComponent,
     TriangleComponent,
-    ArrowBetweenElemsComponent, SVGAccessService
+    ArrowBetweenElemsComponent, SvgPositionChangeService
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
@@ -36,7 +36,7 @@ import {RadioOptions} from "../../../layout/form-helpers";
 })
 export class ArrowsComponent {
 
-    constructor(public svgAccessService: SVGAccessService) {
+    constructor(public svgAccessService: SvgPositionChangeService) {
     }
 
   form0: FormGroup<{

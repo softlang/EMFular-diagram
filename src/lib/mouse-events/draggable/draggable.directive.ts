@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import {SVGAccessService} from '../../shared/svg-access.service';
+import {SvgPositionChangeService} from '../../shared/svg-position-change.service';
 import {Dragger} from "../dragger/dragger";
 import {Point2D} from "../../shared/models/point2d";
 
@@ -23,13 +23,13 @@ export class DraggableDirective implements OnInit, AfterViewInit, OnDestroy {
   private elemDragger!: Dragger;
 
   constructor(
-    private readonly svgAccessService: SVGAccessService,
+    private readonly svgPositionChangeService: SvgPositionChangeService,
     private readonly elementRef: ElementRef<SVGElement>
   ) {}
 
   private notifyPositionChange(pos: Point2D): void {
     this.positionChanged.emit(pos);
-    this.svgAccessService.notifyPositionChange(
+    this.svgPositionChangeService.notifyPositionChange(
         this.elementRef.nativeElement.id
     )
   }
@@ -43,7 +43,7 @@ export class DraggableDirective implements OnInit, AfterViewInit, OnDestroy {
 
   //originally to notify arrows of successful placement
   ngAfterViewInit() {
-    this.svgAccessService.notifyPositionChange(
+    this.svgPositionChangeService.notifyPositionChange(
         this.elementRef.nativeElement.id
     )
   }

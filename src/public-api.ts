@@ -10,7 +10,7 @@ export * from './lib/arrows/arrow-style';
 export * from './lib/arrows/arrow-style.directive';
 
 export * from './lib/shared/svg-canvas/svg-canvas.component';
-export * from './lib/shared/svg-access.service';
+export * from './lib/shared/svg-position-change.service';
 
 export * from './lib/arrows/arrow-between-elems/arrow-between-elems.component';
 export * from './lib/arrows/arrow-between-boxes/arrow-between-boxes.component';

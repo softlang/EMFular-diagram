@@ -11,7 +11,7 @@ import {v4 as uuidv4} from "uuid";
 
 import {BoundingBox} from "../../shared/models/bounding-box";
 import {ArrowBetweenBoxesComponent} from "../arrow-between-boxes/arrow-between-boxes.component";
-import {SVGAccessService} from "../../shared/svg-access.service";
+import {SvgPositionChangeService} from "../../shared/svg-position-change.service";
 import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
@@ -43,9 +43,9 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
 
   //idea: compute the two input positions as relative to the current elem
   constructor(
-    private svgAccessService: SVGAccessService,
+    private svgPositionChangeService: SvgPositionChangeService,
     private cdr: ChangeDetectorRef) {
-    this.changeSubscription = this.svgAccessService.listenToPositionChange().subscribe(nextString => {
+    this.changeSubscription = this.svgPositionChangeService.listenToPositionChange().subscribe(nextString => {
       if (nextString == this.startGID || nextString == this.endGID) {
         setTimeout(() => {
           this.computePositionsByIds()

@@ -4,7 +4,7 @@ import {Observable, Subject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class SVGAccessService {
+export class SvgPositionChangeService {
 
   positionChange: Subject<string> = new Subject<string>();
 

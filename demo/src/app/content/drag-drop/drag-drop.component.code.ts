@@ -1,4 +1,3 @@
-
 export const exampleDragRect = `export interface MyPositionable {
   $gId: string;
   position: BoundingBox;
@@ -34,11 +33,10 @@ export class RectDraggableComponent {
 >
 </svg:g>`
 
-export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
+export const BindingsForDrag = `demo0id = 'demo-rect-drag'
 
-  constructor(svgAccessService: SVGAccessService) {
-    //trigger position updates by listening to the svg access service
-    svgAccessService.positionChange.subscribe(position => {
+  constructor(svgPositionChangeService: SvgPositionChangeService) {
+    svgPositionChangeService.positionChange.subscribe(position => {
       if(position == this.demo0id) {
         this.onPositionChangeFormDrag0()
       }
@@ -81,13 +79,12 @@ export const BindingsForDrag = `  demo0id = 'demo-rect-drag'
     </svg:g>
 `
 
-export const dblClick0 = `
-    <svg:g demo-preview>
-        <g demo-dblclick-rect
-           [elem]="valueDblCl"
-           [timeout]="formDblClick0.value.timeout"
-           (singleClicked)="onSingleClickFormDblClick0()"
-           (dblClicked)="onDoubleClickFormDblClick0()"
-        >
-        </g>
-    </svg:g>`
+export const dblClick0 = `<svg:g demo-preview>
+   <g demo-dblclick-rect
+        [elem]="valueDblCl"
+        [timeout]="formDblClick0.value.timeout"
+        (singleClicked)="onSingleClickFormDblClick0()"
+        (dblClicked)="onDoubleClickFormDblClick0()"
+   >
+   </g>
+</svg:g>`
