@@ -36,7 +36,7 @@ import {RadioOptions} from "../../../layout/form-helpers";
 })
 export class ArrowsComponent {
 
-    constructor(public svgAccessService: SvgPositionChangeService) {
+    constructor(public svgPositionChangeService: SvgPositionChangeService) {
     }
 
   form0: FormGroup<{
@@ -154,7 +154,7 @@ export class ArrowsComponent {
 
     onDoubleClick(id: string) {
         if(this.form5.value.notifyAutomatically) {
-            this.svgAccessService.notifyPositionChange(id)
+            this.svgPositionChangeService.notifyPositionChange(id)
         }
     }
 
