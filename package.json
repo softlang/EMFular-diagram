@@ -1,11 +1,12 @@
 {
   "name": "ngx-emfular-diagram",
-  "version": "1.4.0",
-  "description": "Small svg library to link components or svg elements with arrows and allow to drag components.",
+  "version": "2.0.0",
+  "description": "Svg library, to distinguish mouse events, draw simple arrows and other primitives.",
   "keywords": [
+    "EMFular",
+    "SVG",
     "Drag",
     "Arrows",
-    "SVG",
     "Angular",
     "EMF"
   ],
