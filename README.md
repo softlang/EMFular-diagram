@@ -17,12 +17,14 @@ npm install ngx-emfular-diagram
 ```
 or adapt your package.json manually to the required version:
 ```
-"ngx-emfular-diagram": "^1.0.0",
+"ngx-emfular-diagram": "^2.0.0",
 ```
 older versions are available under the old package name, `ngx-svg-graphics`. The latest old version is:
 ```
 "ngx-svg-graphics": "^3.0.0",
 ```
+### Versions
+The current list of available versions is available on the [npm page](https://www.npmjs.com/package/ngx-emfular-diagram).
 
 ## Support
 Support is currently offered by the main developer, Susanne Göbel under goebel@uni-koblenz.de.
