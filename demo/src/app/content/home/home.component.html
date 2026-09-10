@@ -72,6 +72,15 @@
     </svg:g>
 </svg-canvas>
 -->
-<p>The shown code is actually a small portion of the playground's svg canvas. Interested readers may refer to the demo code to explore its content porjection idea.</p>
+<p>
+    The shown code is actually a small portion of the playground's svg canvas.
+    Interested readers may refer to the demo code to explore its content projection idea.
+</p>
 
+<h2>Position Change Notifications</h2>
 
+<p>
+    Once you have a hierarchy of svg objects, one object's geometry might depend on another object's position.
+    We hence provide an SvgPositionChangeService, that can get notified about an object's position change and then broadcast that id via its Observable `positionChange`.
+    Any consumers can subscribe to that and filter notifications to those ids they need to react to.
+</p>

@@ -48,7 +48,7 @@ export class SvgPrimitivesComponent {
             w: new FormControl(200),
             h: new FormControl(50)
         }),
-        text: new FormControl("Example text, very long text, try to expand"),
+        text: new FormControl("Example text, very long text, so long, that it gets truncated, try to expand"),
         singleEdit: new FormControl(true, {nonNullable: true}),
         textStyle: new FormGroup({
             color: new FormControl("red"),
