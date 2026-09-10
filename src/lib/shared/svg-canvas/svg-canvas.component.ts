@@ -1,8 +1,10 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {SvgPositionChangeService} from "../svg-position-change.service";
 
 @Component({
   selector: 'svg-canvas',
   imports: [],
+  providers: [SvgPositionChangeService],
   templateUrl: './svg-canvas.component.html',
   styleUrl: './svg-canvas.component.css'
 })
