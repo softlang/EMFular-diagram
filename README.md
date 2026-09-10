@@ -24,7 +24,7 @@ older versions are available under the old package name, `ngx-svg-graphics`. The
 "ngx-svg-graphics": "^3.0.0",
 ```
 ### Versions
-The current list of available versions is available on the [npm page](https://www.npmjs.com/package/ngx-emfular-diagram).
+The current list of available versions is available on the [npm page](https://www.npmjs.com/package/ngx-emfular-diagram?activeTab=versions).
 
 ## Support
 Support is currently offered by the main developer, Susanne Göbel under goebel@uni-koblenz.de.
