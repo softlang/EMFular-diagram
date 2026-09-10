@@ -1,5 +1,5 @@
 export const arrowBetweenPointsCode = `<svg:g
-   arrow-between-points
+   arrow-points
    [startX]="form0.value.startX"
    [startY]="form0.value.startY"
    [endX]="form0.value.endX"
@@ -17,7 +17,7 @@ export const arrowBetweenBoxesCode = `<svg:g>
             }"
            color="red">
         </g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            [start]="{
                 x: form1.value.box1X,
                 y: form1.value.box1Y,
@@ -61,8 +61,9 @@ export const arrowBetweenElemsCode = `<svg:g>
         </g>
         <g rectangleG
            id="rectangle_0"
-           [position]="{x: 80,y: 80,w: 20,h: 20}"
+           [position]="{x: 80,y: 80,w: 30,h: 20}"
            color="blue"
+           transform="rotate(25 95 90) scale(1.1)"
         >
         </g>
         <g rectangleG
@@ -70,22 +71,22 @@ export const arrowBetweenElemsCode = `<svg:g>
            [position]="{x: 140,y: 100,w: 20,h: 20}"
            color="red">
         </g>
-        <g arrowElems
+        <g arrow-elements
            [startGID]="form2.value.startID"
-           startSuffix=""
            [endGID]="form2.value.endID"
-           endSuffix=""
         >
         </g>
     </svg:g>`
 
 export const arrowStyleConfig = `export interface ArrowStyle {
   color: string; //= stroke
-  dashed: string; //=dashArray e.g. '1 2 4'
+  strokeDashArray: string; //=dashArray e.g. '1 2 4'
+  strokeWidth?: number; //thickness of the arrow line
   startPointer?: string; //marker-Id
   endPointer?: string; //marker-Id
-  style?: Record<string, string>|string; //additional styles, no overwrite of other attributes
-}`
+}
+
+export const DEFAULT_ARROW_STYLE: ArrowStyle = {color: 'black', strokeDashArray: '0'};`
 
 export const markerStyleConfig =
 `<svg:g>
@@ -103,28 +104,42 @@ export const markerStyleConfig =
       <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
    </marker>
  </svg:defs>
- <g arrow-between-points
-  [startX]="10"
-  [startY]="10"
-  [endX]="190"
-  [endY]="100"
-  [id]="'arrowstyle0'"
-  [arrowStyle]="{color: form3.value.color,
-   dashed: form3.value.dashed,
-    startPointer: form3.value.startMarker,
-     endPointer: form3.value.endMarker}"
- ></g>
+ <g arrow-points
+           [startX]="10"
+           [startY]="10"
+           [endX]="190"
+           [endY]="100"
+           [id]="'arrowstyle0'"
+           [arrowStyle]="form3.value"
+        ></g>
 </svg:g>`
 
 
+export const textAndStylesCode = `export interface SvgTextStyle {
+    color?: string; //fill
+    fontFamily?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    fontStyle?: string;
+    textAnchor?: 'start' | 'middle' | 'end';
+}
+
+export const DEFAULT_TEXT_STYLE: SvgTextStyle = {
+    color: 'black'
+}
+
+export interface SvgTextPathStyle {
+    startOffset?: string;
+}`
+
 export const textAndStyles = `<svg:g>
-        <g arrow-between-points
+        <g arrow-points
            id="arrowtext0"
            [startX]="10"
            [startY]="10"
            [endX]="190"
            [endY]="100"
-           [arrowStyle]="{color: 'blue', dashed: '1 2'}"
+           [arrowStyle]="{color: 'blue', strokeDashArray: '1'}"
            [text]="form4.value.text"
            [textStyle]="form4.value.textStyle"
         ></g>
@@ -140,24 +155,31 @@ export const arrowDrag = `
            [elem]="drag1"
            (dblClicked)="onDoubleClick(drag1.$gId)"
         ></g>
-        <g arrowElems
+        <g arrow-elements
            id="arrowdrag0"
             [startGID]="dragID0"
-           [startSuffix]="''"
            [endGID]="dragID1"
-           [endSuffix]="''"
         ></g>
     </svg:g>
 
 //and change is:
     onDoubleClick(id: string) {
         if(this.form5.value.notifyAutomatically) {
-            this.svgAccessService.notifyPositionChange(id)
+            this.svgPositionChangeService.notifyPositionChange(id)
         }
     }
 `
 
 export const arrowBoxesDrag = `
+    //with :
+    onPosChangeArBetwBoxes(elem: MyPositionable, isActive: boolean) {
+        if(isActive) {
+            elem.position = {
+                ...elem.position
+            };
+        }
+    }
+    
 <svg:g demo-preview>
         <g demo-dblclick-rect
            [elem]="dragBlue"
@@ -169,18 +191,9 @@ export const arrowBoxesDrag = `
            (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
            (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
         ></g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            id="arrowdrag0"
            [start]="dragBlue.position"
            [end]="dragRed.position"
         ></g>
-    </svg:g>
-
-//with :
-onPosChangeArBetwBoxes(elem: MyPositionable, isActive: boolean) {
-        if(isActive) {
-            elem.position = {
-                ...elem.position
-            };
-        }
-    }`
+    </svg:g>`

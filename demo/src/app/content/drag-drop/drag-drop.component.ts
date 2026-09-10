@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import {HighlightedCodeComponent} from "../../layout/highlighted-code/highlighted-code.component";
 import {
-  BindingsForDrag, dblClick0,
-  draggableInterface, exampleDragRect,
-  inputDraggableTemplate
+  BindingsForDrag, dblClick0, exampleDragRect,
 } from "./drag-drop.component.code";
 import {SvgReactivePlaygroundComponent} from "../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {RectDraggableComponent} from "./rect-draggable/rect-draggable.component";
 import {FormControl, FormGroup} from "@angular/forms";
-import {SVGAccessService} from "ngx-emfular-diagram";
+import {SvgPositionChangeService} from "ngx-emfular-diagram";
 import {DblclickRectComponent} from "./dblclick-rect/dblclick-rect.component";
 
 @Component({
@@ -27,8 +25,8 @@ export class DragDropComponent {
   demo0id = 'demo-rect-drag'
   demo1id = 'dblclick0'
 
-  constructor(svgAccessService: SVGAccessService) {
-    svgAccessService.positionChange.subscribe(position => {
+  constructor(svgPositionChangeService: SvgPositionChangeService) {
+    svgPositionChangeService.positionChange.subscribe(position => {
       if(position == this.demo0id) {
         this.onPositionChangeFormDrag0()
       } else if(position == this.demo1id) {
@@ -98,9 +96,7 @@ export class DragDropComponent {
     this.formDblClick0.patchValue({ w: this.valueDblCl.position.w, h: this.valueDblCl.position.h})
   }
 
-  protected readonly draggableInterface = draggableInterface;
   protected readonly BindingsForDrag = BindingsForDrag;
-  protected readonly inputDraggableTemplate = inputDraggableTemplate;
   protected readonly exampleDragRect = exampleDragRect;
   protected readonly dblClick0 = dblClick0;
 }

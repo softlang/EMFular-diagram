@@ -2,51 +2,45 @@
 
 <p>Angular has no built in drag and drop for svg elements - instead, we must use mouse down to discover the selection of an element, then move it while the mouse moves and finally stop the drag when the mouse moves up again.
 However, we need to make sure that we can also detect a click and a double-click and that these events do neither interfere with each other nor with drag and drop.
-Hence, this section is concerned with all types of mouse events.</p>
+Our library offers classes and a drag directive, specifically for this purpose.</p>
 
 <h2>Drag and Drop</h2>
 
-<p>There is an explicit input-draggable svg component, that expects to receive some `Draggable` element as input.
-    We strongly suggest to extend that instead of using the dragger directly.
-    Only if you cannot provide an id (`$gId`) and hence only want to provide a `Positionable`, a direct usage might make sense.
-</p>
-<demo-highlighted-code [code]="draggableInterface"></demo-highlighted-code>
-
-<p>
-    The input-draggable component makes sure that drag events are correctly reported to the SVGAccessService (that communicates position changes) and that drags and clicks are distinguished.
-    It provides an output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
-    If additional work must be done before the click event really fires, users who override the base component can override the onClick hook.
-    Please note that drag and click are both detected as DOM events, so it is important that any extending component wires the bindings in on their own template.
-    FOr reference, the base component provides an example SVG template with the required mouse-event bindings.
-    It has no visual representation of its own; applications extend it with a component containing their own SVG template.
+<p>Our library exports a draggable directive, hat handles the drag interaction, including distinguishing clicks from actual drags and updating the position of its input position.
+    It reports each position change over an output `positionChanged`, but also reports them to the SvgPositionChangeService based on the attr.id of the directive host.
+    Additionally, it provides another output `elemReallyClicked`, that delivers all clicks but suppresses mouse ups after drags.
 </p>
 
-<demo-highlighted-code [code]="inputDraggableTemplate"></demo-highlighted-code>
-
+<h3>Example Usage of Draggable Directive</h3>
 <p>
-    Our extending component shows a small rectangle that we can drag.
+    Our example component shows a small rectangle that we can drag.
     Clicks trigger a color change for the rectangle.
-</p>
-<demo-highlighted-code [code]="exampleDragRect"></demo-highlighted-code>
-
-<h3>Manual binding between copies</h3>
-<p>Please note, that Angular creates an own independent entity for each reactive form control, hence changes are not reflected automatically between the actual element provided to our demo component and the form.
-    We hence need to bind the two models manually.
-    You will need this process only if you also deal with several data copies for drag and drop updates.
+    Please note that the example actually provides more than just a Point2D as drag position: it uses a bounding box, since the rect component needs one.
+    But since a BoundingBox also offers x and y, it is structurally fine and makes sure that the rectangle moves as intended.
+    Users of more complex structures might consider using an artificial relative position, starting as (0,0) and svg-translate.
 </p>
 <!-- change that? maybe manual read-back in demo component?-->
 <demo-simple-playground
         [form]="formDrag0"
-        [codeTemplate]="BindingsForDrag"
+        [codeTemplate]="exampleDragRect"
 >
     <svg:g demo-preview>
         <g demo-rect
            [elem]="valueDrag0"
-           (elemReallyClicked)="onClickFormDrag0()"
-       >
+           (click)="onClickFormDrag0()"
+        >
         </g>
     </svg:g>
 </demo-simple-playground>
+
+<h3>Manual binding between copies</h3>
+<p>Angular creates an own independent entity for each reactive form control, hence changes induced by dragging or clicking instead of form manipulation are not reflected automatically in the form.
+    We therefore need to bind the two models manually.
+    You will need this process only if you also deal with several data copies for drag and drop updates.
+</p>
+
+<demo-highlighted-code [code]="BindingsForDrag"></demo-highlighted-code>
+
 
 <h2>Click vs Double Click</h2>
 
@@ -58,7 +52,7 @@ Hence, this section is concerned with all types of mouse events.</p>
     </p>
 <p>
     Please note how a changed timeout influences click discovery: below 150ms it gets almost impossible to trigger a double click, while above 300ms the UI seems frozen, since click events happen so late.
-    Also, due to the timeout, we cannot use the `elemReallyClicked` output of the base component, since it fires immediately, hence BEFORE color changes. Instead, we make the component expose own dedicated outputs that fire AFTER decision and bind to them.
+    Also, due to the timeout, we cannot use the `elemReallyClicked` output of the draggable directive, since it fires immediately, hence BEFORE color changes. Instead, we make the component expose own dedicated outputs that fire AFTER decision and bind to them.
 </p>
 <demo-simple-playground
         [form]="formDblClick0"

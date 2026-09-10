@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
+import {SvgReactivePlaygroundComponent} from "../../../layout/svg-reactive-playground/svg-reactive-playground.component";
 import {
-    RadioOptions,
-    SvgReactivePlaygroundComponent
-} from "../../../layout/svg-reactive-playground/svg-reactive-playground.component";
-import {
-    ArrowBetweenPointsComponent,
     ArrowBetweenBoxesComponent,
+    ArrowBetweenPointsComponent,
     RectangleComponent,
     TriangleComponent,
-    ArrowBetweenElemsComponent, SVGAccessService
+    ArrowBetweenElemsComponent, SvgPositionChangeService
 } from "ngx-emfular-diagram";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {
-    arrowBetweenBoxesCode,
-    arrowBetweenElemsCode,
+    arrowBetweenBoxesCode, arrowBetweenElemsCode,
     arrowBetweenPointsCode, arrowBoxesDrag, arrowDrag,
-    arrowStyleConfig, markerStyleConfig, textAndStyles
+    arrowStyleConfig, markerStyleConfig, textAndStyles, textAndStylesCode
 } from "./arrows.component.code";
 import {HighlightedCodeComponent} from "../../../layout/highlighted-code/highlighted-code.component";
 import {MyPositionable} from "../../drag-drop/rect-draggable/rect-draggable.component";
 import {DblclickRectComponent} from "../../drag-drop/dblclick-rect/dblclick-rect.component";
+import {RadioOptions} from "../../../layout/form-helpers";
 
 @Component({
   selector: 'demo-arrows',
@@ -32,13 +29,14 @@ import {DblclickRectComponent} from "../../drag-drop/dblclick-rect/dblclick-rect
         TriangleComponent,
         HighlightedCodeComponent,
         DblclickRectComponent,
+        ArrowBetweenPointsComponent,
     ],
   templateUrl: './arrows.component.html',
   styleUrl: './arrows.component.css'
 })
 export class ArrowsComponent {
 
-    constructor(public svgAccessService: SVGAccessService) {
+    constructor(public svgPositionChangeService: SvgPositionChangeService) {
     }
 
   form0: FormGroup<{
@@ -71,8 +69,8 @@ export class ArrowsComponent {
   })
 
     form2 = new FormGroup({
-        startID: new FormControl("rectangle_blue"),
-        endID: new FormControl("triangle_green"),
+        startID: new FormControl("triangle_black"),
+        endID: new FormControl("rectangle_red"),
     })
 
     form2_radioOptions: RadioOptions = {
@@ -92,20 +90,21 @@ export class ArrowsComponent {
 
     form3 = new FormGroup({
         color: new FormControl("red"),
-        dashed: new FormControl([1,2,1]),
-        startMarker: new FormControl("B"),
-        endMarker: new FormControl("A"),
+        strokeDashArray: new FormControl('1 2 1'),
+        strokeWidth: new FormControl(1),
+        startPointer: new FormControl("B"),
+        endPointer: new FormControl("A"),
     })
 
     form3_radioOptions: RadioOptions = {
-        startMarker: [
+        startPointer: [
             { value: 'A', label: 'Pointer' },
             { value: 'B', label: 'Circle' },
             { value: 'C', label: 'Red X' },
             { value: 'D', label: 'Green Lines' },
             { value: undefined, label: '-' },
         ],
-        endMarker: [
+        endPointer: [
             { value: 'A', label: 'Pointer' },
             { value: 'B', label: 'Circle' },
             { value: 'C', label: 'Red X' },
@@ -116,8 +115,25 @@ export class ArrowsComponent {
 
     form4 = new FormGroup({
         text: new FormControl("This text is far too long. See where it gets truncated"),
-        textStyle: new FormControl("fill: red; font-size: 12px;"),
+        textStyle: new FormGroup({
+            color: new FormControl("red"),
+            fontFamily: new FormControl("sans-serif"),
+            fontSize: new FormControl("12pt"),
+            fontWeight: new FormControl("bold"),
+            textAnchor: new FormControl("start")
+        }),
+        textPathStyle: new FormGroup({
+            startOffset: new FormControl("50%"),
+        })
     })
+
+    form4_radioOptions = {
+        textAnchor: [
+            { value: 'start', label: 'start' },
+            { value: 'middle', label: 'middle' },
+            { value: 'end', label: 'end' },
+        ]
+    }
 
     dragID0="dragArrow0"
     dragID1="dragArrow1"
@@ -138,7 +154,7 @@ export class ArrowsComponent {
 
     onDoubleClick(id: string) {
         if(this.form5.value.notifyAutomatically) {
-            this.svgAccessService.notifyPositionChange(id)
+            this.svgPositionChangeService.notifyPositionChange(id)
         }
     }
 
@@ -173,6 +189,7 @@ export class ArrowsComponent {
   protected readonly arrowBetweenElemsCode = arrowBetweenElemsCode;
   protected readonly arrowStyleConfig = arrowStyleConfig;
     protected readonly markerStyleConfig = markerStyleConfig;
+    protected readonly textAndStylesCode = textAndStylesCode;
     protected readonly textAndStyles = textAndStyles;
     protected readonly arrowDrag = arrowDrag;
     protected readonly arrowBoxesDrag = arrowBoxesDrag;

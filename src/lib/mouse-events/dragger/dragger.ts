@@ -1,0 +1,74 @@
+import {Point2D} from "../../shared/models/point2d";
+
+export class Dragger {
+  dragActive = false;
+  wasReallyDragged = false;
+  dragStartX: number = 0;
+  dragStartY: number = 0;
+
+  private readonly boundDrag = (event: MouseEvent) => {
+    this.drag(event);
+  };
+
+  private readonly boundEndDrag = (event: MouseEvent) => {
+    this.endDrag(event);
+  };
+
+  constructor(
+      private readonly getPosition: () => Point2D,
+      private readonly onPositionChange: (pos: Point2D) => void = ()=>{}
+  ) {}
+
+  startDrag(event: MouseEvent) {
+    this.dragStartX = event.clientX;
+    this.dragStartY = event.clientY;
+    this.dragActive = true;
+    this.wasReallyDragged = false;
+    window.addEventListener('mousemove', this.boundDrag);
+    window.addEventListener('mouseup', this.boundEndDrag);
+  }
+
+  // returns true in the case of a real drag event, false otherwise
+  drag(event: MouseEvent): boolean {
+    if (this.dragActive) {
+      this.wasReallyDragged = true;
+      event.preventDefault();
+      const position = this.getPosition();
+      const dragX = event.clientX;
+      position.x+= (dragX - this.dragStartX);
+      this.dragStartX = dragX;
+      const dragY = event.clientY;
+      position.y+= (dragY - this.dragStartY);
+      this.dragStartY = dragY;
+      this.onPositionChange(position);
+      return true;
+    }
+    return false;
+  }
+
+  endDrag(event: MouseEvent) {
+    this.dragActive = false;
+    window.removeEventListener('mousemove', this.boundDrag);
+    window.removeEventListener('mouseup', this.boundEndDrag);
+    event.preventDefault();
+  }
+
+  //returns true if the click should be treated as click, false if it was from drag
+  clickElem(event: MouseEvent): boolean {
+    event.preventDefault();
+    if (this.wasReallyDragged) {
+      this.dragActive = false;
+      this.wasReallyDragged = false;
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  destroy() {
+    window.removeEventListener('mousemove', this.boundDrag);
+    window.removeEventListener('mouseup', this.boundEndDrag);
+    this.dragActive = false;
+  }
+
+}

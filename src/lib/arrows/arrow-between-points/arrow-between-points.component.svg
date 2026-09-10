@@ -1,0 +1,17 @@
+<svg:g>
+    <path arrow-style [arrowStyle]="arrowStyle"
+        [attr.id]="id+'-path'"
+        [attr.d]="'M '+startX+','+startY+' L '+endX+','+endY"
+    >
+    </path>
+    <text *ngIf="text" text-style
+        [textStyle]="textStyle"
+    >
+        <textPath text-path-style
+            [textPathStyle]="textPathStyle"
+            [attr.href]="'#'+id+'-path'"
+        >
+            {{text}}
+        </textPath>
+    </text>
+</svg:g>

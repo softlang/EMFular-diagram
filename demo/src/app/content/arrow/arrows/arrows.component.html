@@ -5,13 +5,15 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrows between Points</h2>
 
-<p>Explicitly given points are the easiest and cheapest way to define arrows. The arrow adapts as soon as its input point changes. So make sure that this happens, e.g. when moving the object around.</p>
+<p>Explicitly given points are the easiest and cheapest way to define arrows.
+    The arrow adapts as soon as one of its input coordinates changes.
+</p>
 
 <demo-simple-playground
  [form]="form0"
  [codeTemplate]="arrowBetweenPointsCode">
     <svg:g demo-preview
-       arrow-between-points
+       arrow-points
        [startX]="form0.value.startX"
        [startY]="form0.value.startY"
        [endX]="form0.value.endX"
@@ -22,7 +24,12 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrows between Bounding Boxes</h2>
 
-<p>It is also possible to let arrows compute best matches for points based on a given bounding box. The best matching point will always be on the segment closest to the other bounding box. Since bounding boxes are all aligned, the fitting segmets are always parallel lines. If their projections onto the same line overlap, the bets point is the middle of the overlap, otherwise, the two edges closest to each other are used.</p>
+<p>
+    It is also possible to let arrows compute best matches for points based on two given bounding boxes.
+    The best matching point of each box will always be on the segment closest to the other bounding box.
+    Since bounding boxes are all aligned, the fitting segments are always parallel lines.
+    If their projections onto the same line overlap, the best point is the middle of the overlap, otherwise, the two edges closest to each other are used.
+</p>
 
 <demo-simple-playground
         [form]="form1"
@@ -39,7 +46,7 @@ Depending on how you want to specify these points, you can choose between these 
            color="red"
         >
         </g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            [start]="{
                 x: form1.value.box1X,
                 y: form1.value.box1Y,
@@ -69,9 +76,9 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrows between Elements</h2>
 
-<p>It is also possible to define an arrow as connector between two elements, given by their IDs (that is the id attribute of the svg element).
+<p>It is also possible to define an arrow as a connector between two elements, given by their IDs (that is the id attribute of the svg element).
    The component will then compute bounding boxes for both elements and then find best points to connect them.</p>
-<p>Be aware that the computed arrow attachment happens on the bounding box, so it might look strange if your shape is far from that box (see triangles below for examples).</p>
+<p>Be aware that the computed arrow attachment happens on the bounding box - you can see this on the scaled and rotated rectangle and when connecting both triangles.</p>
 
 <demo-simple-playground
         [form]="form2"
@@ -97,20 +104,18 @@ Depending on how you want to specify these points, you can choose between these 
         </g>
         <g rectangleG
            id="rectangle_blue"
-           [position]="{x: 80,y: 80,w: 20,h: 20}"
+           [position]="{x: 80,y: 80,w: 30,h: 20}"
            color="blue"
-        >
+           transform="rotate(25 95 90) scale(1.1)">
         </g>
         <g rectangleG
            id="rectangle_red"
            [position]="{x: 140,y: 100,w: 20,h: 20}"
            color="red">
         </g>
-        <g arrowElems
+        <g arrow-elements
            [startGID]="form2.value.startID"
-           startSuffix=""
            [endGID]="form2.value.endID"
-           endSuffix=""
         >
         </g>
     </svg:g>
@@ -118,13 +123,15 @@ Depending on how you want to specify these points, you can choose between these 
 
 <h2>Arrow Styling</h2>
 
-<p>Arrow styling is mainly driven by the following interface:</p>
+<p>Arrow styling is mainly driven by three interfaces, one for the main arrow (shown below) and two more that we explain when discussing text on arrows, since the control text styles and text path.
+Each style is accompanied by a directive so that lib users can easily apply a style to their own components.
+The styles are bound as attr-bindings, making them native svg, so that they are exported with the svg.</p>
+
 <demo-highlighted-code [code]="arrowStyleConfig"></demo-highlighted-code>
 
-<p>Color is any string you could put into the corresponding style attribute,
-    and dashed corresponds to the stroke-dasharray that many svgs support, e.g. '4 1 2' - but please specify [4,1,2] for the array.
-    You can add arbitrary inline styles via the extra style-Attribute. For details on allowed attributes, consider <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/line">MDN</a>.
-    We ensured that the explicit style configuration has precedence, if you specify it.
+<p>Color is any string you could put into the corresponding style attribute (stroke),
+    and strokeDashArray corresponds to the stroke-dasharray that many svgs support, e.g. '4 1 2'.
+    For details on allowed attributes, consider <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/line">MDN</a>.
     Please do NEVER use external css to control svg behaviour, since it will not be exported with the SVG.
 </p>
 
@@ -137,10 +144,12 @@ Depending on how you want to specify these points, you can choose between these 
     Hence, arrow tips will only work, if you also provide a marker definition.
 </p>
 
-<h3>Defining Markers</h3>
+<h4>Defining Markers</h4>
 
-<p>Markers are available, if you have marker definitions inside the svg:defs section.</p>
-<p>If you use arrow tips, make sure to add the respective defs section at the beginning of your svg.</p>
+<p>
+    Markers are available, if you have marker definitions inside the svg:defs section.
+    If you use arrow tips, make sure to add the respective defs section at the beginning of your svg.
+</p>
 
 <demo-simple-playground
         [form]="form3"
@@ -162,35 +171,46 @@ Depending on how you want to specify these points, you can choose between these 
                 <path d="M0,5 L10,0 Z L10,5 Z L10,10 Z" stroke="green" fill="none"></path>
             </marker>
         </svg:defs>
-        <g arrow-between-points
+        <g arrow-points
            [startX]="10"
            [startY]="10"
            [endX]="190"
            [endY]="100"
            [id]="'arrowstyle0'"
-           [arrowStyle]="{color: form3.value.color, dashed: form3.value.dashed, startPointer: form3.value.startMarker, endPointer: form3.value.endMarker}"
+           [arrowStyle]="form3.value"
         ></g>
     </svg:g>
 </demo-simple-playground>
 
 <h3>Adding Text</h3>
 <p>You may also add text to an arrow, by using the optional text attribute. Be ware, text that is longer than the arrow line, will not be visible.
-    You can control text style attributes via two optional inputs, textStyle and textPathStyle. For more details on available attributes, please consider the official style guides, e.g. MDN.</p>
+    You can control text style attributes via two optional inputs, textStyle and textPathStyle.
+</p>
+<demo-highlighted-code
+[code]="textAndStylesCode">
+</demo-highlighted-code>
+
+<p>
+    There are more attributes that you can manually bind via attr-binding, but we only used those we considered broadly relevant for our interfaces and the corresponding directives.
+    Especially, the interplay of textAnchor and startOffset might help on arranging text.
+</p>
 
 <demo-simple-playground
         [form]="form4"
+        [radioOptions]="form4_radioOptions"
         [codeTemplate]="textAndStyles"
 >
     <svg:g demo-preview>
-        <g arrow-between-points
+        <g arrow-points
            id="arrowtext0"
            [startX]="10"
            [startY]="10"
            [endX]="190"
            [endY]="100"
-           [arrowStyle]="{color: 'blue', dashed: '1 2'}"
+           [arrowStyle]="{color: 'blue', strokeDashArray: '1'}"
            [text]="form4.value.text"
            [textStyle]="form4.value.textStyle"
+           [textPathStyle]="form4.value.textPathStyle"
         ></g>
     </svg:g>
 </demo-simple-playground>
@@ -198,14 +218,21 @@ Depending on how you want to specify these points, you can choose between these 
 <h2>Arrow Adaptation on External Movement</h2>
 
 <p>
-    If your arrows attach to bounding boxes or elements, the arrow's automatic change detection will only realize if the underlying position is replaced, but not if its coordinates changed.
+    If your arrows attach to bounding boxes or elements, the arrow's automatic change detection will only realize if the underlying input is replaced, but not if its coordinates changed.
 </p>
 
 <h3>Arrow Notification on Arrows Between Elements</h3>
 <p>
-    Arrows between elements listen to the `svgAccessService`, to see changes of one of the relevant ids for start and end.
-    The service gets notified about position changes and communicates them to all subscribers.
-    For drag-based interactions, we strongly suggest that you use the input-draggable-component as basis, so that this service is already correctly wired in.
+    Arrows between elements listen to the `svgPositionChangeService`, to see changes of one of the relevant ids for start and end.
+    So make sure that any component that you control notifies the service about movements, and that every component that needs to adapt, subscribes to its notifications and filters on relevant elements.
+    Our drag directive already communicates its position changes (both to the service and locally via an output), but we have no control over your self-written components.
+</p>
+
+
+<p>
+    In the example below you can see that all drag events are indeed correctly seen but that the double click event that changes the position of the box is not captured, unless we notify the service manually.
+    You can activate this notification in the control and will see it afterwards on every double click induced position change.
+    If you have any methods that could change an object's position, notify the svgPositionChangeService of these changes for the arrow to see the change.
 </p>
 
 <demo-simple-playground
@@ -221,21 +248,13 @@ Depending on how you want to specify these points, you can choose between these 
            [elem]="drag1"
            (dblClicked)="onDoubleClick(drag1.$gId)"
         ></g>
-        <g arrowElems
+        <g arrow-elements
            id="arrowdrag0"
            [startGID]="dragID0"
-           [startSuffix]="''"
            [endGID]="dragID1"
-           [endSuffix]="''"
         ></g>
     </svg:g>
 </demo-simple-playground>
-
-<p>
-    You can see that all drag events are indeed correctly seen but that the double click event that changes the position of the box is not captured, unless we notify the service manually.
-    You can activate this notification in the control and will see it afterwards on every double click induced position change.
-    If you have any methods that could change an object's position, notify the svgAccessService of these changes for the arrow to see the change.
-</p>
 
 
 <h3>Arrow Notification on Arrows Between Boxes</h3>
@@ -244,6 +263,9 @@ Depending on how you want to specify these points, you can choose between these 
     The box offers no such mechanism "out of the box" ;)<br>
     Please use an mechanism to re-assign the position, so that a change is detected, e.g. by creating a new object and reassigning the former content.
     An example for that is `elem.position = &#123;...elem.position&#125;;`.
+</p>
+<p>
+    The example below applies this re-assignment only, if notifications are active. Hence you can study the behaviour with and without the object mutation.
 </p>
 <demo-simple-playground
         [form]="form6"
@@ -260,7 +282,7 @@ Depending on how you want to specify these points, you can choose between these 
            (positionChanged)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
            (dblClicked)="onPosChangeArBetwBoxes(dragRed, form6.controls.notifyRed.value)"
         ></g>
-        <g arrow-between-boxes
+        <g arrow-boxes
            id="arrowdrag0"
            [start]="dragBlue.position"
            [end]="dragRed.position"
