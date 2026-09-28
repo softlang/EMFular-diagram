@@ -2,6 +2,7 @@ export function getByIdOnSameSvg(
     element: SVGGraphicsElement,
     id: string
 ): SVGGraphicsElement {
-    const elem = document.getElementById(id)
-    return elem as unknown as SVGGraphicsElement
+    const svg = element.ownerSVGElement
+    return svg?.querySelector(`#${id}`)
+        ?? undefined
 }
