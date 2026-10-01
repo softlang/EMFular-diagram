@@ -22,6 +22,26 @@ describe('getByIdOnSameSvg', () => {
         expect(getByIdOnSameSvg(arrow, 'target')).toBe(firstTarget);
     });
 
+    it('works on ids starting with number (no css id)', () => {
+        const firstSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        const secondSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+        const firstTarget = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        firstTarget.id = '1target';
+
+        const secondTarget = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        secondTarget.id = '1target';
+
+        const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+        firstSvg.append(firstTarget);
+        firstSvg.append(arrow);
+        secondSvg.append(secondTarget);
+        document.body.append(secondSvg, firstSvg);
+
+        expect(getByIdOnSameSvg(arrow, '1target')).toBe(firstTarget);
+    });
+
     it('returns undefined when the element is not in the same SVG', () => {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         const otherSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -37,6 +57,5 @@ describe('getByIdOnSameSvg', () => {
 
         expect(getByIdOnSameSvg(arrow, 'target')).toBeUndefined();
     });
-
 
 })
