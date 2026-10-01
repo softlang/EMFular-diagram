@@ -16,6 +16,7 @@ import {ArrowStyle, DEFAULT_ARROW_STYLE} from "../arrow-style";
 import {SvgTextStyle, DEFAULT_TEXT_STYLE} from "../../shared/style-configs/svg-text-style";
 import {SvgTextPathStyle} from "../../shared/style-configs/svg-text-path-style";
 import {BoundingBoxTransformer} from "../utils/bounding-box-transformer";
+import {getByIdOnSameSvg} from "./get-by-id-on-same-svg";
 
 
 @Component({
@@ -80,8 +81,7 @@ export class ArrowBetweenElemsComponent implements AfterViewInit, OnChanges, OnD
   }
 
   private getElemById(id: string): SVGGraphicsElement | undefined {
-    const elem = document.getElementById(id)
-    return elem as unknown as SVGGraphicsElement
+    return getByIdOnSameSvg(this.arrowSvgElem.nativeElement, id)
   }
 
   ngOnDestroy() {
